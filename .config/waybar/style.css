@@ -1,24 +1,22 @@
-@keyframes blink-warning {
-    70% {
-        color: #e0def4;
-    }
+/*🌹 Rosé Pine*/
+@define-color base            #191724;
+@define-color surface         #1f1d2e;
+@define-color overlay         #26233a;
+ 
+@define-color muted           #6e6a86;
+@define-color subtle          #908caa;
+@define-color text            #e0def4;
+ 
+@define-color love            #eb6f92;
+@define-color gold            #f6c177;
+@define-color rose            #ebbcba;
+@define-color pine            #31748f;
+@define-color foam            #9ccfd8;
+@define-color iris            #c4a7e7;
 
-    to {
-        color: #e0def4;
-        background-color: #f6c177;
-    }
-}
-
-@keyframes blink-critical {
-    70% {
-      color: #e0def4;
-    }
-
-    to {
-        color: #e0def4;
-        background-color: #eb6f92;
-    }
-}
+@define-color highlightLow    #21202e;
+@define-color highlightMed    #403d52;
+@define-color highlightHigh   #524f67;
 
 * {
     padding: 0;
@@ -28,7 +26,7 @@
 }
 
 #waybar {
-    font-family: "RobotoMono Nerd Font";
+    font-family: "JetBrainsMono Nerd Font";
     font-size: 13px;
     font-weight:bold;
     background-color: #1f1d2e;
@@ -55,75 +53,125 @@
     opacity: 1;
 }
 
+tooltip {
+  background: @base;
+  border-width: 2px;
+  border-style: solid;
+  border-color: @overlay;
+}
+
 #clock,
 #battery,
 #backlight,
 #network,
 #pulseaudio,
+#bluetooth,
 #wireplumber,
+#memory,
+#mode,
 #tray,
 #idle_inhibitor,
 #power-profiles-daemon {
     padding: 0 10px;
-    background: #191724;
-    border: 1px solid #26233a;
-    margin: 2px;
-    border-radius: 5px;
+    background: @base;
+    border: 1px solid @overlay;
+    margin: 3px 0px;
 }
 
 #idle_inhibitor{
-  color: #9ccfd8; 
+  color: @text; 
+  border-radius: 10px 0px 0px 10px; 
+  border-right: 0px;
 }
 
 #idle_inhibitor.deactivated{
-    color: #6e6a86;
+    color: @muted;
 }
 
-#clock{
-  color: #f6c177;
+#memory {
+  color: @foam;
+  border-radius: 0px 10px 10px 0px;
+    margin-right: 5px;
 }
 
-#network,#bluetooth{
-  color: #eb6f92;
+#backlight {
+  color: @text;
+  border-radius: 0px 10px 10px 0px;
+  margin-right: 10px;
 }
 
-#pulseaudio{
- color: #c4a7e7;
+#temperature {
+  color: @rose;
+  border-radius: 0px 0px 0px 0px;
+  border-right: 0px;
+}
+
+#temperature.critical {
+  color: @love;
+}
+
+#clock {
+  color: @gold;
+  border-radius: 10px; 
+  margin-right: 5px;
+  border-left: 0px;
+}
+
+#backlight {
+  color: @text;
+  border-radius: 0px 10px 10px 0px;
+  margin-right: 10px;
+}
+
+#bluetooth {
+  color: @gold;
+  border-radius: 0px 0px 0px 0px;
+  border-right: 0px;
+  /* margin-right: 10px; */
+}
+
+#pulseaudio {
+  color: @iris;
+  border-radius: 10px;
+  /* border-left: 0px; */
+  /*border-right: 0px;*/
+    margin-right: 5px;
+}
+
+#tray {
+  border-radius: 10px;
+  margin-right: 10px;
 }
 
 #mode {
-    background: #191724;
-    color:#eb6f92;
-    margin: 2px;
-    padding: 0 10px;
-    border-radius: 5px;
-    border: 1px solid #26233a;
+    background: @base;
+    color: @love;
+    margin-left: 5px;
+    border-radius: 10px;
 }
 
 #pulseaudio.muted {
-    color: #6e6a86;
+    color: @muted;
 }
 
 #battery {
-    animation-timing-function: linear;
-    animation-iteration-count: infinite;
-    animation-direction: alternate;
+  color: @foam;
+  border-radius: 0 10px 10px 0;
+  margin-right: 10px;
+  border-left: 0px;
 }
+
 
 #battery.critical {
     color: #eb6f92;
 }
 
-#battery.warning.discharging {
-    animation-name: blink-warning;
-    animation-duration: 3s;
-}
-
-#battery.critical.discharging {
-    animation-name: blink-critical;
-    animation-duration: 2s;
+#network{
+    color: @love;
+    border-right: 0px;
 }
 
 #window{
   color: #9ccfd8;
 }
+
