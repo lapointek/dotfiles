@@ -93,7 +93,7 @@ output HDMI-A-1 mode 2560x1440@144Hz position 2560 0 scale 1
 #
 ### Window Rules:
 #
-    for_window [app_id="nmtui"] floating enable
+    for_window [app_id="nmtui"] floating enable, resize set 700 500
     for_window [app_id="pavucontrol"] floating enable, resize set 800 600
     for_window [app_id="nwg-look"] floating enable, resize set 800 600
     for_window [app_id="solaar"] floating enable

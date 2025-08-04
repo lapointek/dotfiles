@@ -58,6 +58,7 @@ applications=(
 "gvfs-mtp" 
 "gvfs-nfs" 
 "gvfs-smb" 
+"lm_sensors"
 )
 
 # Sync, update and install packages
