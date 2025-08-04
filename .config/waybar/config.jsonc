@@ -69,17 +69,29 @@
     },
 
     "clock": {
-        "format": " {:%R   %d/%m}",
-        "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>"
+        "format": " {:%d/%m   %R}",
+        "format-alt": " {:%d/%m  󰅐 %OI:%M %p}",
+        "tooltip-format": "<big>{:%A %m/%d}</big>\n<tt><small>{calendar}</small></tt>",
+        "calendar": {
+            "format": {
+                "today":  "<span color='#ff6699'><b><u>{}</u></b></span>",  
+                "weekdays":  "<span color='#c4a7e7'><b>{}</b></span>"
+            }
+        }
     },
     
     "battery": {
         "states": {
+            "good": 95,
             "warning": 30,
-            "critical": 15
+            "critical": 20 
         },
         "format": "{icon} {capacity}%",
-        "format-icons": ["", "", "", "", ""]
+        "format-charging": " {capacity}%",
+        "format-plugged": " {capacity}%",
+        "format-alt": "{time} {icon}",
+        "format-icons": ["󰁺", "󰁻", "󰁼", "󰁽", "󰁾", "󰁿", "󰂀", "󰂁", "󰁹"]
+        
     },
 
     "power-profiles-daemon": {
@@ -98,7 +110,7 @@
         "thermal-zone": 1,
         "format": " {temperatureC}°C",
         "critical-threshold": 80,
-        "format-critical": "{temperatureF}°F "
+        "format-critical": " {temperatureC}°C"
   },
 
     "memory": {
@@ -112,7 +124,7 @@
 
     "backlight": {
         "format": "{icon} {percent}%",
-        "format-icons": ["󰄰", "󰪞", "󰪟", "󰪠", "󰪡", "󰪢", "󰪣", "󰪤", "󰪥"],
+        "format-icons": ["󰃞", "󰃝", "󰃠"],
         "tooltip-format": "Backlight (Scroll): {percent:}%",
         "on-scroll-down": "brightnessctl -c backlight set 5%-",
         "on-scroll-up": "brightnessctl -c backlight set +5%"
@@ -122,7 +134,7 @@
         "format-disabled": " Disabled",
         "format-wifi": "  {signalStrength}%",
         "tooltip-format": "{essid} - {ifname} via {gwaddr}",
-        "format-ethernet": "{ipaddr}/{cidr} 󰈀",
+        "format-ethernet": "󰈀 {ipaddr}/{cidr}",
         "format-disconnected": " Disconnected",
         "on-click-right": "foot --app-id nmtui -e nmtui",
         "format-alt": "{ifname}:{essid} {ipaddr}/{cidr}"

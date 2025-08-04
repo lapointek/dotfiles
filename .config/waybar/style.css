@@ -29,7 +29,7 @@
     font-family: "JetBrainsMono Nerd Font";
     font-size: 13px;
     font-weight:bold;
-    background-color: #1f1d2e;
+    background-color: @surface;
 }
 
 #workspaces button {
@@ -80,7 +80,7 @@ tooltip {
 
 #idle_inhibitor{
   color: @text; 
-  border-radius: 10px 0px 0px 10px; 
+  border-radius: 6px 0px 0px 6px; 
   border-right: 0px;
 }
 
@@ -90,19 +90,18 @@ tooltip {
 
 #memory {
   color: @foam;
-  border-radius: 0px 10px 10px 0px;
+  border-radius: 0px 6px 6px 0px;
     margin-right: 5px;
 }
 
 #backlight {
   color: @text;
-  border-radius: 0px 10px 10px 0px;
+  border-radius: 0px 6px 6px 0px;
   margin-right: 10px;
 }
 
 #temperature {
   color: @rose;
-  border-radius: 0px 0px 0px 0px;
   border-right: 0px;
 }
 
@@ -112,34 +111,27 @@ tooltip {
 
 #clock {
   color: @gold;
-  border-radius: 10px; 
+  border-radius: 6px; 
   margin-right: 5px;
   border-left: 0px;
 }
 
-#backlight {
-  color: @text;
-  border-radius: 0px 10px 10px 0px;
-  margin-right: 10px;
-}
-
 #bluetooth {
   color: @gold;
-  border-radius: 0px 0px 0px 0px;
   border-right: 0px;
   /* margin-right: 10px; */
 }
 
 #pulseaudio {
-  color: @iris;
-  border-radius: 10px;
+    color: @iris;
   /* border-left: 0px; */
   /*border-right: 0px;*/
     margin-right: 5px;
+    border-radius: 6px;
 }
 
 #tray {
-  border-radius: 10px;
+  border-radius: 6px;
   margin-right: 10px;
 }
 
@@ -147,7 +139,7 @@ tooltip {
     background: @base;
     color: @love;
     margin-left: 5px;
-    border-radius: 10px;
+    border-radius: 6px;
 }
 
 #pulseaudio.muted {
@@ -156,14 +148,14 @@ tooltip {
 
 #battery {
   color: @foam;
-  border-radius: 0 10px 10px 0;
-  margin-right: 10px;
+  border-radius: 0 6px 6px 0;
+  margin-right: 5px;
   border-left: 0px;
 }
 
 
 #battery.critical {
-    color: #eb6f92;
+    color: @love;
 }
 
 #network{
