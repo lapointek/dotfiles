@@ -1,0 +1,129 @@
+@keyframes blink-warning {
+    70% {
+        color: #e0def4;
+    }
+
+    to {
+        color: #e0def4;
+        background-color: #f6c177;
+    }
+}
+
+@keyframes blink-critical {
+    70% {
+      color: #e0def4;
+    }
+
+    to {
+        color: #e0def4;
+        background-color: #eb6f92;
+    }
+}
+
+* {
+    padding: 0;
+    border: none;
+    border-radius: 0;
+    min-height: 0;
+}
+
+#waybar {
+    font-family: "RobotoMono Nerd Font";
+    font-size: 13px;
+    font-weight:bold;
+    background-color: #1f1d2e;
+}
+
+#workspaces button {
+    padding: 1px 5px;
+    color: #6e6a86;
+    font-weight: bold;
+    border: 1px solid #26233a;
+    background: #191724;
+    min-width: 10px;
+}
+
+#workspaces button.focused {
+  font-weight: bold;
+  background: #403d52;
+  color: #e0defa;
+  padding: 1px 5px;
+}
+
+#workspaces button.urgent {
+    background-color: #eb6f92;
+    opacity: 1;
+}
+
+#clock,
+#battery,
+#backlight,
+#network,
+#pulseaudio,
+#wireplumber,
+#tray,
+#idle_inhibitor,
+#power-profiles-daemon {
+    padding: 0 10px;
+    background: #191724;
+    border: 1px solid #26233a;
+    margin: 2px;
+    border-radius: 5px;
+}
+
+#idle_inhibitor{
+  color: #9ccfd8; 
+}
+
+#idle_inhibitor.deactivated{
+    color: #6e6a86;
+}
+
+#clock{
+  color: #f6c177;
+}
+
+#network,#bluetooth{
+  color: #eb6f92;
+}
+
+#pulseaudio{
+ color: #c4a7e7;
+}
+
+#mode {
+    background: #191724;
+    color:#eb6f92;
+    margin: 2px;
+    padding: 0 10px;
+    border-radius: 5px;
+    border: 1px solid #26233a;
+}
+
+#pulseaudio.muted {
+    color: #6e6a86;
+}
+
+#battery {
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+}
+
+#battery.critical {
+    color: #eb6f92;
+}
+
+#battery.warning.discharging {
+    animation-name: blink-warning;
+    animation-duration: 3s;
+}
+
+#battery.critical.discharging {
+    animation-name: blink-critical;
+    animation-duration: 2s;
+}
+
+#window{
+  color: #9ccfd8;
+}
