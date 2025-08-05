@@ -7,25 +7,25 @@
 ### Variables
 #
 # Logo key. Use Mod1 for Alt.
-set $mod Mod4
+    set $mod Mod4
 # Home row direction keys, like vim
-set $left h
-set $down j
-set $up k
-set $right l
+    set $left h
+    set $down j
+    set $up k
+    set $right l
 # Your preferred terminal emulator
-set $term foot
+    set $term foot
 # Your preferred application launcher
-set $menu wmenu-run
-set $fuzzel fuzzel
+    set $menu wmenu-run
+    set $fuzzel fuzzel
 
 ### Output configuration
 #
 # Default wallpaper (more resolutions are available in /usr/share/backgrounds/sway/)
-exec ~/.azotebg
+    exec ~/.azotebg
 
 ## Change output to match monitor
-output HDMI-A-1 mode 2560x1440@144Hz position 2560 0 scale 1
+    output HDMI-A-1 mode 2560x1440@144Hz position 2560 0 scale 1
 #
 # You can get the names of your outputs by running: swaymsg -t get_outputs
 
@@ -34,17 +34,17 @@ output HDMI-A-1 mode 2560x1440@144Hz position 2560 0 scale 1
 # This will lock your screen after 300 seconds of inactivity, then turn off
 # your displays after another 300 seconds, and turn your screens back on when
 # resumed. It will also lock your screen before your computer goes to sleep.
- exec swayidle -w \
-          timeout 600 'swaylock -f -C ~/.config/sway/swaylock/config' \
-          timeout 1200 'swaymsg "output * power off"' resume 'swaymsg "output * power on"' \
-          before-sleep 'swaylock -f -C ~/.config/sway/swaylock/config'
+exec swayidle -w \
+        timeout 600 'swaylock -f -C ~/.config/sway/swaylock/config' \
+        timeout 1200 'swaymsg "output * power off"' resume 'swaymsg "output * power on"' \
+        before-sleep 'swaylock -f -C ~/.config/sway/swaylock/config'
 
 ## Start Swaylock
     bindsym $mod+Alt+l exec swaylock -C ~/.config/sway/swaylock/config
 
 ## Power menu
 #  
-  bindsym $mod+Escape exec ~/.config/sway/scripts/power_menu.sh
+    bindsym $mod+Escape exec ~/.config/sway/scripts/power_menu.sh
 
 ### Input configuration
 #
@@ -99,6 +99,8 @@ output HDMI-A-1 mode 2560x1440@144Hz position 2560 0 scale 1
     for_window [app_id="solaar"] floating enable
     for_window [app_id="blueman-manager"] floating enable, resize set 800 600
     for_window [app_id="foot" title="htop"] floating enable, resize set 1000 800
+    for_window [app_id="virt-manager"] floating enable, resize set 800 600
+    for_window [app_id="system-config-printer"] floating enable, resize set 800 600
     for_window [window_role="pop-up"] floating enable
     for_window [window_role="bubble"] floating enable
     for_window [window_role="task_dialog"] floating enable
@@ -113,8 +115,9 @@ output HDMI-A-1 mode 2560x1440@144Hz position 2560 0 scale 1
     
     # Inhibit idle
     for_window [app_id="firefox"] inhibit_idle fullscreen
-    for_window [app_id="brave"] inhibit_idle fullscreen
-    for_window [app_id="Chromium"] inhibit_idle fullscreen
+    for_window [app_id="brave-browser"] inhibit_idle fullscreen
+    for_window [app_id="chromium"] inhibit_idle fullscreen
+    for_window [app_id="mpv"] inhibit_idle fullscreen
 #
 # Moving around:
 #
@@ -270,6 +273,7 @@ bindsym $mod+r mode "resize"
 ### Autostart Applications
 #   
     exec dunst &
+    exec blueman-applet &
     exec /usr/lib/polkit-kde-authentication-agent-1
     exec /usr/lib/policykit-1-gnome/polkit-gnome-authentication-agent-1 &
     exec wl-paste --type text --watch cliphist store &

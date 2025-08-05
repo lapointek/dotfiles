@@ -50,7 +50,6 @@
 tooltip {
     background: @base;
     border: 1px solid @overlay;
-    margin-right: 10px;
 }
 
 #clock,
@@ -58,7 +57,6 @@ tooltip {
 #backlight,
 #network,
 #pulseaudio,
-#bluetooth,
 #wireplumber,
 #memory,
 #mode,
@@ -96,10 +94,6 @@ tooltip {
     color: @gold;
 }
 
-#bluetooth {
-    color: @gold;
-}
-
 #pulseaudio {
     color: @iris;
 }
@@ -115,7 +109,6 @@ tooltip {
 #battery {
     color: @foam;
 }
-
 
 #battery.critical {
     color: @love;

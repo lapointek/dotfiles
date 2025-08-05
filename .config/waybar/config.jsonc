@@ -16,7 +16,6 @@
         "tray",
         "idle_inhibitor",
         "network",
-        "bluetooth",
         "temperature",
         "memory",
         "battery",
@@ -58,13 +57,12 @@
             "activated": " ",
             "deactivated": " "
         },
-        "tooltip-format-activated": "Idle Inhibitor Activated",
-        "tooltip-format-deactivated": "Idle Inhibitor Deactivated"
+        "tooltip-format-activated": "Idle Inhibitor - Activated",
+        "tooltip-format-deactivated": "Idle Inhibitor - Deactivated"
     },
    
     "tray": {
-        "icon-size": 18,
-        "spacing": 10
+        "icon-size": 18
     },
 
     "clock": {
@@ -138,16 +136,6 @@
         "format-alt": "{ifname}: {ipaddr}/{cidr}"
     },
 
-    "bluetooth": {
-        "format": " {status}",
-        "format-disabled": "", // an empty format will hide the module
-        "on-click": "blueman-manager",
-        "format-connected": " {num_connections}",
-        "tooltip-format": "{device_alias}",
-        "tooltip-format-connected": " {device_enumerate}",
-        "tooltip-format-enumerate-connected": "{device_alias}"
-    },
-    
     "pulseaudio": {
         "scroll-step": 2, // %, can be a float
         "format": "{icon}  {volume}%",
