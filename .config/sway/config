@@ -31,7 +31,7 @@
 
 #
 ### Idle configuration
-# This will lock your screen after 300 seconds of inactivity, then turn off
+# This will lock your creen after 300 seconds of inactivity, then turn off
 # your displays after another 300 seconds, and turn your screens back on when
 # resumed. It will also lock your screen before your computer goes to sleep.
 exec swayidle -w \
@@ -41,7 +41,7 @@ exec swayidle -w \
 
 ## Start Swaylock
     bindsym $mod+Alt+l exec swaylock -C ~/.config/sway/swaylock/config
-
+#
 ## Power menu
 #  
     bindsym $mod+Escape exec ~/.config/sway/scripts/power_menu.sh
@@ -266,9 +266,9 @@ bindsym $mod+r mode "resize"
 
 ## Screenshot keybindings
     # Select region screenshot
-    bindsym $mod+Shift+s exec grim -t jpeg -g "$(slurp)" "/home/$USER/Pictures/screenshots/$(date "+%F_%T").jpg" && notify-send "Screenshot Taken" "$(date "+%F_%T").png" -i document-save
+    bindsym $mod+Shift+s exec grim -t jpeg -g "$(slurp)" "/home/$USER/Pictures/screenshots/$(date "+%F_%T").jpg" && notify-send -u low "Screenshot Taken" "$(date "+%F_%T").png" -i document-save
     # Fullscreen screenshot
-    bindsym Print exec grim -t jpeg "/home/$USER/Pictures/screenshots/$(date "+%F_%T").jpg" && notify-send "Fullscreen Screenshot Taken" "$(date "+%F_%T").png" -i document-save
+    bindsym Print exec grim -t jpeg "/home/$USER/Pictures/screenshots/$(date "+%F_%T").jpg" && notify-send -u low "Fullscreen Screenshot Taken" "$(date "+%F_%T").png" -i document-save
 #
 ### Autostart Applications
 #   
