@@ -62,7 +62,8 @@
     },
    
     "tray": {
-        "icon-size": 18
+        "icon-size": 18,
+        "spacing": 10
     },
 
     "clock": {
@@ -87,7 +88,6 @@
         "format-plugged": " {capacity}%",
         "format-alt": "{time} {icon}",
         "format-icons": ["󰁺", "󰁻", "󰁼", "󰁽", "󰁾", "󰁿", "󰂀", "󰂁", "󰁹"]
-        
     },
 
     "power-profiles-daemon": {

@@ -67,11 +67,7 @@ tooltip {
 }
 
 #idle_inhibitor{
-    color: @text; 
-}
-
-#idle_inhibitor.deactivated{
-    color: @muted;
+    color: @pine; 
 }
 
 #memory {
