@@ -179,15 +179,6 @@ output HDMI-A-1 mode 2560x1440@144Hz position 2560 0 scale 1
     bindsym $mod+Ctrl+x exec cliphist list | fuzzel -d -w 90 -l 30 -t  ebbcbaff -S ebbcbaff -p "Select an entry to delete it from cliphist:"| cliphist delete
     # Note: you can clear all cliphist entries by running `cliphist wipe`
 #
-# Screenshots
-#
-    # Snip a selection and pipe to swappy
-    bindsym $mod+Shift+s exec grim -g "$(slurp)" - | swappy -f -
-    # Screenshot a window and pipe to swappy
-    bindsym Ctrl+Print exec ~/.config/sway/scripts/screenshot_window.sh
-    # Screenshot the current display and pipe to swappy
-    bindsym Shift+Print exec ~/.config/sway/scripts/screenshot_display.sh
-#
 # Layout stuff:
 #
     # You can "split" the current object of your focus with
@@ -270,10 +261,11 @@ bindsym $mod+r mode "resize"
     bindsym --locked XF86MonBrightnessDown exec brightnessctl set 5%-
     bindsym --locked XF86MonBrightnessUp exec brightnessctl set 5%+
 
-    # Fullscreen screenshot
-    # bindsym Print exec grim -t jpeg ~/Pictures/screenshot-$(date +%F_%T).jpg && notify-send "Fullscreen screenshot taken"
+## Screenshot keybindings
     # Select region screenshot
-    # bindsym $mod+Shift+s exec grim -t jpeg -g "$(slurp)" ~/Pictures/screenshot-$(date +%F_%T).jpg && notify-send "Screenshot taken"
+    bindsym $mod+Shift+s exec grim -t jpeg -g "$(slurp)" "/home/$USER/Pictures/screenshots/$(date "+%F_%T").jpg" && notify-send "Screenshot saved as $(date "+%F_%T").png" -i document-save
+    # Fullscreen screenshot
+    bindsym Print exec grim -t jpeg "/home/$USER/Pictures/screenshots/$(date "+%F_%T").jpg" && notify-send "Fullscreen screenshot saved as $(date "+%F_%T").png" -i document-save
 #
 ### Autostart Applications
 #   
@@ -286,10 +278,9 @@ bindsym $mod+r mode "resize"
     exec systemctl --user import-environment WAYLAND_DISPLAY
     exec dbus-update-activation-environment WAYLAND_DISPLAY XDG_CURRENT_DESKTOP=sway
 #
-### Appearance configuration
+### Appearance configuration&
 #    
-    font pango:HackNerd Font Bold 9
-    smart_gaps on
+    font pango:Hack Nerd Font Bold 9
     default_border pixel 2
     default_floating_border pixel 2
 
