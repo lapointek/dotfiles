@@ -26,38 +26,31 @@
 }
 
 #waybar {
-    font-family: "JetBrainsMono Nerd Font";
-    font-size: 13px;
+    font-family: "Iosevka Nerd Font", JetBrainsMono Nerd Font, RobotoMono Nerd Font;
+    font-size: 14px;
     font-weight:bold;
-    background-color: @surface;
+    background-color: @base;
 }
 
 #workspaces button {
     padding: 1px 5px;
-    color: #6e6a86;
-    font-weight: bold;
-    border: 1px solid #26233a;
-    background: #191724;
+    color: @muted;
     min-width: 10px;
 }
 
 #workspaces button.focused {
-  font-weight: bold;
-  background: #403d52;
-  color: #e0defa;
-  padding: 1px 5px;
+    background: @highlightMed;
+    color: @text;
 }
 
 #workspaces button.urgent {
-    background-color: #eb6f92;
-    opacity: 1;
+    background-color: @love;
 }
 
 tooltip {
-  background: @base;
-  border-width: 2px;
-  border-style: solid;
-  border-color: @overlay;
+    background: @base;
+    border: 1px solid @overlay;
+    margin-right: 10px;
 }
 
 #clock,
@@ -72,16 +65,11 @@ tooltip {
 #tray,
 #idle_inhibitor,
 #power-profiles-daemon {
-    padding: 0 10px;
-    background: @base;
-    border: 1px solid @overlay;
-    margin: 3px 0px;
+    padding: 0px 10px;
 }
 
 #idle_inhibitor{
-  color: @text; 
-  border-radius: 6px 0px 0px 6px; 
-  border-right: 0px;
+    color: @text; 
 }
 
 #idle_inhibitor.deactivated{
@@ -89,68 +77,43 @@ tooltip {
 }
 
 #memory {
-  color: @foam;
-  border-radius: 0px 6px 6px 0px;
-    margin-right: 5px;
+    color: @foam;
 }
 
 #backlight {
-  color: @text;
-  border-radius: 0px 6px 6px 0px;
-  margin-right: 10px;
+    color: @text;
 }
 
 #temperature {
-  color: @rose;
-  border-right: 0px;
+    color: @rose;
 }
 
 #temperature.critical {
-  color: @love;
+    color: @love;
 }
 
 #clock {
-  color: @gold;
-  border-radius: 6px; 
-  margin-right: 5px;
-  border-left: 0px;
+    color: @gold;
 }
 
 #bluetooth {
-  color: @gold;
-  border-right: 0px;
-  /* margin-right: 10px; */
+    color: @gold;
 }
 
 #pulseaudio {
     color: @iris;
-  /* border-left: 0px; */
-  /*border-right: 0px;*/
-    margin-right: 5px;
-    border-radius: 6px;
-}
-
-#tray {
-  border-radius: 6px;
-  margin-right: 10px;
-}
-
-#mode {
-    background: @base;
-    color: @love;
-    margin-left: 5px;
-    border-radius: 6px;
 }
 
 #pulseaudio.muted {
     color: @muted;
 }
 
+#mode {
+    color: @love;
+}
+
 #battery {
-  color: @foam;
-  border-radius: 0 6px 6px 0;
-  margin-right: 5px;
-  border-left: 0px;
+    color: @foam;
 }
 
 
@@ -160,10 +123,9 @@ tooltip {
 
 #network{
     color: @love;
-    border-right: 0px;
 }
 
 #window{
-  color: #9ccfd8;
+    color: @foam;
 }
 
