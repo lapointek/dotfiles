@@ -45,17 +45,12 @@ tooltip {
 #scratchpad,
 #mode,
 #tray,
-#idle_inhibitor,
 #power-profiles-daemon {
     padding: 0px 10px;
 }
 
 #scratchpad{
     color: @pine;
-}
-
-#idle_inhibitor{
-    color: @pine; 
 }
 
 #memory {
