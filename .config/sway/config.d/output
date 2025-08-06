@@ -1,0 +1,4 @@
+### Output configuration
+
+# Display
+output HDMI-A-1 mode 2560x1440@144Hz position 2560 0 scale 1
