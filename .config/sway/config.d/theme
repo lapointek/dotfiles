@@ -6,29 +6,36 @@ default_floating_border pixel 2
 # Default font
 font pango:Hack Nerd Font Bold 9
 
-# Rosepine theme
-set $text    #e0def4
-set $subtle  #908caa
-set $muted   #6e6a86
-set $overlay #26233a
-set $pine    #31748f
-set $iris    #c4a7e7
-set $love    #eb6f92
-set $rose    #ebbcba
-set $foam    #9ccfd8
+# RosePine theme
+set $base           #191724
+set $surface        #1f1d2e
+set $overlay        #26233a
+set $muted          #6e6a86
+set $subtle         #908caa
+set $text           #e0def4
+set $love           #eb6f92
+set $gold           #f6c177
+set $rose           #ebbcba
+set $pine           #31748f
+set $foam           #9ccfd8
+set $iris           #c4a7e7
+set $highlightlow   #21202e
+set $highlightmed   #403d52
+set $highlighthigh  #524f67
 
-# Colors (see man 5 sway)
+# Border color and windows (see man 5 sway)
     # border - border around titlebar
     # bg - titlebar background
     # text - text on titlebar
     # indicator - shown where new window will open
     # child_border - border around the window
-    # class             border   bg        text     indicator  child_border
-client.focused          $rose    $pine     $text    $foam      $pine
-client.focused_inactive $text    $muted    $subtle  $muted     $muted
-client.unfocused        $rose    $overlay  $subtle  $muted     $overlay
-client.urgent           $love    $love     $text    $love      $love
-
+    # class              border    bg             text    indicator  child_border
+client.focused           $rose     $highlightmed  $text   $rose      $rose
+client.focused_inactive  $text     $base          $text   $subtle    $surface
+client.unfocused         $muted    $base          $muted  $overlay   $overlay
+client.urgent            $text     $base          $text   $love      $love
+client.placeholder       $base     $base          $text   $overlay   $overlay
+client.background        $base
 
 # Status Bar
 # Read `man 5 sway-bar` for more information about this section.
