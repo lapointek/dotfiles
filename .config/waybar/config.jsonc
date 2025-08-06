@@ -14,7 +14,7 @@
 
     "modules-right": [
         "tray",
-        "idle_inhibitor",
+        "sway/scratchpad",
         "network",
         "temperature",
         "memory",
@@ -47,6 +47,15 @@
         "format": "{}",
         //"all-outputs": true, // Active window shows only on active display when commented
         "max-length": 120
+    },
+
+    "sway/scratchpad": {
+        "format": "{icon} {count}",
+        "show-empty": false,
+        "format-icons": ["", ""],
+        "tooltip": true,
+        "tooltip-format": "{app}: {title}",
+        "on-click": "swaymsg scratchpad show"
     },
 
     "idle_inhibitor": {
