@@ -1,22 +1,20 @@
-### Autostart Applications
+## Autostart Applications
+## Environment variable
+exec dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP=sway
+
 # Dunst
-exec dunst &
+exec dunst
 
 # Blueman-applet
-exec blueman-applet &
+exec blueman-applet
 
 # Polkit authentication
 exec /usr/lib/polkit-kde-authentication-agent-1
-exec /usr/lib/policykit-1-gnome/polkit-gnome-authentication-agent-1 &
+# exec /usr/lib/policykit-1-gnome/polkit-gnome-authentication-agent-1 &
     
 # Cliphist
-exec wl-paste --type text --watch cliphist store &
-exec wl-paste --type image --watch cliphist store &
-
-# Environment variables
-exec systemctl --user set-environment XDG_CURRENT_DESKTOP=sway
-exec systemctl --user import-environment WAYLAND_DISPLAY
-exec dbus-update-activation-environment WAYLAND_DISPLAY XDG_CURRENT_DESKTOP=sway
+exec wl-paste --type text --watch cliphist store
+exec wl-paste --type image --watch cliphist store
 
 ### Idle configuration
 # This will lock your creen after 300 seconds of inactivity, then turn off
