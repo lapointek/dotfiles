@@ -1,5 +1,4 @@
 ### Autostart Applications
-  
 # Dunst
 exec dunst &
 
@@ -18,7 +17,6 @@ exec wl-paste --type image --watch cliphist store &
 exec systemctl --user set-environment XDG_CURRENT_DESKTOP=sway
 exec systemctl --user import-environment WAYLAND_DISPLAY
 exec dbus-update-activation-environment WAYLAND_DISPLAY XDG_CURRENT_DESKTOP=sway
-
 
 ### Idle configuration
 # This will lock your creen after 300 seconds of inactivity, then turn off

@@ -1,5 +1,4 @@
 ### Appearance configuration
-    
 # Set inner/outer gaps
 default_border pixel 2
 default_floating_border pixel 2
@@ -7,7 +6,7 @@ default_floating_border pixel 2
 # Default font
 font pango:Hack Nerd Font Bold 9
 
-### Rosepine theme
+# Rosepine theme
 set $text    #e0def4
 set $subtle  #908caa
 set $muted   #6e6a86
@@ -25,14 +24,13 @@ set $foam    #9ccfd8
     # indicator - shown where new window will open
     # child_border - border around the window
     # class             border   bg        text     indicator  child_border
-client.focused          $rose    $pine     $text    $pine      $rose
+client.focused          $rose    $pine     $text    $foam      $pine
 client.focused_inactive $text    $muted    $subtle  $muted     $muted
 client.unfocused        $rose    $overlay  $subtle  $muted     $overlay
 client.urgent           $love    $love     $text    $love      $love
 
-#
-# Status Bar:
-#
+
+# Status Bar
 # Read `man 5 sway-bar` for more information about this section.
 bar {
     position top

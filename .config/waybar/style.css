@@ -35,6 +35,7 @@
 #workspaces button {
     padding: 1px 5px;
     color: @muted;
+    border: 1px solid @overlay;
     min-width: 10px;
 }
 

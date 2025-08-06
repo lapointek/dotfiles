@@ -1,5 +1,5 @@
 ### Variables
-# Logo key. Use Mod1 for Alt.
+# Super key
 set $mod Mod4
 
 # Home row direction keys, like vim
@@ -15,15 +15,14 @@ set $term foot
 set $menu wmenu-run
 
 # Application launcher
-set $fuzzel fuzzel
+set $launcher fuzzel
 
 # Power Menu
 set $powermenu ~/.config/sway/scripts/power_menu.sh
 
-### Output configuration
-#
-# Default wallpaper (more resolutions are available in /usr/share/backgrounds/sway/)
+# Start Azote to apply wallpaper
 exec ~/.azotebg
+
 
 ### Keybindings
 # Basics
@@ -33,7 +32,7 @@ bindsym $mod+Return exec $term
 bindsym $mod+q kill
 
 # Start your launcher
-bindsym $mod+d exec $fuzzel
+bindsym $mod+d exec $launcher
 bindsym $mod+Shift+d exec $menu
 
 # Drag floating windows by holding down $mod and left mouse button.
@@ -54,7 +53,6 @@ bindsym $mod+Alt+l exec swaylock -C ~/.config/sway/swaylock/config
 
 # Open power menu
 bindsym $mod+Escape exec $powermenu
-
 
 # Move your focus around
 bindsym $mod+$left focus left
@@ -115,12 +113,11 @@ bindsym $mod+o exec thunar
 bindsym $mod+n exec firefox
 
 # Launch the clipboard manager
-bindsym $mod+Ctrl+v exec cliphist list | fuzzel -d -w 90 -l 30 -p "Select an entry to copy it to your clipboard buffer:"| cliphist decode | wl-copy
+bindsym $mod+Ctrl+v exec cliphist list | $launcher -d -w 90 -l 30 -p "Select an entry to copy it to your clipboard buffer:"| cliphist decode | wl-copy
 
 # Delete an entry from the clipboard manager
-bindsym $mod+Ctrl+x exec cliphist list | fuzzel -d -w 90 -l 30 -t  ebbcbaff -S ebbcbaff -p "Select an entry to delete it from cliphist:"| cliphist delete
-
 # Note: you can clear all cliphist entries by running `cliphist wipe`
+bindsym $mod+Ctrl+x exec cliphist list | $launcher -d -w 90 -l 30 -t  ebbcbaff -S ebbcbaff -p "Select an entry to delete it from cliphist:"| cliphist delete
 
 
 # Layout stuff
@@ -211,4 +208,3 @@ bindsym $mod+Shift+s exec grim -t jpeg -g "$(slurp)" "/home/$USER/Pictures/scree
 
 # Fullscreen screenshot
 bindsym Print exec grim -t jpeg "/home/$USER/Pictures/screenshots/$(date "+%F_%T").jpg" && notify-send -u low "Fullscreen Screenshot Taken" "$(date "+%F_%T").png" -i document-save
-
