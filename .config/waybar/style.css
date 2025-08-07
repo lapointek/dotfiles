@@ -47,8 +47,8 @@ tooltip label {
 #memory,
 #temperature,
 #scratchpad,
-#mpris,
 #window,
+#mpris,
 #tray,
 #power-profiles-daemon {
     padding: 0px 10px;
@@ -70,7 +70,7 @@ tooltip label {
     color: @gold;
 }
 
-#pulseaudio {
+#pulseaudio, #mpris {
     color: @iris;
 }
 
@@ -78,11 +78,12 @@ tooltip label {
     color: @muted;
 }
 
-#mode, #network, #battery.critical, #temperature.critical {
+#network, #battery.critical, #temperature.critical {
     color: @love;
 }
 
-#window, #memory, #battery, #mpris{
+#window, #memory, #battery {
     color: @foam;
 }
+
 

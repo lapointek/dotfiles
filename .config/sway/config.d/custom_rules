@@ -7,6 +7,7 @@ for_window [app_id="blueman-manager"] floating enable, resize set 800 600
 for_window [app_id="foot" title="htop"] floating enable, resize set 1000 800
 for_window [app_id="virt-manager"] floating enable, resize set 800 600
 for_window [app_id="system-config-printer"] floating enable, resize set 800 600
+for_window [app_id="nm-connection-editor"] floating enable, resize set 800 600
 for_window [window_role="pop-up"] floating enable
 for_window [window_role="bubble"] floating enable
 for_window [window_role="task_dialog"] floating enable

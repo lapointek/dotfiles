@@ -26,6 +26,8 @@ applications=(
 "curl"
 "ntfs-3g"
 "distrobox" 
+"playerctl"
+"nm-connection-editor"
 "base-devel"
 "cups" 
 "system-config-printer" 

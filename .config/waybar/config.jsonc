@@ -64,9 +64,11 @@
     },
 
     "mpris": {
+        "interval": 1,
         "format": "{status_icon} <i>{title} - {artist}</i>",
         "format-paused": "{status_icon} <i>{title} - {artist}</i>",
-        "tooltip-format": "{status} - {length}",
+        "tooltip-format": "{status} - {position}/{length}",
+        "ignored-players": ["firefox", "brave-browser", "chromium"],
         "status-icons": {
         "playing": "⏸",
         "paused": "▶",
@@ -139,13 +141,12 @@
     },
 
     "network": {
-        "format-disabled": " Disabled",
+        "format-disabled": "  Disabled",
         "format-wifi": "  {signalStrength}%",
-        "tooltip-format": "{essid} - {ifname} via {gwaddr}",
-        "format-ethernet": "󰈀 {ipaddr}/{cidr}",
-        "format-disconnected": " Disconnected",
-        "on-click-right": "foot --app-id nmtui -e nmtui",
-        "format-alt": "{ifname}: {ipaddr}/{cidr}"
+        "tooltip-format": "{essid} - {ifname}: {ipaddr}/{cidr}",
+        "format-ethernet": "󰈀  {ipaddr}/{cidr}",
+        "format-disconnected": "  Disconnected",
+        "on-click": "nm-connection-editor"
     },
 
     "pulseaudio": {
