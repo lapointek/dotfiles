@@ -3,6 +3,11 @@
 -- author: Radley E. Sidwell-lewis
 -- ================================================================================================
 
+require('config.lsp')
+
+vim.keymap.set("n", "gD", vim.lsp.buf.definition, { desc = "LSP: Go to definition" })
+vim.keymap.set("n", "grt", vim.lsp.buf.type_definition, { desc = "LSP: Type Definition" })
+
 -- theme & transparency
 vim.cmd.colorscheme("unokai")
 vim.api.nvim_set_hl(0, "Normal", { bg = "none" })
@@ -74,7 +79,7 @@ vim.opt.modifiable = true                          -- Allow buffer modifications
 vim.opt.encoding = "UTF-8"                         -- Set encoding
 
 -- Cursor settings
-vim.opt.guicursor = "n-v-c:block,i-ci-ve:block,r-cr:hor20,o:hor50,a:blinkwait700-blinkoff400-blinkon250-Cursor/lCursor,sm:block-blinkwait175-blinkoff150-blinkon175"
+vim.opt.guicursor = "n-v-c:block,i-ci:ver25,r-cr:hor20,o:hor50,a:blinkwait700-blinkoff400-blinkon250-Cursor/lCursor,sm:block-blinkwait175-blinkoff150-blinkon175"
 
 -- Folding settings
 vim.opt.foldmethod = "expr"                        -- Use expression for folding
@@ -551,5 +556,4 @@ local function setup_dynamic_statusline()
     end
   })
 end
-
 setup_dynamic_statusline()

@@ -7,8 +7,8 @@
 }
 
 #waybar {
-    font-family: "Iosevka Nerd Font", JetBrainsMono Nerd Font, RobotoMono Nerd Font;
-    font-size: 14px;
+    font-family: "JetBrainsMono Nerd Font", RobotoMono Nerd Font;
+    font-size: 13px;
     font-weight:bold;
     background-color: @base;
 }
@@ -16,12 +16,10 @@
 #workspaces button {
     padding: 1px 5px;
     color: @muted;
-    border: 1px solid @overlay;
     min-width: 10px;
 }
 
 #workspaces button.focused {
-    background: @highlightMed;
     color: @text;
 }
 
@@ -52,38 +50,13 @@ tooltip label {
 #tray,
 #power-profiles-daemon {
     padding: 0px 10px;
-}
-
-#scratchpad{
-    color: @pine;
-}
-
-#backlight {
     color: @text;
-}
-
-#temperature {
-    color: @rose;
-}
-
-#clock {
-    color: @gold;
-}
-
-#pulseaudio, #mpris {
-    color: @iris;
 }
 
 #pulseaudio.muted {
     color: @muted;
 }
 
-#network, #battery.critical, #temperature.critical {
+#battery.critical, #temperature.critical {
     color: @love;
 }
-
-#window, #memory, #battery {
-    color: @foam;
-}
-
-

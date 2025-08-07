@@ -57,7 +57,6 @@ applications=(
 "thunar-volman" 
 "thunar-archive-plugin" 
 "tumbler" 
-"azote" 
 "xarchiver" 
 "udisks2" 
 "cliphist"

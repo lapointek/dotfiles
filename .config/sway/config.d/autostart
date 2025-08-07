@@ -17,7 +17,7 @@ exec wl-paste --type text --watch cliphist store
 exec wl-paste --type image --watch cliphist store
 
 # Set wallpaper
-exec ~/.azotebg 
+exec swaybg -i /home/kevin/.local/share/wallpapers/summer/wallhaven-7p7qeo.jpg -m fill
 
 # Idle configuration
 # This will lock your creen after 300 seconds of inactivity, then turn off
