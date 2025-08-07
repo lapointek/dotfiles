@@ -47,7 +47,7 @@ tooltip label {
 #memory,
 #temperature,
 #scratchpad,
-#mode,
+#mpris,
 #window,
 #tray,
 #power-profiles-daemon {
@@ -82,7 +82,7 @@ tooltip label {
     color: @love;
 }
 
-#window, #memory, #battery{
+#window, #memory, #battery, #mpris{
     color: @foam;
 }
 

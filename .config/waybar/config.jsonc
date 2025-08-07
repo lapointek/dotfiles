@@ -6,7 +6,7 @@
     "modules-left": [
         "sway/workspaces",
         "sway/window",
-        "sway/mode"
+        "mpris"
     ],
 
     "modules-center": [
@@ -62,6 +62,20 @@
         "icon-size": 18,
         "spacing": 10
     },
+
+    "mpris": {
+        "format": "{status_icon} <i>{title} - {artist}</i>",
+        "format-paused": "{status_icon} <i>{title} - {artist}</i>",
+        "tooltip-format": "{status} - {length}",
+        "status-icons": {
+        "playing": "⏸",
+        "paused": "▶",
+        "stopped": "⏹"
+        },
+            "on-click": "playerctl play-pause",
+            "on-click-middle": "playerctl previous",
+            "on-click-right": "playerctl next"
+        },
 
     "clock": {
         "format": "{:%F %R}",
