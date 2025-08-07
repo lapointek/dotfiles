@@ -34,6 +34,10 @@ tooltip {
     border: 1px solid @overlay;
 }
 
+tooltip label {
+  color: @text;
+}
+
 #clock,
 #battery,
 #backlight,
@@ -44,6 +48,7 @@ tooltip {
 #temperature,
 #scratchpad,
 #mode,
+#window,
 #tray,
 #power-profiles-daemon {
     padding: 0px 10px;
@@ -53,20 +58,12 @@ tooltip {
     color: @pine;
 }
 
-#memory {
-    color: @foam;
-}
-
 #backlight {
     color: @text;
 }
 
 #temperature {
     color: @rose;
-}
-
-#temperature.critical {
-    color: @love;
 }
 
 #clock {
@@ -81,23 +78,11 @@ tooltip {
     color: @muted;
 }
 
-#mode {
+#mode, #network, #battery.critical, #temperature.critical {
     color: @love;
 }
 
-#battery {
-    color: @foam;
-}
-
-#battery.critical {
-    color: @love;
-}
-
-#network{
-    color: @love;
-}
-
-#window{
+#window, #memory, #battery{
     color: @foam;
 }
 

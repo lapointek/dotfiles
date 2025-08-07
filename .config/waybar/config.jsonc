@@ -5,11 +5,11 @@
     "height": 28, // Waybar height (to be removed for auto height)
     "modules-left": [
         "sway/workspaces",
+        "sway/window",
         "sway/mode"
     ],
 
     "modules-center": [
-        "sway/window"
     ],
 
     "modules-right": [
@@ -44,9 +44,9 @@
     },
 
     "sway/window": {
-        "format": "{}",
-        //"all-outputs": true, // Active window shows only on active display when commented
-        "max-length": 120
+        "format": "{app_id}",
+        "icon":false,
+        "tooltip": false
     },
 
     "sway/scratchpad": {
