@@ -1,36 +1,36 @@
 @import "rose-pine.css";
 
 * {
-    padding: 0;
-    border: none;
-    border-radius: 0;
+  padding: 0;
+  border: none;
+  border-radius: 0;
 }
 
 #waybar {
-    font-family: "JetBrainsMono Nerd Font", RobotoMono Nerd Font;
-    font-size: 13px;
-    font-weight:bold;
-    background-color: @base;
+  font-family: "JetBrainsMono Nerd Font", "Hack Nerd Font";
+  font-size: 13px;
+  font-weight:bold;
+  background-color: @base;
 }
 
 #workspaces button {
-    padding: 1px 5px;
-    color: @muted;
-    min-width: 10px;
+  padding: 0px 5px;
+  color: @muted;
+  min-width: 10px;
 }
 
 #workspaces button.focused {
-    color: @text;
-    background-color: @highlightMed;
+  color: @text;
+  background-color: @highlightMed;
 }
 
 #workspaces button.urgent {
-    background-color: @love;
+  background-color: @love;
 }
 
 tooltip {
-    background: @base;
-    border: 1px solid @overlay;
+  background: @base;
+  border: 1px solid @overlay;
 }
 
 tooltip label {
@@ -42,22 +42,19 @@ tooltip label {
 #backlight,
 #network,
 #pulseaudio,
-#wireplumber,
 #memory,
 #temperature,
 #scratchpad,
-#window,
 #mpris,
-#tray,
-#power-profiles-daemon {
-    padding: 0px 10px;
-    color: @text;
+#tray {
+  padding: 0px 10px;
+  color: @text;
 }
 
 #pulseaudio.muted {
-    color: @muted;
+  color: @muted;
 }
 
 #battery.critical, #temperature.critical {
-    color: @love;
+  color: @love;
 }
