@@ -17,7 +17,7 @@ exec wl-paste --type text --watch cliphist store
 exec wl-paste --type image --watch cliphist store
 
 # Set wallpaper
-exec_always swaybg -i /home/kevin/.local/share/wallpapers/art/wallhaven-d5y6mj.jpg -m fill
+exec_always swaybg -i /home/kevin/.local/share/wallpapers/linux_mint/rbooth_floral.jpg -m fill
 
 # Idle configuration
 # This will lock your creen after 300 seconds of inactivity, then turn off
@@ -27,3 +27,5 @@ exec swayidle -w \
         timeout 600 'swaylock -f -C ~/.config/sway/swaylock/config' \
         timeout 1200 'swaymsg "output * power off"' resume 'swaymsg "output * power on"' \
         before-sleep 'swaylock -f -C ~/.config/sway/swaylock/config'
+
+

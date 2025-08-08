@@ -66,6 +66,12 @@ bindsym $mod+Shift+Down move down
 bindsym $mod+Shift+Up move up
 bindsym $mod+Shift+Right move right
 
+# Move focus window with mouse scroll
+bindsym --whole-window {
+    $mod+button4 workspace prev
+    $mod+button5 workspace next
+}
+
 
 #######################
 #  Switch Workspaces  #
@@ -140,11 +146,11 @@ $mod+ctrl+Right resize grow width 10px
 # Resize floating windows with mouse scroll:
 bindsym --whole-window --border {
     # Resize vertically
-    $mod+button4 resize shrink height 5 px or 5 ppt
-    $mod+button5 resize grow height 5 px or 5 ppt
+    $mod+ctrl+button4 resize shrink height 10 px or 10 ppt
+    $mod+ctrl+button5 resize grow height 10 px or 10 ppt
     # Resize horizontally
-    $mod+Shift+button4 resize shrink width 5 px or 5 ppt
-    $mod+Shift+button5 resize grow width 5 px or 5 ppt
+    $mod+Shift+button4 resize shrink width 10 px or 10 ppt
+    $mod+Shift+button5 resize grow width 10 px or 10 ppt
 }
 
 
@@ -171,6 +177,9 @@ bindsym $mod+Ctrl+v exec cliphist list | $launcher -d -w 90 -l 30 -p "Select an 
 # Delete entry from clipboard
 bindsym $mod+Ctrl+x exec cliphist list | $launcher -d -w 90 -l 30 -t  ebbcbaff -S ebbcbaff -p "Select an entry to delete it from cliphist:"| cliphist delete
 
+# Start window switcher script
+bindsym $mod+p exec ~/.config/sway/scripts/window_switcher.sh
+
 
 ################
 #  Scratchpad  #
@@ -186,16 +195,21 @@ bindsym $mod+minus scratchpad show
 #  Function Keys  #
 ###################
 # Volume
-  bindsym --locked XF86AudioMute exec pactl set-sink-mute \@DEFAULT_SINK@ toggle
-  bindsym --locked XF86AudioLowerVolume exec pactl set-sink-volume \@DEFAULT_SINK@ -5%
-  bindsym --locked XF86AudioRaiseVolume exec pactl set-sink-volume \@DEFAULT_SINK@ +5%
-  bindsym --locked XF86AudioMicMute exec pactl set-source-mute \@DEFAULT_SOURCE@ toggle
+bindsym --locked XF86AudioRaiseVolume exec --no-startup-id ~/.config/sway/scripts/media-control.sh volume_up
+bindsym --locked XF86AudioLowerVolume exec --no-startup-id ~/.config/sway/scripts/media-control.sh volume_down
+bindsym --locked XF86AudioMute exec --no-startup-id ~/.config/sway/scripts/media-control.sh volume_mute
+
+# Music Player
+bindsym --locked XF86AudioPause exec --no-startup-id ~/.config/sway/scripts/media-control.sh play_pause
+bindsym --locked XF86AudioPlay exec --no-startup-id ~/.config/sway/scripts/media-control.sh play_pause
+bindsym --locked XF86AudioNext exec --no-startup-id ~/.config/sway/scripts/media-control.sh next_track
+bindsym --locked XF86AudioPrev exec --no-startup-id ~/.config/sway/scripts/media-control.sh prev_track
 
 # Brightness
-  bindsym --locked XF86MonBrightnessDown exec brightnessctl set 5%-
-  bindsym --locked XF86MonBrightnessUp exec brightnessctl set 5%+
+bindsym --locked XF86MonBrightnessUp exec --no-startup-id ~/.config/sway/scripts/media-control.sh brightness_up
+bindsym --locked XF86MonBrightnessDown exec --no-startup-id ~/.config/sway/scripts/media-control.sh brightness_down
 
-# Regional screensho
+# Regional screenshot
   bindsym $mod+Shift+s exec grim -t jpeg -g "$(slurp)" "/home/$USER/Pictures/screenshots/$(date "+%F_%T").jpg" && notify-send -u low "Screenshot Taken" "$(date "+%F_%T").png" -i document-save
 # Fullscreen screenshot
   bindsym Print exec grim -t jpeg "/home/$USER/Pictures/screenshots/$(date "+%F_%T").jpg" && notify-send -u low "Fullscreen Screenshot Taken" "$(date "+%F_%T").png" -i document-save
