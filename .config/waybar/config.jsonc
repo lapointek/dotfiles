@@ -84,6 +84,7 @@
         "tooltip-format": "<big>{:%A %m/%d}</big>\n<tt><small>{calendar}</small></tt>",
         "calendar": {
             "format": {
+                "months":     "<span color='#c4a7e7'><b>{}</b></span>",
                 "today":  "<span color='#ff6699'><b><u>{}</u></b></span>",
                 "weekdays":  "<span color='#9ccfd8'><b>{}</b></span>"
             }
