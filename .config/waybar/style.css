@@ -21,7 +21,7 @@
 
 #workspaces button.focused {
     color: @text;
-    background-color: @overlay;
+    background-color: @highlightMed;
 }
 
 #workspaces button.urgent {
@@ -44,7 +44,6 @@ tooltip label {
 #pulseaudio,
 #wireplumber,
 #memory,
-#cpu,
 #temperature,
 #scratchpad,
 #window,
