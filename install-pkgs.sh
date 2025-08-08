@@ -58,6 +58,7 @@ applications=(
 "thunar-archive-plugin" 
 "tumbler" 
 "xarchiver" 
+"starship"
 "udisks2" 
 "cliphist"
 "wl-clipboard" 

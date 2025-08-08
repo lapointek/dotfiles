@@ -4,6 +4,9 @@
 # If not running interactively, don't do anything
 [[ $- != *i* ]] && return
 
+# set starship prompt
+eval "$(starship init bash)"
+
 # apply .inputrc changes on sourcing .bashrc
 bind -f ~/.inputrc
 
@@ -41,17 +44,6 @@ alias ....='cd ../../..;pwd'
 alias c='clear'
 # Press h to view the bash history.
 alias h='history'
-
-# prompt with git functionality 
-function parse_git_dirty {
-  [[ $(git status --porcelain 2> /dev/null) ]] && echo "*"
-}
-function parse_git_branch {
-  git branch --no-color 2> /dev/null | sed -e '/^[^*]/d' -e "s/* \(.*\)/ (\1$(parse_git_dirty))/"
-}
-
-# prompt
-export PS1="\n\t \[\033[32m\]\w\[\033[35m\]\$(parse_git_branch)\[\033[00m\]\n$ "
 
 # default prompt
 #PS1='[\u@\h \W]\$ '
