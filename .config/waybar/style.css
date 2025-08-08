@@ -21,6 +21,7 @@
 
 #workspaces button.focused {
     color: @text;
+    background-color: @overlay;
 }
 
 #workspaces button.urgent {
