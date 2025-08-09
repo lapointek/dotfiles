@@ -9,7 +9,6 @@
     ],
 
     "modules-center": [
-        "clock"
     ],
 
     "modules-right": [
@@ -18,7 +17,8 @@
         "network",
         "temperature",
         "memory",
-        "pulseaudio"
+        "pulseaudio",
+        "clock"
     ],
 
     "sway/workspaces": {
@@ -79,7 +79,7 @@
         },
 
     "clock": {
-        "format": "{:%b %d  %R}",
+        "format": "{:%F %R}",
         "tooltip-format": "<big>{:%A %m/%d}</big>\n<tt><small>{calendar}</small></tt>",
         "calendar": {
             "format": {

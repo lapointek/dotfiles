@@ -73,7 +73,7 @@
     # The format of the message.
     format = "<b>%s</b>\n%b"
     # Alignment of message text.
-    alignment = center 
+    alignment = left 
     # Vertical alignment of message text and icon.
     vertical_alignment = center
     # Show age of message if message is older than show_age_threshold seconds.
