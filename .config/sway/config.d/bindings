@@ -209,7 +209,15 @@ bindsym --locked XF86AudioPrev exec --no-startup-id ~/.config/sway/scripts/media
 bindsym --locked XF86MonBrightnessUp exec --no-startup-id ~/.config/sway/scripts/media-control.sh brightness_up
 bindsym --locked XF86MonBrightnessDown exec --no-startup-id ~/.config/sway/scripts/media-control.sh brightness_down
 
-# Regional screenshot
-  bindsym $mod+Shift+s exec grim -t jpeg -g "$(slurp)" "/home/$USER/Pictures/screenshots/$(date "+%F_%T").jpg" && notify-send -u low "Screenshot Taken" "$(date "+%F_%T").png" -i document-save
-# Fullscreen screenshot
-  bindsym Print exec grim -t jpeg "/home/$USER/Pictures/screenshots/$(date "+%F_%T").jpg" && notify-send -u low "Fullscreen Screenshot Taken" "$(date "+%F_%T").png" -i document-save
+
+################
+#  Screenshot  #
+################
+# Region
+bindsym Print             exec ~/.config/sway/scripts/screenshot.sh region
+# Window
+bindsym Shift+Print       exec ~/.config/sway/scripts/screenshot.sh window
+# Output
+bindsym Ctrl+Print        exec ~/.config/sway/scripts/screenshot.sh output
+# All Outputs
+bindsym Ctrl+Shift+Print  exec ~/.config/sway/scripts/screenshot.sh all
