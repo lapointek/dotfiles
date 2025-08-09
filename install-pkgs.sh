@@ -33,6 +33,8 @@ applications=(
 "system-config-printer" 
 "yazi" 
 "chromium" 
+"github-cli"
+"mako"
 "firefox"
 "smartmontools"
 "tmux"

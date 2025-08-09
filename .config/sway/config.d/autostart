@@ -2,9 +2,6 @@
 # Environment variable
 exec dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP=sway
 
-# Dunst
-exec dunst
-
 # Blueman-applet
 exec blueman-applet
 
