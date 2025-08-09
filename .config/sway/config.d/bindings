@@ -213,11 +213,11 @@ bindsym --locked XF86MonBrightnessDown exec --no-startup-id ~/.config/sway/scrip
 ################
 #  Screenshot  #
 ################
-# Region
-bindsym Print             exec ~/.config/sway/scripts/screenshot.sh region
-# Window
-bindsym Shift+Print       exec ~/.config/sway/scripts/screenshot.sh window
-# Output
-bindsym Ctrl+Print        exec ~/.config/sway/scripts/screenshot.sh output
-# All Outputs
-bindsym Ctrl+Shift+Print  exec ~/.config/sway/scripts/screenshot.sh all
+# Screenshot of window
+bindsym Print exec ~/.config/sway/scripts/grimshot --notify save window 
+# Screenshot of output
+bindsym Shift+Print exec ~/.config/sway/scripts/grimshot --notify save output
+# Screenshot of area
+bindsym ctrl+Print exec ~/.config/sway/scripts/grimshot --notify save area
+# Screenshot of active
+bindsym ctrl+Shift+Print exec ~/.config/sway/scripts/grimshot --notify save active
