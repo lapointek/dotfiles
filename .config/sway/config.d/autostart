@@ -1,0 +1,31 @@
+### Autostart Applications
+# Environment variable
+# Required for screen share
+exec dbus-update-activation-environment DISPLAY XAUTHORITY WAYLAND_DISPLAY XDG_CURRENT_DESKTOP=sway
+
+# Start gnome keyring daemon
+exec --no-startup-id gnome-keyring-daemon --start --components=secrets
+
+# Start blueman-applet
+exec blueman-applet 
+
+# Polkit authentication
+exec /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
+    
+# Set wallpaper
+exec_always swaybg -i /home/kevin/.local/share/wallpapers/art/wallhaven-j5ldjq.jpg -m fill
+
+# Cliphist
+exec wl-paste --type text --watch cliphist store
+exec wl-paste --type image --watch cliphist store
+
+# Idle configuration
+# This will lock your creen after 300 seconds of inactivity, then turn off
+# your displays after another 300 seconds, and turn your screens back on when
+# resumed. It will also lock your screen before your computer goes to sleep.
+exec swayidle -w \
+        timeout 300 'swaylock -f -C ~/.config/sway/swaylock/config' \
+        # timeout 500 'swaymsg "output * power off"' \
+        timeout 1800 'systemctl suspend' \
+        # resume 'swaymsg "output * power on"' \
+        before-sleep 'playerctl pause; swaylock -f -C ~/.config/sway/swaylock/config'

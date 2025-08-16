@@ -1,0 +1,12 @@
+# Custom Window Rules
+for_window [app_id="blueman-manager"] floating enable, resize set 800 600
+for_window [app_id="nwg-look"] floating enable, resize set 800 600
+for_window [app_id="solaar"] floating enable
+for_window [app_id="foot" title="htop"] floating enable, resize set 1000 800
+for_window [app_id="foot" title="wiremix"] floating enable, resize set 800 600
+for_window [title="(?i)rename"] floating enable
+for_window [title="(?i)picture-in-picture"] floating enable, sticky enable, resize set 800 600
+
+# Inhibit idle
+for_window [class=".*"] inhibit_idle fullscreen
+for_window [app_id=".*"] inhibit_idle fullscreen

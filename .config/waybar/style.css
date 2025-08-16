@@ -1,0 +1,62 @@
+@import "rose-pine.css";
+
+* {
+  padding: 0px;
+  margin: 0px;
+  border: none;
+  border-radius: 0px;
+}
+
+#waybar {
+  font-family: "Iosevka Nerd Font";
+  font-weight: bold;
+  font-size: 15px;
+  background-color: @base;
+}
+
+#workspaces button {
+  padding: 0px 5px;
+  color: @muted;
+  min-width: 10px;
+}
+
+#workspaces button.focused {
+  color: @text;
+  background-color: @highlightMed;
+}
+
+#workspaces button.urgent {
+  background-color: @love;
+  color: @base;
+}
+
+tooltip {
+  background: @base;
+  border: 1px solid @overlay;
+}
+
+tooltip label {
+  color: @text;
+}
+
+#clock,
+#battery,
+#pulseaudio,
+#network,
+#scratchpad,
+#bluetooth,
+#tray,
+#memory,
+#mpris {
+  padding: 0px 10px;
+  color: @text;
+}
+
+#pulseaudio.muted {
+  color: @muted;
+}
+
+#mpris,
+#battery.critical {
+  color: @love;
+}

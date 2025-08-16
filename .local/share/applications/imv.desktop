@@ -1,0 +1,8 @@
+[Desktop Entry]
+Name=Image Viewer
+Exec=imv %F
+Terminal=false
+Type=Application
+MimeType=image/jpeg;image/png;image/gif;image/bmp;image/tiff;
+Categories=Utility
+

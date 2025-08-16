@@ -1,0 +1,25 @@
+# Rosé Pine Theme
+# Colors
+background-color=#191724
+text-color=#e0def4
+progress-color=#31748f
+border-color=#31748f
+
+# Appearance
+border-size=2
+padding=10
+margin=10
+default-timeout=5000
+max-visible=5
+
+# Font
+font=Iosevka Nerd Font 11 
+
+# Position
+anchor=top-right
+width=300
+height=100
+
+[urgency=high]
+border-color=#eb6f92
+default-timeout=0

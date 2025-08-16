@@ -1,0 +1,241 @@
+#################
+#   Variables   #
+#################
+set $mod Mod4
+set $term foot
+set $menu wmenu-run
+set $launcher fuzzel
+# Power menu script
+set $powermenu ~/.config/sway/scripts/power_menu.sh
+# Vim keybindings
+set $left h
+set $down j
+set $up k
+set $right l
+
+
+#####################
+#  Basic Operations #
+#####################
+bindsym $mod+q kill
+bindsym $mod+Shift+c reload
+
+
+#######################
+#  Floating Modifier  #
+#######################
+# Grab floating window
+floating_modifier $mod normal
+
+# Open power menu
+bindsym $mod+Escape exec $powermenu
+
+# Exit sway (logs you out of your Wayland session)
+bindsym $mod+Shift+e exec swaynag -t warning -m 'You pressed the exit shortcut. Do you really want to exit sway? This will end your Wayland session.' -B 'Yes, exit sway' 'swaymsg exit'
+
+# Start Swaylock
+bindsym $mod+f1 exec swaylock -C ~/.config/sway/swaylock/config
+
+
+##################
+#  Focus Change  #
+##################
+# Move your focus around
+bindsym $mod+$left focus left
+bindsym $mod+$down focus down
+bindsym $mod+$up focus up
+bindsym $mod+$right focus right
+
+# Or use $mod+[up|down|left|right]
+bindsym $mod+Left focus left
+bindsym $mod+Down focus down
+bindsym $mod+Up focus up
+bindsym $mod+Right focus right
+
+# Move the focused window with the same, but add Shift
+bindsym $mod+Shift+$left move left
+bindsym $mod+Shift+$down move down
+bindsym $mod+Shift+$up move up
+bindsym $mod+Shift+$right move right
+
+# Ditto, with arrow keys
+bindsym $mod+Shift+Left move left
+bindsym $mod+Shift+Down move down
+bindsym $mod+Shift+Up move up
+bindsym $mod+Shift+Right move right
+
+bindsym --whole-window {
+    alt+button4 workspace prev
+    alt+button5 workspace next
+}
+
+#######################
+#  Switch Workspaces  #
+#######################
+bindsym $mod+1 workspace number 1
+bindsym $mod+2 workspace number 2
+bindsym $mod+3 workspace number 3
+bindsym $mod+4 workspace number 4
+bindsym $mod+5 workspace number 5
+bindsym $mod+6 workspace number 6
+bindsym $mod+7 workspace number 7
+bindsym $mod+8 workspace number 8
+bindsym $mod+9 workspace number 9
+bindsym $mod+0 workspace number 10
+
+# Move focused container to workspace
+bindsym $mod+Shift+1 move container to workspace number 1
+bindsym $mod+Shift+2 move container to workspace number 2
+bindsym $mod+Shift+3 move container to workspace number 3
+bindsym $mod+Shift+4 move container to workspace number 4
+bindsym $mod+Shift+5 move container to workspace number 5
+bindsym $mod+Shift+6 move container to workspace number 6
+bindsym $mod+Shift+7 move container to workspace number 7
+bindsym $mod+Shift+8 move container to workspace number 8
+bindsym $mod+Shift+9 move container to workspace number 9
+bindsym $mod+Shift+0 move container to workspace number 10
+
+# Switch to next workspace
+bindsym Alt+Tab workspace next                                      
+# Switch to previous workspace
+bindsym Alt+Shift+Tab workspace prev 
+
+# Switch workspaces back and forth
+bindsym $mod+Tab workspace back_and_forth
+
+######################
+#  Window Modifying  #
+######################
+# Split window horizontally
+bindsym $mod+b splith
+
+# Split window vertically
+bindsym $mod+v splitv
+
+# Switch the current container between different layout styles
+bindsym $mod+s layout stacking
+bindsym $mod+w layout tabbed
+bindsym $mod+e layout toggle split
+
+# Make the current focus fullscreen
+bindsym $mod+f fullscreen
+
+# Toggle the current focus between tiling and floating mode
+bindsym $mod+space floating toggle
+
+# Swap focus between the tiling area and the floating area
+bindsym $mod+Shift+space focus mode_toggle
+
+# Move focus to the parent container
+bindsym $mod+a focus parent
+
+
+#####################
+#  Window Resizing  #
+#####################
+# Resize window with vim keys
+bindsym {
+$mod+ctrl+$left resize shrink width 10px
+$mod+ctrl+$down resize grow height 10px
+$mod+ctrl+$up resize shrink height 10px
+$mod+ctrl+$right resize grow width 10px
+
+# Ditto, with arrow keys
+$mod+ctrl+Left resize shrink width 10px
+$mod+ctrl+Down resize grow height 10px
+$mod+ctrl+Up resize shrink height 10px
+$mod+ctrl+Right resize grow width 10px
+}
+# Resize floating windows with mouse scroll:
+bindsym --whole-window --border {
+    # Resize vertically
+    $mod+button4 resize shrink height 20px or 2ppt
+    $mod+button5 resize grow height 20px or 2ppt
+    # Resize horizontally
+    $mod+Shift+button4 resize shrink width 20px or 2ppt
+    $mod+Shift+button5 resize grow width 20px or 2ppt
+}
+
+
+###############################
+#  App Shortcuts and Actions  #
+###############################
+# Start a terminal
+bindsym $mod+Return exec $term
+
+# Start launcher 
+bindsym $mod+d exec $launcher
+
+# Start menu 
+bindsym $mod+Shift+d exec $menu
+
+# Yazi
+bindsym $mod+y exec foot -e bash -ic yazi
+
+# Firefox
+bindsym $mod+n exec firefox
+
+# Brave browser
+bindsym $mod+Shift+n exec brave
+
+# Spotify
+bindsym $mod+i exec spotify-launcher
+
+# Clipboard manager
+bindsym $mod+Ctrl+v exec cliphist list | $launcher -d -w 90 -l 30 -p "Select an entry to copy it to your clipboard buffer:"| cliphist decode | wl-copy
+# Delete entry from clipboard
+bindsym $mod+Ctrl+x exec cliphist list | $launcher -d -w 90 -l 30 -t  ebbcbaff -S ebbcbaff -p "Select an entry to delete it from cliphist:"| cliphist delete
+
+# Start window switcher script
+bindsym $mod+p exec ~/.config/sway/scripts/window_switcher.sh
+
+
+################
+#  Scratchpad  #
+################
+# Move the currently focused window to the scratchpad
+bindsym $mod+Shift+minus move scratchpad
+
+# Show the next scratchpad window
+bindsym $mod+minus scratchpad show
+
+
+###################
+#  Function Keys  #
+###################
+# Volume
+bindsym --locked XF86AudioRaiseVolume exec --no-startup-id ~/.config/sway/scripts/media-control.sh volume_up
+bindsym --locked XF86AudioLowerVolume exec --no-startup-id ~/.config/sway/scripts/media-control.sh volume_down
+bindsym --locked XF86AudioMute exec --no-startup-id ~/.config/sway/scripts/media-control.sh volume_mute
+
+# Music Player
+bindsym --locked XF86AudioPause exec --no-startup-id ~/.config/sway/scripts/media-control.sh play_pause
+bindsym --locked XF86AudioPlay exec --no-startup-id ~/.config/sway/scripts/media-control.sh play_pause
+bindsym --locked XF86AudioNext exec --no-startup-id ~/.config/sway/scripts/media-control.sh next_track
+bindsym --locked XF86AudioPrev exec --no-startup-id ~/.config/sway/scripts/media-control.sh prev_track
+
+# Brightness
+bindsym --locked XF86MonBrightnessUp exec --no-startup-id ~/.config/sway/scripts/media-control.sh brightness_up
+bindsym --locked XF86MonBrightnessDown exec --no-startup-id ~/.config/sway/scripts/media-control.sh brightness_down
+
+
+################
+#  Screenshot  #
+################
+# Capture a region selected manually
+bindsym $mod+Shift+s exec ~/.config/sway/scripts/grimshot --notify save area
+
+# Capture a window selected manually
+bindsym Shift+Print exec ~/.config/sway/scripts/grimshot --notify save window 
+
+# Capture the currently active window
+bindsym ctrl+Print exec ~/.config/sway/scripts/grimshot --notify save active
+
+# Capture the entire screen
+bindsym Print exec ~/.config/sway/scripts/grimshot --notify save screen
+
+# Capture the currently active output
+bindsym ctrl+Shift+Print exec ~/.config/sway/scripts/grimshot --notify save output
+
+# Capture a window selected manually, an output by clicking outside of all windows, or an area
+bindsym ctrl+Shift+s exec ~/.config/sway/scripts/grimshot --notify save anything
