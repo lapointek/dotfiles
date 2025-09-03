@@ -11,6 +11,9 @@ vim.keymap.set("n", "<leader>cd", vim.cmd.Ex, { desc = "File explorer" })
 -- Enter normal mode with "jj"
 vim.api.nvim_set_keymap("i", "jj", "<Esc>", { noremap = false, desc = "Exit normal mode" })
 
+-- Open terminal in new tab
+vim.keymap.set('n', '<leader>tt', ':tabnew | term<CR>', { noremap = true, silent = true })
+
 -- Diagnostic popup
 vim.keymap.set("n", "gl", function() vim.diagnostic.open_float() end, { desc = "Open diagnostic popup" })
 
@@ -45,17 +48,18 @@ vim.keymap.set({ "n", "v" }, "<leader>D", [["_D]], { desc = "Del without affecti
 vim.keymap.set("n", "x", '"_x')
 
 -- Search and replace word globally
-vim.keymap.set("n", "<leader>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]], { desc = "Replace word the cursor is on globally" })
+vim.keymap.set("n", "<leader>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]],
+    { desc = "Replace word the cursor is on globally" })
 
 -- Make file executable inside Nvim
 vim.keymap.set("n", "<leader>x", "<cmd>!chmod +x %<CR>", { silent = true, desc = "Make file executable" })
 
 -- Tabs
-vim.keymap.set("n", "<leader>to", "<cmd>tabnew<CR>", { desc = "New tab" })  -- Open new tab
-vim.keymap.set("n", "<leader>tx", "<cmd>tabclose<CR>", { desc = "Close tab" })  -- Close current tab
-vim.keymap.set("n", "<leader>tn", "<cmd>tabn<CR>",{ desc = "Next tab" })    -- Go to next
-vim.keymap.set("n", "<leader>tp", "<cmd>tabp<CR>", { desc = "Previous tab" })   -- Go to pre
-vim.keymap.set("n", "<leader>tf", "<cmd>tabnew %<CR>", { desc = "Open current tab in new tab" })   -- Open current tab in new tab
+vim.keymap.set("n", "<leader>to", "<cmd>tabnew<CR>", { desc = "New tab" })                       -- Open new tab
+vim.keymap.set("n", "<leader>tx", "<cmd>tabclose<CR>", { desc = "Close tab" })                   -- Close current tab
+vim.keymap.set("n", "<leader>tn", "<cmd>tabn<CR>", { desc = "Next tab" })                        -- Go to next
+vim.keymap.set("n", "<leader>tp", "<cmd>tabp<CR>", { desc = "Previous tab" })                    -- Go to pre
+vim.keymap.set("n", "<leader>tf", "<cmd>tabnew %<CR>", { desc = "Open current tab in new tab" }) -- Open current tab in new tab
 
 -- Split window vertically
 vim.keymap.set("n", "<leader>sv", "<C-w>v", { desc = "Split window vertically" })
