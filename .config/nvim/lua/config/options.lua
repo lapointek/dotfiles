@@ -64,5 +64,21 @@ vim.opt.undofile = true                                 -- Enable persistent und
 vim.opt.undodir = vim.fn.expand("~/.vim/nvim-undo")     -- Directory to store undo file
 
 -- Performance
-vim.opt.redrawtime = 10000                              -- Time spent on redrawing the screen
+vim.opt.redrawtime = 10000
+
+-- Create undo directory if it doesn't exist
+local undodir = vim.fn.expand("~/.vim/nvim-undo")
+if vim.fn.isdirectory(undodir) == 0 then
+    vim.fn.mkdir(undodir, "p")
+    end
+
+-- Set GUI cursor on exit
+local shape_group = vim.api.nvim_create_augroup("Shape", {
+    clear = true })
+vim.api.nvim_create_autocmd("VimLeave", {
+    group = shape_group,
+    callback = function()
+    vim.opt.guicursor = "a:ver90-blinkon100-blinkoff100-blinkwait100"
+    end,
+})
 

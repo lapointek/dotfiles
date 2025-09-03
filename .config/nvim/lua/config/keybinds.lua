@@ -6,10 +6,13 @@ vim.g.maplocalleader = " "
 vim.keymap.set('t', '<Esc>', '<C-\\><C-n>', { silent = true })
 
 -- File explorer
-vim.keymap.set("n", "<leader>cd", vim.cmd.Ex)
+vim.keymap.set("n", "<leader>cd", vim.cmd.Ex, { desc = "File explorer" })
 
 -- Enter normal mode with "jj"
 vim.api.nvim_set_keymap("i", "jj", "<Esc>", { noremap = false, desc = "Exit normal mode" })
+
+-- Diagnostic popup
+vim.keymap.set("n", "gl", function() vim.diagnostic.open_float() end, { desc = "Open diagnostic popup" })
 
 -- Better indenting in visual mode
 vim.keymap.set("v", "<", "<gv", { desc = "Indent left and reselect" })
