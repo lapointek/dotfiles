@@ -49,6 +49,7 @@ alias ...="cd ../..;pwd"
 alias ....="cd ../../..;pwd"
 # View bash history
 alias h="history"
+# Clear terminal
 alias c="clear"
 
 # --- Yazi setup ---
