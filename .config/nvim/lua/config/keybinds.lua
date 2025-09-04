@@ -14,9 +14,6 @@ vim.api.nvim_set_keymap("i", "jj", "<Esc>", { noremap = false, desc = "Exit norm
 -- Open terminal in new tab
 vim.keymap.set('n', '<leader>tt', ':tabnew | term<CR>', { noremap = true, silent = true })
 
--- Diagnostic popup
-vim.keymap.set("n", "gl", function() vim.diagnostic.open_float() end, { desc = "Open diagnostic popup" })
-
 -- Better indenting in visual mode
 vim.keymap.set("v", "<", "<gv", { desc = "Indent left and reselect" })
 vim.keymap.set("v", ">", ">gv", { desc = "Indent right and reselect" })
