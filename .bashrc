@@ -83,14 +83,13 @@ export FZF_ALT_C_OPTS="
     --preview 'tree {}'"
 
 # fzf search Archlinux repository
-alias pac_i="sudo pacman -S \$(pacman -Sl|awk '{print \$2}'|fzf -m --preview='pacman -Si {}' --preview-window=up:60%:wrap)"
-alias pac_r="sudo pacman -Rns \$(pacman -Q|awk '{print \$1}'|fzf -m --preview='pacman -Qi {}' --preview-window=up:60%:wrap)"
-alias pac_u="sudo pacman -Syyu"
+alias pacman-i="sudo pacman -S \$(pacman -Sl|awk '{print \$2}'|fzf -m --preview='pacman -Si {}' --preview-window=up:60%:wrap)"
+alias pacman-r="sudo pacman -Rns \$(pacman -Q|awk '{print \$1}'|fzf -m --preview='pacman -Qi {}' --preview-window=up:60%:wrap)"
+alias pacman-u="sudo pacman -Syu"
 
 # fzf search Archlinux user repository
-alias paru_i="paru -S \$(paru -Sl|awk '{print \$2}'|fzf -m --preview='paru -Si {}' --preview-window=up:60%:wrap)"
-alias paru_r="paru -Rns \$(paru -Q|awk '{print \$1}'|fzf -m --preview='paru -Qi {}' --preview-window=up:60%:wrap)"
-alias paru_u="paru -Syyu"
+alias paru-i="paru -S \$(paru -Sl|awk '{print \$2}'|fzf -m --preview='paru -Si {}' --preview-window=up:60%:wrap)"
+alias paru-r="paru -Rns \$(paru -Q|awk '{print \$1}'|fzf -m --preview='paru -Qi {}' --preview-window=up:60%:wrap)"
 
 # --- Git integration ---
 if [[ -f /usr/share/git/completion/git-completion.bash ]]; then
