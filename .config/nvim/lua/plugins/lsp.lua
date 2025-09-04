@@ -2,7 +2,7 @@ return {
     "mason-org/mason-lspconfig.nvim",
     opts = {
         -- LSP servers
-        ensure_installed = { "lua_ls", "basedpyright", "clangd", "bashls" },
+        ensure_installed = { "lua_ls", "basedpyright", "clangd", "bashls", },
     },
     dependencies = {
         { "mason-org/mason.nvim", opts = {} },
@@ -11,7 +11,7 @@ return {
             "WhoIsSethDaniel/mason-tool-installer.nvim",
             opts = {
                 -- Formatters
-                ensure_installed = { "stylua" },
+                ensure_installed = { "stylua", "clang-format", "ruff", "shfmt", },
             },
         },
     },
