@@ -1,69 +1,130 @@
 -- User Interface
-vim.opt.number = true         -- Line Numbers
-vim.opt.relativenumber = true -- Relative line numbers
-vim.opt.cursorline = true     -- Highlight current line
-vim.opt.scrolloff = 5         -- Keep lines above/below cursor
-vim.opt.sidescrolloff = 5     -- Keep columns left/right of cursor
-vim.opt.laststatus = 2        -- Visibility of statusline
-vim.opt.splitright = true     -- Split right
-vim.opt.splitbelow = true     -- Split below
-vim.opt.showtabline = 1       -- Display tab line when more than one tab page
+-- Line Numbers
+vim.opt.number = true
+-- Relative line numbers
+vim.opt.relativenumber = true
+-- Highlight current line
+vim.opt.cursorline = true
+-- Keep lines above/below cursor
+vim.opt.scrolloff = 5
+-- Keep columns left/right of cursor
+vim.opt.sidescrolloff = 5
+-- Visibility of statusline
+vim.opt.laststatus = 2
+-- Split right
+vim.opt.splitright = true
+-- Split below
+vim.opt.splitbelow = true
+-- Display tab line when more than one tab page
+vim.opt.showtabline = 1
 
 -- Visual Settings
-vim.opt.termguicolors = true -- 24-bit RGB in the TUI
-vim.opt.colorcolumn = "100" -- Show column
-vim.opt.signcolumn = "yes" -- Show sign column
-vim.opt.showmatch = true -- Highlight matching bracket
-vim.opt.matchtime = 2 -- How long to show matching bracket
-vim.opt.synmaxcol = 300 -- Syntax highlighting limit
-vim.opt.diffopt:append("linematch:60") -- Diff behavior
-vim.opt.list = true -- Display trailing spaces
-vim.opt.wrap = true -- Enable soft wrapping
-vim.opt.linebreak = true -- Wrap at word boundaries
-vim.opt.showbreak = '↪ ' -- Show marker at start of wrapped line
-vim.opt.listchars = { tab = "» ", trail = "·", nbsp = "␣" } -- Define characters for trailing spaces
+-- 24-bit RGB in the TUI
+vim.opt.termguicolors = true
+-- Show column
+vim.opt.colorcolumn = "100"
+-- Show sign column
+vim.opt.signcolumn = "yes"
+-- Highlight matching bracket
+vim.opt.showmatch = true
+-- How long to show matching bracket
+vim.opt.matchtime = 2
+-- Syntax highlighting limit
+vim.opt.synmaxcol = 300
+-- Diff behavior
+vim.opt.diffopt:append("linematch:60")
+-- Display trailing spaces
+vim.opt.list = true
+-- Enable soft wrapping
+vim.opt.wrap = true
+-- Wrap at word boundary
+vim.opt.linebreak = true
+-- Indents the continuation lines visually
+vim.opt.breakindent = true
+-- Show marker at start of wrapped line
+vim.opt.showbreak = "↪ "
+-- Define characters for trailing spaces
+vim.opt.listchars = { tab = "» ", trail = "·", nbsp = "␣" }
 
 -- Editing
-vim.opt.tabstop = 4                              -- Tab width
-vim.opt.shiftwidth = 4                           -- Indent width
-vim.opt.softtabstop = 4                          -- Soft tab stop
-vim.opt.expandtab = true                         -- Use spaces instead of tabs
-vim.opt.smartindent = true                       -- Smart auto-indenting
-vim.opt.autoindent = true                        -- Copy indentation of the previous line
-vim.opt.smarttab = true                          -- Smart tab
-vim.opt.backspace = { "start", "eol", "indent" } -- Make backspace behave naturally
+-- Tab width
+vim.opt.tabstop = 4
+-- Indent width
+vim.opt.shiftwidth = 4
+-- Soft tab stop
+vim.opt.softtabstop = 4
+-- Use spaces instead of tabs
+vim.opt.expandtab = true
+-- Smart auto-indenting
+vim.opt.smartindent = true
+-- Copy indentation of the previous line
+vim.opt.autoindent = true
+-- Smart tab
+vim.opt.smarttab = true
+-- Make backspace behave naturally
+vim.opt.backspace = { "start", "eol", "indent" }
 
 -- Search
-vim.opt.ignorecase = true    -- Ignore case in search patterns
-vim.opt.smartcase = true     -- Override ignorecase if search has uppercase
-vim.opt.hlsearch = true      -- Highlight search matches
-vim.opt.wrapscan = true      -- Wrap around end of file in searches
-vim.opt.incsearch = true     -- Incremental highlighting
-vim.opt.inccommand = "split" -- Interactive live preview
+-- Ignore case in search patterns
+vim.opt.ignorecase = true
+-- Override ignorecase if search has uppercase
+vim.opt.smartcase = true
+-- Highlight search matches
+vim.opt.hlsearch = true
+-- Wrap around end of file in searches
+vim.opt.wrapscan = true
+-- Incremental highlighting
+vim.opt.incsearch = true
+-- Interactive live preview
+vim.opt.inccommand = "split"
 
 -- Input and Completion
-vim.opt.mouse = "a"                      -- Mouse support
-vim.opt.wildmenu = true                  -- Command-line completion
-vim.opt.wildmode = "longest:full,full"   -- How completion behaves
-vim.opt.showmode = false                 -- Don't show mode in command line
-vim.opt.completeopt = "menu,noselect"    -- Options for insert-mode completion
-vim.opt.clipboard:append("unnamedplus")  -- Use system clipboard
-vim.opt.selection = "inclusive"          -- Selection behavior
-vim.opt.timeout = true                   -- Enable timeout
-vim.opt.timeoutlen = 1000                -- Duration of timeouts for key mappings
-vim.opt.updatetime = 1000                -- How frequent certain events are triggered
-vim.opt.spell = true                     -- Enable Spell checking
-vim.opt.spelllang = { "en_us", "en_gb" } -- Spell checking languages
-vim.opt.wildignorecase = true            -- Case-insensitive tab completion in commands
+-- Mouse support
+vim.opt.mouse = "a"
+-- Command-line completion
+vim.opt.wildmenu = true
+-- How completion behaves
+vim.opt.wildmode = "longest:full,full"
+-- Don't show mode in command line
+vim.opt.showmode = false
+-- Options for insert-mode completion
+vim.opt.completeopt = "menu,noselect"
+-- Use system clipboard
+vim.opt.clipboard:append("unnamedplus")
+-- Selection behavior
+vim.opt.selection = "inclusive"
+-- Enable timeout
+vim.opt.timeout = true
+-- Duration of timeouts for key mappings
+vim.opt.timeoutlen = 1000
+-- How frequent certain events are triggered
+vim.opt.updatetime = 1000
+-- Enable Spell checking
+vim.opt.spell = true
+-- Spell checking languages
+vim.opt.spelllang = { "en_us", "en_gb" }
+-- Case-insensitive tab completion in commands
+vim.opt.wildignorecase = true
 
 -- File Handling Options
-vim.opt.autoread = true                             -- Write the contents, if it has been modified
-vim.opt.autowrite = true                            -- Write the contents before a command
-vim.opt.backup = false                              -- Make a backup before overwriting a file
-vim.opt.writebackup = false                         -- Make a backup before overwriting a file
-vim.opt.swapfile = false                            -- Whether to use swap files
-vim.opt.undofile = true                             -- Enable persistent undo
-vim.opt.undodir = vim.fn.expand("~/.vim/nvim-undo") -- Directory to store undo file
+-- Write the contents, if it has been modified
+vim.opt.autoread = true
+-- Write the contents before a command
+vim.opt.autowrite = true
+-- Make a backup before overwriting a file
+vim.opt.backup = false
+-- Make a backup before overwriting a file
+vim.opt.writebackup = false
+-- Whether to use swap files
+vim.opt.swapfile = false
+-- Enable persistent undo
+vim.opt.undofile = true
+-- Directory to store undo file
+vim.opt.undodir = vim.fn.expand("~/.vim/nvim-undo")
+-- Number of undo levels (default is 1000)
+vim.opt.undolevels = 10000
+-- Max lines to save for undos when reloading a buffer
+vim.opt.undoreload = 10000
 
 -- Performance
 vim.opt.redrawtime = 10000
