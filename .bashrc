@@ -9,7 +9,7 @@
 bind -f ~/.inputrc
 
 # --- History options ---
-HISTTIMEFORMAT='%y-%m-%d %H:%M '
+HISTTIMEFORMAT="%y-%m-%d %H:%M "
 HISTCONTROL=ignoredups:erasedups:ignorespace
 HISTSIZE=5000
 HISTFILESIZE=10000
@@ -35,20 +35,21 @@ shopt -s cmdhist
 shopt -s checkjobs
 
 # --- Aliases ---
-alias ls='ls -X --group-directories-first --color=auto'
-alias ll='ls -AlF'
-alias la='ls -A'
-alias l='ls -CF'
-alias grep='grep --color=auto'
+alias ls="ls -X --group-directories-first --color=auto"
+alias ll="ls -AlF"
+alias la="ls -A"
+alias l="ls -CF"
+alias grep="grep --color=auto"
 
 # Move up one parent folder
-alias ..='cd ..;pwd'
+alias ..="cd ..;pwd"
 # Move up two parent folders
-alias ...='cd ../..;pwd'
+alias ...="cd ../..;pwd"
 # Move up three parent folders
-alias ....='cd ../../..;pwd'
+alias ....="cd ../../..;pwd"
 # View bash history
-alias h='history'
+alias h="history"
+alias c="clear"
 
 # --- Yazi setup ---
 function y() {
@@ -61,7 +62,7 @@ function y() {
 
 # --- fzf environment variables ---
 # Default options
-export FZF_DEFAULT_OPTS='--height 100% --layout=default'
+export FZF_DEFAULT_OPTS="--height 100% --layout=default"
 
 # CTRL-Y to copy the command into clipboard using wl-copy
 export FZF_CTRL_R_OPTS="
@@ -83,12 +84,12 @@ export FZF_ALT_C_OPTS="
 # fzf search Archlinux repository
 alias pac_i="sudo pacman -S \$(pacman -Sl|awk '{print \$2}'|fzf -m --preview='pacman -Si {}' --preview-window=up:60%:wrap)"
 alias pac_r="sudo pacman -Rns \$(pacman -Q|awk '{print \$1}'|fzf -m --preview='pacman -Qi {}' --preview-window=up:60%:wrap)"
-alias pac_u='sudo pacman -Syyu'
+alias pac_u="sudo pacman -Syyu"
 
 # fzf search Archlinux user repository
 alias paru_i="paru -S \$(paru -Sl|awk '{print \$2}'|fzf -m --preview='paru -Si {}' --preview-window=up:60%:wrap)"
 alias paru_r="paru -Rns \$(paru -Q|awk '{print \$1}'|fzf -m --preview='paru -Qi {}' --preview-window=up:60%:wrap)"
-alias paru_u='paru -Syyu'
+alias paru_u="paru -Syyu"
 
 # --- Git integration ---
 if [[ -f /usr/share/git/completion/git-completion.bash ]]; then

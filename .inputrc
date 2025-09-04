@@ -37,5 +37,21 @@ set completion-query-items 200
 # Skip completed text
 set skip-completed-text on
 
-"\C-f": history-search-backward
-"\C-e": history-search-forward
+# Keybinds
+"\C-j": history-search-backward
+"\C-k": history-search-forward
+
+"\C-l": forward-word
+"\C-h": backward-word
+
+"\C-f": forward-char
+"\C-b": backward-char
+
+"\C-a": beginning-of-line
+"\C-e": end-of-line
+
+"\C-g": delete-char
+"\C-f": backward-delete-char
+
+"\C-n": kill-line
+"\C-u": backward-kill-line
