@@ -45,6 +45,8 @@ vim.opt.breakindent = true
 vim.opt.showbreak = "↪ "
 -- Define characters for trailing spaces
 vim.opt.listchars = { tab = "» ", trail = "·", nbsp = "␣" }
+-- Cursor setting
+vim.opt.guicursor = "n-v-c:block,i-ci-ve:ver25,a:blinkwait700-blinkoff400-blinkon250-Cursor/lCursor"
 
 -- Editing
 -- Tab width
@@ -134,13 +136,3 @@ local undodir = vim.fn.expand("~/.vim/nvim-undo")
 if vim.fn.isdirectory(undodir) == 0 then
     vim.fn.mkdir(undodir, "p")
 end
-
--- Set GUI cursor on exit
-local shape_group = vim.api.nvim_create_augroup("Shape", {
-    clear = true })
-vim.api.nvim_create_autocmd("VimLeave", {
-    group = shape_group,
-    callback = function()
-        vim.opt.guicursor = "a:ver90-blinkon100-blinkoff100-blinkwait100"
-    end,
-})

@@ -9,7 +9,8 @@ return {
                 transparency = false,
             },
             highlight_groups = {
-                Comment = { italic = true }
+                Comment = { italic = true },
+                Cursor = { bg = "text" }
             },
         })
         vim.cmd("colorscheme rose-pine")

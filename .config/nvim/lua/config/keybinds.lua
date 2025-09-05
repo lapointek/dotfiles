@@ -52,11 +52,16 @@ vim.keymap.set("n", "<leader>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><
 vim.keymap.set("n", "<leader>x", "<cmd>!chmod +x %<CR>", { silent = true, desc = "Make file executable" })
 
 -- Tabs
-vim.keymap.set("n", "<leader>to", "<cmd>tabnew<CR>", { desc = "New tab" })                       -- Open new tab
-vim.keymap.set("n", "<leader>tx", "<cmd>tabclose<CR>", { desc = "Close tab" })                   -- Close current tab
-vim.keymap.set("n", "<leader>tn", "<cmd>tabn<CR>", { desc = "Next tab" })                        -- Go to next
-vim.keymap.set("n", "<leader>tp", "<cmd>tabp<CR>", { desc = "Previous tab" })                    -- Go to pre
-vim.keymap.set("n", "<leader>tf", "<cmd>tabnew %<CR>", { desc = "Open current tab in new tab" }) -- Open current tab in new tab
+-- Open new tab
+vim.keymap.set("n", "<leader>to", "<cmd>tabnew<CR>", { desc = "New tab" })
+-- Close current tab
+vim.keymap.set("n", "<leader>tx", "<cmd>tabclose<CR>", { desc = "Close tab" })
+-- Go to next tab
+vim.keymap.set("n", "<leader>tn", "<cmd>tabn<CR>", { desc = "Next tab" })
+-- Go to previous tab
+vim.keymap.set("n", "<leader>tp", "<cmd>tabp<CR>", { desc = "Previous tab" })
+-- Open current tab in new tab
+vim.keymap.set("n", "<leader>tf", "<cmd>tabnew %<CR>", { desc = "Open current tab in new tab" })
 
 -- Split window vertically
 vim.keymap.set("n", "<leader>sv", "<C-w>v", { desc = "Split window vertically" })
