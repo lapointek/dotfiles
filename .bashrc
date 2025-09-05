@@ -54,16 +54,16 @@ alias c="clear"
 
 # --- Yazi setup ---
 function y() {
-	local tmp="$(mktemp -t "yazi-cwd.XXXXXX")" cwd
-	yazi "$@" --cwd-file="$tmp"
-	IFS= read -r -d '' cwd < "$tmp"
-	[ -n "$cwd" ] && [ "$cwd" != "$PWD" ] && builtin cd -- "$cwd"
-	rm -f -- "$tmp"
+    local tmp="$(mktemp -t "yazi-cwd.XXXXXX")" cwd
+    yazi "$@" --cwd-file="$tmp"
+    IFS= read -r -d '' cwd <"$tmp"
+    [ -n "$cwd" ] && [ "$cwd" != "$PWD" ] && builtin cd -- "$cwd"
+    rm -f -- "$tmp"
 }
 
-# --- fzf environment variables ---
+# --- Fzf commands ---
 # Default options
-export FZF_DEFAULT_OPTS="--height 100% --layout=default"
+export FZF_DEFAULT_OPTS="--height 100% --layout=default --style=minimal --border"
 
 # CTRL-Y to copy the command into clipboard using wl-copy
 export FZF_CTRL_R_OPTS="
@@ -82,14 +82,21 @@ export FZF_ALT_C_OPTS="
     --walker-skip .git,node_modules,target
     --preview 'tree {}'"
 
+# Fzf search man-pages from sections 1-8
+alias mansearch='
+  man_page=$(apropos -s 1,8 . | fzf --preview="man {1} 2>/dev/null" --preview-window=up:60%:wrap | awk "{print \$1}")
+  if [ -n "$man_page" ]; then
+    man "$man_page" | bat -l man -p
+  fi
+'
+
 # fzf search Archlinux repository
-alias pacman-i="sudo pacman -S \$(pacman -Sl|awk '{print \$2}'|fzf -m --preview='pacman -Si {}' --preview-window=up:60%:wrap)"
-alias pacman-r="sudo pacman -Rns \$(pacman -Q|awk '{print \$1}'|fzf -m --preview='pacman -Qi {}' --preview-window=up:60%:wrap)"
-alias pacman-u="sudo pacman -Syu"
+alias pacman-i="sudo pacman -S \$(pacman -Sl | awk '{print \$2}' | fzf -m --preview='pacman -Si {}' --preview-window=up:60%:wrap)"
+alias pacman-r="sudo pacman -Rns \$(pacman -Q | awk '{print \$1}' | fzf -m --preview='pacman -Qi {}' --preview-window=up:60%:wrap)"
 
 # fzf search Archlinux user repository
-alias paru-i="paru -S \$(paru -Sl|awk '{print \$2}'|fzf -m --preview='paru -Si {}' --preview-window=up:60%:wrap)"
-alias paru-r="paru -Rns \$(paru -Q|awk '{print \$1}'|fzf -m --preview='paru -Qi {}' --preview-window=up:60%:wrap)"
+alias paru-i="paru -S \$(paru -Sl | awk '{print \$2}' | fzf -m --preview='paru -Si {}' --preview-window=up:60%:wrap)"
+alias paru-r="paru -Rns \$(paru -Q | awk '{print \$1}' | fzf -m --preview='paru -Qi {}' --preview-window=up:60%:wrap)"
 
 # --- Git integration ---
 if [[ -f /usr/share/git/completion/git-completion.bash ]]; then
@@ -108,11 +115,11 @@ if [[ -f /usr/share/bash-completion/bash_completion ]]; then
 fi
 
 # --- Execute shell commands ---
-if command -v fzf &> /dev/null; then
+if command -v fzf &>/dev/null; then
     # Set fzf key-bindings and completion
     eval "$(fzf --bash)"
 fi
-if command -v zoxide &> /dev/null; then
+if command -v zoxide &>/dev/null; then
     # Set zoxide
     eval "$(zoxide init bash)"
 fi

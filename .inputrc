@@ -1,3 +1,6 @@
+# Preserve default settings
+$include /etc/inputrc
+
 # Show tab completion immediately
 set show-all-if-ambiguous on
 
@@ -37,6 +40,9 @@ set completion-query-items 200
 # Skip completed text
 set skip-completed-text on
 
+# Keep original commands in history
+set revert-all-at-newline on
+
 # Keybinds
 "\C-j": history-search-backward
 "\C-k": history-search-forward
@@ -50,8 +56,13 @@ set skip-completed-text on
 "\C-a": beginning-of-line
 "\C-e": end-of-line
 
+"\C-p": kill-word
+"\C-o": backward-kill-word
+
 "\C-g": delete-char
 "\C-f": backward-delete-char
 
 "\C-n": kill-line
 "\C-u": backward-kill-line
+
+"\C-/": undo
