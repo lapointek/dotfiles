@@ -1,6 +1,4 @@
 return {
-    { "neovim/nvim-lspconfig" },
-
     {
         "mason-org/mason.nvim",
         opts = {},
@@ -41,6 +39,7 @@ return {
             run_on_start = true,
         },
     },
+
     {
         "neovim/nvim-lspconfig",
         config = function()
