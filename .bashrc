@@ -84,9 +84,9 @@ export FZF_ALT_C_OPTS="
 
 # Fzf search man pages
 alias mansearch='
-man_page=$(apropos . | sed "s/ .*//" | sort -u | fzf --preview="man {1} 2>/dev/null" --preview-window=up:60%:wrap | awk "{print \$1}")
+man_page=$(apropos . | sed -E "s/^([^ ]+) *\(([^)]+)\).*/\1 (\2)/" | sort -u | fzf --preview="man {1} 2>/dev/null" --preview-window=up:60%:wrap | awk "{print \$1}")
   if [ -n "$man_page" ]; then
-    man "$man_page" | bat -l man -p
+    man "$man_page" 2>/dev/null | bat -l man -p
   fi
 '
 
