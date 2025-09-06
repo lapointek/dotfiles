@@ -82,9 +82,9 @@ export FZF_ALT_C_OPTS="
     --walker-skip .git,node_modules,target
     --preview 'tree {}'"
 
-# Fzf search man-pages from sections 1-8
+# Fzf search man pages
 alias mansearch='
-  man_page=$(apropos -s 1,8 . | fzf --preview="man {1} 2>/dev/null" --preview-window=up:60%:wrap | awk "{print \$1}")
+man_page=$(apropos . | sed "s/ .*//" | sort -u | fzf --preview="man {1} 2>/dev/null" --preview-window=up:60%:wrap | awk "{print \$1}")
   if [ -n "$man_page" ]; then
     man "$man_page" | bat -l man -p
   fi
