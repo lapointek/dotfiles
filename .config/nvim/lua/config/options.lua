@@ -1,6 +1,18 @@
 -- Options are automatically loaded before lazy.nvim startup
 -- Default options that are always set: https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/config/options.lua
 -- Add any additional options here
+
+-- Write the contents before a command
+vim.opt.autowrite = true
+-- Write the contents, if it has been modified
+vim.opt.autoread = true
+-- Make a backup before overwriting a file
+vim.opt.backup = false
+-- Make a backup before overwriting a file
+vim.opt.writebackup = true
+-- Whether to use swap files
+vim.opt.swapfile = true
+-- Enable persistent undo
 vim.opt.undofile = true
 -- Directory to store undo file
 vim.opt.undodir = vim.fn.expand("~/.vim/nvim-undo")
