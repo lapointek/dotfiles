@@ -131,7 +131,7 @@ zstyle ':vcs_info:git:*' check-for-changes true
 zstyle ':vcs_info:git:*' unstagedstr '!'
 zstyle ':vcs_info:git:*' stagedstr '+'
 zstyle ':vcs_info:git:*' untrackedstr '?'
-zstyle ':vcs_info:git:*' formats "%F{blue}(%b %F{magenta}%m%F{red}%u%F{cyan}%c%F{blue})%f"
+zstyle ':vcs_info:git:*' formats "%F{blue}(%b%F{magenta}%m%F{red}%u%F{cyan}%c%F{blue})%f"
 setopt prompt_subst
 PROMPT=$'%D{%H:%M:%S} %F{magenta}${PWD/#$HOME/~}%f ${vcs_info_msg_0_}\n$ '
 
