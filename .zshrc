@@ -1,24 +1,21 @@
-
-# Lines configured by zsh-newuser-install
-HISTFILE=${ZDOTDIR:-$HOME}/.zsh_history
-HISTSIZE=5000
-SAVEHIST=10000
-bindkey -e
-# End of lines configured by zsh-newuser-install
-
-# The following lines were added by compinstall
-zstyle ':completion:*' completer _expand _complete _ignored _correct _approximate
-zstyle ':completion:*' list-colors ''
+# --- Zsh completion ---
+zstyle ':completion:*' completer _expand _complete _ignored _correct _approximate _match
+zstyle ':completion:*' list-colors 'di=34:fi=0:ln=36:pi=33:so=35:do=34:bd=33:cd=33:or=31:mi=31:ex=32'
+zstyle ':completion:*' max-matches 50
 zstyle :compinstall filename '$HOME/.zshrc'
-
 autoload -Uz compinit
 compinit
-# End of lines added by compinstall
 
-# Changing directories
-setopt auto_cd                 # if a command isn't valid, but is a directory, cd to that dir
+# --- Zsh key-bindings ---
+bindkey -e
 
+# --- Zsh plugins ---
+source ~/.config/zsh/fsh/fast-syntax-highlighting.plugin.zsh
+source ~/.config/zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
+
+# --- Options ---
 # Completion
+setopt auto_cd                 # if a command isn't valid, but is a directory, cd to that dir
 setopt auto_list               # automatically list choices on ambiguous completion
 setopt auto_param_slash        # if completed parameter is a directory, add a trailing slash
 setopt complete_in_word        # complete from both ends of a word
@@ -30,6 +27,9 @@ setopt glob_dots               # include dotfiles when globbing
 setopt no_case_glob
 
 # History
+HISTFILE=${ZDOTDIR:-$HOME}/.zsh_history
+HISTSIZE=5000
+SAVEHIST=10000
 setopt append_history          # append to history file
 setopt share_history           # Import new commands and append typed commands to history
 setopt extended_history        # write the history file in the ':start:elapsed;command' format
