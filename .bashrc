@@ -54,11 +54,11 @@ alias c="clear"
 
 # --- Yazi setup ---
 function y() {
-    local tmp="$(mktemp -t "yazi-cwd.XXXXXX")" cwd
-    yazi "$@" --cwd-file="$tmp"
-    IFS= read -r -d '' cwd <"$tmp"
-    [ -n "$cwd" ] && [ "$cwd" != "$PWD" ] && builtin cd -- "$cwd"
-    rm -f -- "$tmp"
+  local tmp="$(mktemp -t "yazi-cwd.XXXXXX")" cwd
+  yazi "$@" --cwd-file="$tmp"
+  IFS= read -r -d '' cwd <"$tmp"
+  [ -n "$cwd" ] && [ "$cwd" != "$PWD" ] && builtin cd -- "$cwd"
+  rm -f -- "$tmp"
 }
 
 # --- Fzf commands ---
@@ -100,10 +100,10 @@ alias paru-r="paru -Rns \$(paru -Q | awk '{print \$1}' | fzf -m --preview='paru 
 
 # --- Git integration ---
 if [[ -f /usr/share/git/completion/git-completion.bash ]]; then
-    source /usr/share/git/completion/git-completion.bash
+  source /usr/share/git/completion/git-completion.bash
 fi
 if [[ -f /usr/share/git/completion/git-prompt.sh ]]; then
-    source /usr/share/git/completion/git-prompt.sh
+  source /usr/share/git/completion/git-prompt.sh
 fi
 
 # --- Bash prompt ---
@@ -111,15 +111,15 @@ export PS1="\n\t \[\033[35m\]\w\[\033[34m\]\$(GIT_PS1_SHOWUNTRACKEDFILES=1 GIT_P
 
 # --- Bash completion ---
 if [[ -f /usr/share/bash-completion/bash_completion ]]; then
-    source /usr/share/bash-completion/bash_completion
+  source /usr/share/bash-completion/bash_completion
 fi
 
 # --- Execute shell commands ---
 if command -v fzf &>/dev/null; then
-    # Set fzf key-bindings and completion
-    eval "$(fzf --bash)"
+  # Set fzf key-bindings and completion
+  eval "$(fzf --bash)"
 fi
 if command -v zoxide &>/dev/null; then
-    # Set zoxide
-    eval "$(zoxide init bash)"
+  # Set zoxide
+  eval "$(zoxide init bash)"
 fi
