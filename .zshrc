@@ -1,10 +1,26 @@
-# --- Zsh completion ---
-zstyle ':completion:*' completer _expand _complete _ignored _correct _approximate _match
-zstyle ':completion:*' list-colors 'di=34:fi=0:ln=36:pi=33:so=35:do=34:bd=33:cd=33:or=31:mi=31:ex=32'
-zstyle ':completion:*' max-matches 50
-zstyle :compinstall filename '$HOME/.zshrc'
+# --- Set XDG cache and create zsh completion directory ---
+export XDG_CACHE_HOME="${XDG_CACHE_HOME:-$HOME/.cache}"
+export ZSH_COMP_DIR="$XDG_CACHE_HOME/zsh/completion"
+mkdir -p "$ZSH_COMP_DIR"
+
+# --- Initialize completion system ---
 autoload -Uz compinit
-compinit
+compinit -d "$ZSH_COMP_DIR/.zcompdump"
+
+# --- Configure completion caching ---
+zstyle ':completion:*' use-cache on
+zstyle ':completion:*' cache-path "$ZSH_COMP_DIR"
+
+# --- Completion styles ---
+zstyle ':completion:*' completer _expand _complete _ignored _correct _approximate _match
+zstyle ':completion:*:default' list-colors ${(s.:.)LS_COLORS}
+zstyle ':completion:*' max-matches 50
+zstyle ':completion:*' verbose yes
+zstyle ':completion:*' file-sort access
+zstyle ':completion:*' matcher-list '' 'm:{a-zA-Z}={A-Za-z}' 'r:|[._-]=* r:|=*' 'l:|=* r:|=*'
+zstyle ':completion:*' complete-options true
+zstyle ':completion:*:*:cdr:*:*' menu selection
+zstyle ':completion:*' menu select   
 
 # --- Zsh key-bindings ---
 bindkey -e
@@ -22,7 +38,11 @@ setopt auto_cd                 # if a command isn't valid, but is a directory, c
 setopt auto_list               # automatically list choices on ambiguous completion
 setopt auto_param_slash        # if completed parameter is a directory, add a trailing slash
 setopt complete_in_word        # complete from both ends of a word
-unsetopt menu_complete         # don't autoselect the first completion entry
+setopt menu_complete         # don't autoselect the first completion entry
+setopt auto_menu
+setopt auto_param_slash
+setopt list_packed
+setopt always_to_end
 
 # Expansion and Globbing
 setopt extended_glob           # use more awesome globbing features
@@ -31,7 +51,7 @@ setopt no_case_glob            # Case insensitive globbing
 
 # History
 HISTFILE=${ZDOTDIR:-$HOME}/.zsh_history
-HISTSIZE=5000
+HISTSIZE=10000
 SAVEHIST=10000
 setopt append_history          # append to history file
 setopt share_history           # Import new commands and append typed commands to history
@@ -99,12 +119,26 @@ export FZF_ALT_C_OPTS="
     --preview 'tree {}'"
 
 # Fzf search man pages
-alias mansearch='
-man_page=$(apropos . | sed "s/ .*//" | sort -u | fzf --preview="man {1} 2>/dev/null" --preview-window=up:60%:wrap | awk "{print \$1}")
+mansearch() {
+  local man_page
+  man_page=$(apropos . |  sed -n 's/^\(.*)\).*/\1/p' | sort -u | fzf \
+  --preview="man {1} 2>/dev/null" \
+  --preview-window=up:60%:wrap | awk "{print \$1}")
+
   if [ -n "$man_page" ]; then
     man "$man_page" 2>/dev/null | bat -l man -p
   fi
-'
+}
+
+# Query zoxide
+zf() {
+  local Fzf
+  Fzf=$(zoxide query --list | fzf -m --preview='tree {}')
+
+  if [ -n "$Fzf" ]; then
+    z "$Fzf"
+  fi
+}
 
 # fzf search Archlinux repository
 alias pacman-i="sudo pacman -S \$(pacman -Sl | awk '{print \$2}' | fzf -m --preview='pacman -Si {}' --preview-window=up:60%:wrap)"
