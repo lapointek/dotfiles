@@ -20,6 +20,14 @@ vim.opt.undodir = vim.fn.expand("~/.vim/nvim-undo")
 vim.opt.undolevels = 10000
 -- Max lines to save for undos when reloading a buffer
 vim.opt.undoreload = 10000
+-- Enable soft wrapping
+vim.opt.wrap = true
+-- Wrap at word boundary
+vim.opt.linebreak = true
+-- Indents the continuation lines visually
+vim.opt.breakindent = true
+-- Show marker at start of wrapped line
+vim.opt.showbreak = "↪ "
 
 -- Create undo directory if it doesn't exist
 local undodir = vim.fn.expand("~/.vim/nvim-undo")

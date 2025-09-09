@@ -12,7 +12,6 @@ bindkey '^k' up-line-or-search
 bindkey '^j' down-line-or-search
 bindkey '^/' undo
 
-
 # --- Zsh plugins ---
 source ~/.config/zsh/fsh/fast-syntax-highlighting.plugin.zsh
 source ~/.config/zsh/zsh-autosuggestions/zsh-autosuggestions.zsh

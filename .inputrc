@@ -1,4 +1,4 @@
-# Set keybinds
+# Set keybindings
 set editing-mode emacs
 
 # Show tab completion immediately
@@ -43,7 +43,7 @@ set skip-completed-text on
 # Keep original commands in history
 set revert-all-at-newline on
 
-# Keybinds
+# Custom keybindings
 "\C-j": history-search-backward
 "\C-k": history-search-forward
 "\C-/": undo
