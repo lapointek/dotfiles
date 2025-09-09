@@ -1,5 +1,5 @@
-# Preserve default settings
-$include /etc/inputrc
+# Set keybinds
+set editing-mode emacs
 
 # Show tab completion immediately
 set show-all-if-ambiguous on
@@ -46,23 +46,4 @@ set revert-all-at-newline on
 # Keybinds
 "\C-j": history-search-backward
 "\C-k": history-search-forward
-
-"\C-l": forward-word
-"\C-h": backward-word
-
-"\C-f": forward-char
-"\C-b": backward-char
-
-"\C-a": beginning-of-line
-"\C-e": end-of-line
-
-"\C-p": kill-word
-"\C-o": backward-kill-word
-
-"\C-g": delete-char
-"\C-f": backward-delete-char
-
-"\C-n": kill-line
-"\C-u": backward-kill-line
-
 "\C-/": undo

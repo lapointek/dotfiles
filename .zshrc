@@ -8,6 +8,10 @@ compinit
 
 # --- Zsh key-bindings ---
 bindkey -e
+bindkey '^k' up-line-or-search
+bindkey '^j' down-line-or-search
+bindkey '^/' undo
+
 
 # --- Zsh plugins ---
 source ~/.config/zsh/fsh/fast-syntax-highlighting.plugin.zsh
@@ -24,7 +28,7 @@ unsetopt menu_complete         # don't autoselect the first completion entry
 # Expansion and Globbing
 setopt extended_glob           # use more awesome globbing features
 setopt glob_dots               # include dotfiles when globbing
-setopt no_case_glob
+setopt no_case_glob            # Case insensitive globbing
 
 # History
 HISTFILE=${ZDOTDIR:-$HOME}/.zsh_history
