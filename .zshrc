@@ -20,7 +20,7 @@ zstyle ':completion:*' file-sort access
 zstyle ':completion:*' matcher-list '' 'm:{a-zA-Z}={A-Za-z}' 'r:|[._-]=* r:|=*' 'l:|=* r:|=*'
 zstyle ':completion:*' complete-options true
 zstyle ':completion:*:*:cdr:*:*' menu selection
-zstyle ':completion:*' menu select   
+zstyle ':completion:*' menu select
 
 # --- Zsh key-bindings ---
 bindkey -e
@@ -38,11 +38,11 @@ setopt auto_cd                 # if a command isn't valid, but is a directory, c
 setopt auto_list               # automatically list choices on ambiguous completion
 setopt auto_param_slash        # if completed parameter is a directory, add a trailing slash
 setopt complete_in_word        # complete from both ends of a word
-setopt menu_complete         # don't autoselect the first completion entry
-setopt auto_menu
-setopt auto_param_slash
-setopt list_packed
-setopt always_to_end
+setopt menu_complete           # don't autoselect the first completion entry
+setopt auto_menu               # enable completion candidates in menu format
+setopt auto_param_slash        # append trailing slash to parameter value
+setopt list_packed             # display completion menu in compact form
+setopt always_to_end           # place cursor at the end of the command line
 
 # Expansion and Globbing
 setopt extended_glob           # use more awesome globbing features
@@ -54,7 +54,7 @@ HISTFILE=${ZDOTDIR:-$HOME}/.zsh_history
 HISTSIZE=10000
 SAVEHIST=10000
 setopt append_history          # append to history file
-setopt share_history           # Import new commands and append typed commands to history
+setopt share_history           # import new commands and append typed commands to history
 setopt extended_history        # write the history file in the ':start:elapsed;command' format
 setopt hist_expire_dups_first  # expire a duplicate event first when trimming history
 setopt hist_find_no_dups       # don't display a previously found event
@@ -67,8 +67,8 @@ setopt hist_save_no_dups       # don't write a duplicate event to the history fi
 setopt hist_verify             # don't execute immediately upon history expansion
 
 # Correction
-setopt correct               # Autocorrect command typos
-setopt correct_all           # Autocorrect file and directory names
+setopt correct                 # Autocorrect command typos
+setopt correct_all             # Autocorrect file and directory names
 
 # --- Aliases ---
 alias ls='ls -X --group-directories-first --color=auto'
@@ -107,7 +107,7 @@ export FZF_CTRL_R_OPTS="
     --color header:italic
     --header 'Press CTRL-Y to copy command into clipboard'"
 
-# Preview file content using bat (https://github.com/sharkdp/bat)
+# Preview file content using bat
 export FZF_CTRL_T_OPTS="
     --walker-skip .git,node_modules,target
     --preview 'bat -n --color=always {}'
@@ -118,12 +118,11 @@ export FZF_ALT_C_OPTS="
     --walker-skip .git,node_modules,target
     --preview 'tree {}'"
 
-# Fzf search man pages
+# Search man pages database
 mansearch() {
   local man_page
-  man_page=$(apropos . | sed -n 's/^\(.*)\).*/\1/p' | sort -u | fzf \
-  --preview='man {1} 2>/dev/null' \
-  --preview-window=down:60%:wrap | awk "{print \$1}")
+  man_page=$(apropos . | sed -n 's/^\(.*)\).*/\1/p' | \
+  sort -u | fzf | awk "{print \$1}")
 
   if [ -n "$man_page" ]; then
     man "$man_page" 2>/dev/null | bat -l man -p
@@ -133,14 +132,17 @@ mansearch() {
 # Query zoxide
 zf() {
   local Fzf
-  Fzf=$(zoxide query --list | fzf -m --preview='ls -AFC --group-directories-first --color=always {}' --preview-window=down:30%:wrap)
+  Fzf=$(zoxide query --list | fzf -m --preview='ls -AFC \
+  --group-directories-first \
+  --color=always {}' \
+  --preview-window=down:30%:wrap)
 
   if [ -n "$Fzf" ]; then
     z "$Fzf"
   fi
 }
 
-# Fzf install package from the Archlinux official repository
+# Install packages from the Archlinux official repository
 pac_i() {
   local selected
   selected=("${(@f)$(pacman -Slq | \
@@ -153,7 +155,7 @@ pac_i() {
   fi
 }
 
-# Fzf remove package from system
+# Remove packages from the system
 pac_r() {
   local selected
   selected=("${(@f)$(pacman -Qq | \
@@ -166,18 +168,19 @@ pac_r() {
   fi
 }
 
-# Query the files database from Archlinux
+# Query the Archlinux files database
 pac_f() {
   local selected
   selected=$(pacman -Slq | \
-  fzf -m --preview='cat <(pacman -Si {1}) <(pacman -Fl {1} | awk "{print \$2}")' \
+  fzf -m --preview='cat <(pacman -Si {1}) <(pacman -Fl {1} | \
+  awk "{print \$2}")' \
   --preview-window=down:60%:wrap)
   if [ -n "$selected" ]; then
     pacman -Si "$selected" | bat --style=grid
   fi
 }
 
-# Fzf install package from the Archlinux user repository
+# Install package from the Archlinux user repository
 paru_i() {
   local selected
   selected=("${(@f)$(paru -Slq | \
