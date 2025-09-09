@@ -99,7 +99,7 @@ function y() {
 
 # --- Fzf commands ---
 # Default options
-export FZF_DEFAULT_OPTS='--height 100% --layout=default --style=minimal --border'
+export FZF_DEFAULT_OPTS='--height 100% --layout=reverse --style=default --border'
 
 # CTRL-Y to copy the command into clipboard using wl-copy
 export FZF_CTRL_R_OPTS="
@@ -123,7 +123,8 @@ mansearch() {
   local man_page
   man_page=$(apropos . | sed -n 's/^\(.*)\).*/\1/p' | sort -u | fzf \
   --preview='man {1} 2>/dev/null' \
-  --preview-window=up:60%:wrap | awk "{print \$1}")
+  --preview-window=down:60%:wrap | awk "{print \$1}")
+
   if [ -n "$man_page" ]; then
     man "$man_page" 2>/dev/null | bat -l man -p
   fi
@@ -132,7 +133,7 @@ mansearch() {
 # Query zoxide
 zf() {
   local Fzf
-  Fzf=$(zoxide query --list | fzf -m --preview='ls -AC --color=always {}' --preview-window=up:40%:wrap)
+  Fzf=$(zoxide query --list | fzf -m --preview='ls -AFC --group-directories-first --color=always {}' --preview-window=down:30%:wrap)
 
   if [ -n "$Fzf" ]; then
     z "$Fzf"
@@ -144,24 +145,35 @@ pac_i() {
   local selected
   selected=("${(@f)$(pacman -Slq | \
   fzf -m --preview='pacman -Si {}' \
-  --preview-window=up:60%:wrap)}")
+  --preview-window=down:60%:wrap)}")
   # remove empty/null values
   selected=("${selected[@]:#}")
   if (( ${#selected[@]} > 0 )); then
-    sudo pacman -S "${selected[@]}"
+    sudo pacman -Syu "${selected[@]}"
   fi
 }
 
-# Fzf remove package
+# Fzf remove package from system
 pac_r() {
   local selected
   selected=("${(@f)$(pacman -Qq | \
   fzf -m --preview='pacman -Qi {}' \
-  --preview-window=up:60%:wrap)}")
+  --preview-window=down:60%:wrap)}")
   # remove empty/null values
   selected=("${selected[@]:#}")
   if (( ${#selected[@]} > 0 )); then
     sudo pacman -Rns "${selected[@]}"
+  fi
+}
+
+# Query the files database from Archlinux
+pac_f() {
+  local selected
+  selected=$(pacman -Slq | \
+  fzf -m --preview='cat <(pacman -Si {1}) <(pacman -Fl {1} | awk "{print \$2}")' \
+  --preview-window=down:60%:wrap)
+  if [ -n "$selected" ]; then
+    pacman -Si "$selected" | bat --style=grid
   fi
 }
 
@@ -170,7 +182,7 @@ paru_i() {
   local selected
   selected=("${(@f)$(paru -Slq | \
   fzf -m --preview='paru -Si {}' \
-  --preview-window=up:60%:wrap)}")
+  --preview-window=down:60%:wrap)}")
   # remove empty/null values
   selected=("${selected[@]:#}")
   if (( "${#selected[@]}" > 0 )); then
