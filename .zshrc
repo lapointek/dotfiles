@@ -62,7 +62,7 @@ setopt hist_ignore_all_dups    # delete an old recorded event if a new event is 
 setopt hist_ignore_dups        # don't record an event that was just recorded again
 setopt hist_ignore_space       # don't record an event starting with a space
 setopt hist_no_store           # don't store history commands
-setopt hist_reduce_blanks      # remove superfluous blanks from each command line being added to the history list
+setopt hist_reduce_blanks      # remove superfluous blanks from each command
 setopt hist_save_no_dups       # don't write a duplicate event to the history file
 setopt hist_verify             # don't execute immediately upon history expansion
 
@@ -180,7 +180,7 @@ pac_f() {
   fi
 }
 
-# Install package from the Archlinux user repository
+# Install packages from the Archlinux user repository
 paru_i() {
   local selected
   selected=("${(@f)$(paru -Slq | \
