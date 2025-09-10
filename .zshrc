@@ -5,22 +5,28 @@ mkdir -p "$ZSH_COMP_DIR"
 
 # --- Initialize completion system ---
 autoload -Uz compinit
-compinit -d "$ZSH_COMP_DIR/.zcompdump"
+compinit
 
 # --- Configure completion caching ---
 zstyle ':completion:*' use-cache on
 zstyle ':completion:*' cache-path "$ZSH_COMP_DIR"
 
-# --- Completion styles ---
+# --- Completion order ---
 zstyle ':completion:*' completer _complete _match _correct _approximate
+
+# --- Matching behaviour
 zstyle ':completion:*:match:*' original only
 zstyle ':completion:*:approximate:*' max-errors 1 numeric
+zstyle ':completion:*:correct:*' max-errors 1
+
+# --- Sorting and grouping ---
+zstyle ':completion:*' file-sort access
+zstyle ':completion:*:*:git:*' sort false
+zstyle ':completion:*' group-order directories executables all-files
+
+# --- Display option ---
 zstyle ':completion:*:default' list-colors ${(s.:.)LS_COLORS}
 zstyle ':completion:*' max-matches 50
-zstyle ':completion:*' verbose yes
-zstyle ':completion:*:*:git:*' sort false
-zstyle ':completion:*' file-sort access
-zstyle ':completion:*' complete-options true
 zstyle ':completion:*' menu select
 
 # --- Zsh key-bindings ---
@@ -30,23 +36,17 @@ bindkey '^j' down-line-or-search
 bindkey '^/' undo
 
 # --- Zsh plugins ---
-source ~/.config/zsh/fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh
-source ~/.config/zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
+source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
+source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 # --- Options ---
 # Completion
 setopt auto_cd                 # if a command isn't valid, but is a directory, cd to that dir
-setopt auto_list               # automatically list choices on ambiguous completion
 setopt auto_param_slash        # if completed parameter is a directory, add a trailing slash
-setopt complete_in_word        # complete from both ends of a word
-setopt menu_complete           # don't autoselect the first completion entry
-setopt auto_menu               # enable completion candidates in menu format
-setopt auto_param_slash        # append trailing slash to parameter value
-setopt list_packed             # display completion menu in compact form
 setopt always_to_end           # place cursor at the end of the command line
 
 # Expansion and Globbing
-setopt extended_glob           # use more awesome globbing features
+setopt extended_glob           # use more globbing features
 setopt glob_dots               # include dotfiles when globbing
 setopt no_case_glob            # Case insensitive globbing
 
@@ -59,12 +59,9 @@ setopt share_history           # import new commands and append typed commands t
 setopt extended_history        # write the history file in the ':start:elapsed;command' format
 setopt hist_expire_dups_first  # expire a duplicate event first when trimming history
 setopt hist_find_no_dups       # don't display a previously found event
-setopt hist_ignore_all_dups    # delete an old recorded event if a new event is a duplicate
-setopt hist_ignore_dups        # don't record an event that was just recorded again
 setopt hist_ignore_space       # don't record an event starting with a space
 setopt hist_no_store           # don't store history commands
 setopt hist_reduce_blanks      # remove superfluous blanks from each command
-setopt hist_save_no_dups       # don't write a duplicate event to the history file
 setopt hist_verify             # don't execute immediately upon history expansion
 
 # Correction
@@ -105,7 +102,6 @@ export FZF_DEFAULT_OPTS="
 --layout=reverse \
 --style=default \
 --border \
---bind='tab:down,shift-tab:up' \
 "
 
 # CTRL-Y to copy the command into clipboard using wl-copy
@@ -203,14 +199,6 @@ paru_i() {
 # --- Git integration ---
 if [[ -f /usr/share/git/completion/git-completion.sh ]]; then
   source /usr/share/git/completion/git-completion.sh
-fi
-if [[ -f /usr/share/git/completion/git-prompt.sh ]]; then
-  source /usr/share/git/completion/git-prompt.sh
-fi
-
-# --- Bash completion ---
-if [[ -f /usr/share/bash-completion/bash_completion ]]; then
-  source /usr/share/bash-completion/bash_completion
 fi
 
 # --- Zsh prompt ---
