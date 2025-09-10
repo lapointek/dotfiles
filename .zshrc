@@ -12,14 +12,15 @@ zstyle ':completion:*' use-cache on
 zstyle ':completion:*' cache-path "$ZSH_COMP_DIR"
 
 # --- Completion styles ---
-zstyle ':completion:*' completer _expand _complete _ignored _correct _approximate _match
+zstyle ':completion:*' completer _complete _match _correct _approximate
+zstyle ':completion:*:match:*' original only
+zstyle ':completion:*:approximate:*' max-errors 1 numeric
 zstyle ':completion:*:default' list-colors ${(s.:.)LS_COLORS}
 zstyle ':completion:*' max-matches 50
 zstyle ':completion:*' verbose yes
+zstyle ':completion:*:*:git:*' sort false
 zstyle ':completion:*' file-sort access
-zstyle ':completion:*' matcher-list '' 'm:{a-zA-Z}={A-Za-z}' 'r:|[._-]=* r:|=*' 'l:|=* r:|=*'
 zstyle ':completion:*' complete-options true
-zstyle ':completion:*:*:cdr:*:*' menu selection
 zstyle ':completion:*' menu select
 
 # --- Zsh key-bindings ---
@@ -99,7 +100,13 @@ function y() {
 
 # --- Fzf commands ---
 # Default options
-export FZF_DEFAULT_OPTS='--height 100% --layout=reverse --style=default --border'
+export FZF_DEFAULT_OPTS="
+--height 100% \
+--layout=reverse \
+--style=default \
+--border \
+--bind='tab:down,shift-tab:up' \
+"
 
 # CTRL-Y to copy the command into clipboard using wl-copy
 export FZF_CTRL_R_OPTS="
@@ -132,7 +139,7 @@ mansearch() {
 # Query zoxide
 zf() {
   local Fzf
-  Fzf=$(zoxide query --list | fzf -m --preview='ls -AFC \
+  Fzf=$(zoxide query --list | fzf --preview='ls -AFC \
   --group-directories-first \
   --color=always {}' \
   --preview-window=down:30%:wrap)
