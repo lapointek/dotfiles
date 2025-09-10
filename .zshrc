@@ -59,6 +59,7 @@ setopt share_history           # import new commands and append typed commands t
 setopt extended_history        # write the history file in the ':start:elapsed;command' format
 setopt hist_expire_dups_first  # expire a duplicate event first when trimming history
 setopt hist_find_no_dups       # don't display a previously found event
+setopt hist_ignore_dups        # prevent consecutive duplicates
 setopt hist_ignore_space       # don't record an event starting with a space
 setopt hist_no_store           # don't store history commands
 setopt hist_reduce_blanks      # remove superfluous blanks from each command
@@ -82,7 +83,7 @@ alias ...='cd ../..;pwd'
 # Move up three parent folders
 alias ....='cd ../../..;pwd'
 # View bash history
-alias h='history'
+alias h='history -E'
 # Clear terminal
 alias c='clear'
 
@@ -128,7 +129,7 @@ mansearch() {
   sort -u | fzf | awk "{print \$1}")
 
   if [ -n "$man_page" ]; then
-    man "$man_page" 2>/dev/null | bat -l man -p
+    man "$man_page"
   fi
 }
 
@@ -179,7 +180,7 @@ pac_f() {
   awk "{print \$2}")' \
   --preview-window=down:60%:wrap)
   if [ -n "$selected" ]; then
-    pacman -Si "$selected" | bat --style=grid
+    pacman -Si "$selected"
   fi
 }
 
