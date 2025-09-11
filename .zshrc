@@ -37,8 +37,12 @@ bindkey '^j' down-line-or-search
 bindkey '^/' undo
 
 # --- Zsh plugins ---
-source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
-source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+if [[ -f /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh ]]; then
+  source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
+fi
+if [[ -f /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ]]; then
+  source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+fi
 
 # --- Options ---
 # Completion
@@ -198,28 +202,30 @@ paru_i() {
   fi
 }
 
-# --- Git integration ---
-if [[ -f /usr/share/git/completion/git-completion.sh ]]; then
-  source /usr/share/git/completion/git-completion.sh
-fi
-
-# --- Zsh prompt ---
+# --- Default zsh prompt ---
 autoload -Uz vcs_info
 precmd() { vcs_info }
 zstyle ':vcs_info:git:*' check-for-changes true
 zstyle ':vcs_info:git:*' unstagedstr '!'
 zstyle ':vcs_info:git:*' stagedstr '+'
 zstyle ':vcs_info:git:*' untrackedstr '?'
-zstyle ':vcs_info:git:*' formats "%F{blue}(%b%F{magenta}%m%F{red}%u%F{cyan}%c%F{blue})%f"
+zstyle ':vcs_info:git:*' formats "%F{242}%b%F{magenta}%m%F{red}%u%F{cyan}%c%F%f"
 setopt prompt_subst
-PROMPT=$'%D{%H:%M:%S} %F{magenta}${PWD/#$HOME/~}%f ${vcs_info_msg_0_}\n$ '
+RPROMPT='%F{245}%*%f'
+PROMPT=$'%F{blue}${PWD/#$HOME/~}%f ${vcs_info_msg_0_}\n%F{magenta}❯%f '
 
 # --- Execute shell commands ---
+# Fzf
 if command -v fzf &>/dev/null; then
   # Set fzf key-bindings and completion
   source <(fzf --zsh)
 fi
+# Zoxide
 if command -v zoxide &>/dev/null; then
   # Set zoxide
   eval "$(zoxide init zsh)"
+fi
+# Starship
+if command -v starship &>/dev/null; then
+  eval "$(starship init zsh)"
 fi
