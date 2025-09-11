@@ -1,30 +1,31 @@
-# --- Set XDG cache and create zsh completion directory ---
+# --- Completion configuration ---
+# Set XDG cache and create zsh completion directory
 export XDG_CACHE_HOME="${XDG_CACHE_HOME:-$HOME/.cache}"
 export ZSH_COMP_DIR="$XDG_CACHE_HOME/zsh/completion"
 mkdir -p "$ZSH_COMP_DIR"
 
-# --- Initialize completion system ---
+# Initialize completion system
 autoload -Uz compinit
 compinit
 
-# --- Configure completion caching ---
+# Configure completion caching
 zstyle ':completion:*' use-cache on
 zstyle ':completion:*' cache-path "$ZSH_COMP_DIR"
 
-# --- Completion order ---
+# Completion order
 zstyle ':completion:*' completer _complete _match _correct _approximate
 
-# --- Matching behaviour
+# Matching behaviour
 zstyle ':completion:*:match:*' original only
 zstyle ':completion:*:approximate:*' max-errors 1 numeric
 zstyle ':completion:*:correct:*' max-errors 1
 
-# --- Sorting and grouping ---
+# Sorting and grouping
 zstyle ':completion:*' file-sort access
 zstyle ':completion:*:*:git:*' sort false
 zstyle ':completion:*' group-order directories executables all-files
 
-# --- Display option ---
+# Display option
 zstyle ':completion:*:default' list-colors ${(s.:.)LS_COLORS}
 zstyle ':completion:*' max-matches 50
 zstyle ':completion:*' menu select
