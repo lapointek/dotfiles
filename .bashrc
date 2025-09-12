@@ -154,6 +154,9 @@ paru_i() {
   fi
 }
 
+# --- Defualt bash prompt ---
+export PS1="\n\t \[\033[35m\]\w\[\033[34m\]\$(GIT_PS1_SHOWUNTRACKEDFILES=1 GIT_PS1_SHOWDIRTYSTATE=1 __git_ps1)\[\033[00m\]\n$ "
+
 # --- Git integration ---
 if [[ -f /usr/share/git/completion/git-completion.bash ]]; then
   source /usr/share/git/completion/git-completion.bash
@@ -162,20 +165,21 @@ if [[ -f /usr/share/git/completion/git-prompt.sh ]]; then
   source /usr/share/git/completion/git-prompt.sh
 fi
 
-# --- Bash prompt ---
-export PS1="\n\t \[\033[35m\]\w\[\033[34m\]\$(GIT_PS1_SHOWUNTRACKEDFILES=1 GIT_PS1_SHOWDIRTYSTATE=1 __git_ps1)\[\033[00m\]\n$ "
-
 # --- Bash completion ---
 if [[ -f /usr/share/bash-completion/bash_completion ]]; then
   source /usr/share/bash-completion/bash_completion
 fi
 
 # --- Execute shell commands ---
+# Fzf
 if command -v fzf &>/dev/null; then
-  # Set fzf key-bindings and completion
   eval "$(fzf --bash)"
 fi
+# Zoxide
 if command -v zoxide &>/dev/null; then
-  # Set zoxide
   eval "$(zoxide init bash)"
+fi
+# Starship
+if command -v starship &>/dev/null; then
+  eval "$(starship init bash)"
 fi

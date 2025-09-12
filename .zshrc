@@ -104,28 +104,32 @@ function y() {
 # --- Fzf commands ---
 # Default options
 export FZF_DEFAULT_OPTS="
---height 100% \
---layout=reverse \
---style=default \
---border \
-"
+  --height 100% \
+  --layout=reverse \
+  --border \
+  --color=fg:#908caa,bg:#191724,hl:#ebbcba
+  --color=fg+:#e0def4,bg+:#26233a,hl+:#ebbcba
+  --color=border:#403d52,header:#31748f,gutter:#191724
+  --color=spinner:#f6c177,info:#9ccfd8
+  --color=pointer:#c4a7e7,marker:#eb6f92,prompt:#908caa
+  "
 
 # CTRL-Y to copy the command into clipboard using wl-copy
 export FZF_CTRL_R_OPTS="
-    --bind 'ctrl-y:execute-silent(echo -n {2..} | wl-copy)+abort'
-    --color header:italic
-    --header 'Press CTRL-Y to copy command into clipboard'"
+  --bind 'ctrl-y:execute-silent(echo -n {2..} | wl-copy)+abort'
+  --color header:italic
+  --header 'Press CTRL-Y to copy command into clipboard'"
 
 # Preview file content using bat
 export FZF_CTRL_T_OPTS="
-    --walker-skip .git,node_modules,target
-    --preview 'bat -n --color=always {}'
-    --bind 'ctrl-/:change-preview-window(down|hidden|)'"
+  --walker-skip .git,node_modules,target
+  --preview 'bat -n --color=always {}'
+  --bind 'ctrl-/:change-preview-window(down|hidden|)'"
 
 # Print tree structure in the preview window
 export FZF_ALT_C_OPTS="
-    --walker-skip .git,node_modules,target
-    --preview 'tree {}'"
+  --walker-skip .git,node_modules,target
+  --preview 'tree {}'"
 
 # Search man pages database
 mansearch() {
