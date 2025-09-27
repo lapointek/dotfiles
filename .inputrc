@@ -1,0 +1,49 @@
+# Set keybindings
+set editing-mode emacs
+
+# Show tab completion immediately
+set show-all-if-ambiguous on
+
+# Tab completion ignores case
+set completion-ignore-case on
+
+# Display dull list of completions
+set show-all-if-unmodified on
+
+# Turn off bell
+set bell-style none
+
+# Color files by types
+set colored-stats On
+
+# Append char to indicate type
+set visible-stats On
+
+# Mark symlinked directories
+set mark-symlinked-directories On
+
+# Color the common prefix
+set colored-completion-prefix On
+
+# Color the common prefix in menu-complete
+set menu-complete-display-prefix On
+
+# Match hidden files
+set match-hidden-files off
+
+# Make suggestions appear at once
+set page-completions off
+
+# Number of completion items to show.
+set completion-query-items 200
+
+# Skip completed text
+set skip-completed-text on
+
+# Keep original commands in history
+set revert-all-at-newline on
+
+# Custom keybindings
+"\C-j": history-search-backward
+"\C-k": history-search-forward
+"\C-/": undo
