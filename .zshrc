@@ -163,6 +163,9 @@ export FZF_ALT_C_OPTS="
   --walker-skip .git,node_modules,target
   --preview 'tree {}'"
 
+# Zoxide fzf - command 'zi'
+ export _ZO_FZF_OPTS="$FZF_DEFAULT_OPTS"
+
 # Search man pages database
 man_s() {
   local man_page
