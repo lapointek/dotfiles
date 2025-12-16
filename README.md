@@ -1,28 +1,6 @@
 # My dotfiles
 
-This directory contains the and automated install scripts for my system.
-
-## Requiremenets
-
-### Install Script
-
-run install Script
-
-```
-$ ./install.sh
-```
-
-### Git
-
-```
-$ pacman -S git
-```
-
-### Stow
-
-```
-$ pacman -S stow
-```
+This directory contains my dotfiles and automated install scripts for my system.
 
 ## Installation
 
@@ -34,7 +12,17 @@ $ git clone https://github.com/lapointek/dotfiles.git
 cd dotfiles
 ```
 
-2. Then use GNU stow in the root of the dotfiles directory to create the symlinks.
+2. Run the install script.
+
+```
+./install.sh
+```
+
+3. Follow the script prompts.
+
+4. Reboot system.
+
+5. Then use GNU stow in the root of the dotfiles directory to create the symlinks.
 
 ```
 stow .
