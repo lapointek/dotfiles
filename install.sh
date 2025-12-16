@@ -8,11 +8,11 @@ source ./scripts/utils.sh
 echo "Starting full system setup..."
 
 # Check if packages.conf exist
-if [ ! -f "packages.conf" ]; then
+if [ ! -f "./scripts/packages.conf" ]; then
   echo "Error: packages.conf not found!"
   exit 1
 fi
-source packages.conf
+source ./scripts/packages.conf
 
 # Update system
 echo "Updating System..."
