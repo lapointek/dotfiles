@@ -19,7 +19,6 @@ The script automates the setup of my personal development environment on Arch Li
 ## Requirements
 
     - Arch Linux installation
-    - Git
 
 ## Acknowledgments
 
