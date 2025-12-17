@@ -40,4 +40,3 @@ stow .
 2. Follow the script prompts.
 
 3. Reboot system.
-   `
