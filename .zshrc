@@ -60,6 +60,11 @@ if [[ -f /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.
   source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 fi
 
+# --- Source nvm ---
+if [[ -f /usr/share/nvim/init-nvm.sh ]]; then
+  source /usr/share/nvm/init-nvm.sh
+fi
+
 # --- Options ---
 # Completion
 setopt auto_cd                 # if a command isn't valid, but is a directory, cd to that dir
@@ -122,7 +127,9 @@ function osc7-pwd() {
 function chpwd-osc7-pwd() {
     (( ZSH_SUBSHELL )) || osc7-pwd
 }
-add-zsh-hook -Uz chpwd chpwd-osc7-pwd
+if autoload -Uz add-zsh-hook 2>/dev/null; then
+  add-zsh-hook -Uz chpwd chpwd-osc7-pwd
+fi
 
 # --- Yazi setup ---
 function y() {
@@ -228,8 +235,13 @@ zstyle ':vcs_info:git:*' formats '%F{cyan}%b%f%F{red}%u%f%F{cyan}%c%f %F{blue}%m
 zstyle ':vcs_info:git*+set-message:*' hooks git-untracked git-st
 # Enable prompt substitution
 setopt prompt_subst
+
+if [[ -n "${CONTAINER_ID:-}" ]]; then
+  PROMPT_PREFIX="(${CONTAINER_ID})"
+fi
+
 # Prompt
-PROMPT=$'%D{%H:%M:%S} %F{magenta}${PWD/#$HOME/~}%f ${vcs_info_msg_0_}\n$ '
+PROMPT=$'%D{%H:%M:%S} $PROMPT_PREFIX %F{magenta}${PWD/#$HOME/~}%f ${vcs_info_msg_0_}\n$ '
 
 # Show untracked
 +vi-git-untracked(){
@@ -272,4 +284,3 @@ if command -v zoxide &>/dev/null; then
   eval "$(zoxide init zsh)"
 fi
 
-source /usr/share/nvm/init-nvm.sh
