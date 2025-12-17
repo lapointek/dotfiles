@@ -208,8 +208,10 @@ if [[ -f /usr/share/bash-completion/bash_completion ]]; then
 fi
 
 # --- Execute shell commands ---
-# Fzf
-[ -f ~/.fzf.bash ] && source ~/.fzf.bash
+# Set up fzf key bindings and fuzzy completion
+if command -v fzf &>/dev/null; then
+  source <(fzf --zsh)
+fi
 # Zoxide
 if command -v zoxide &>/dev/null; then
   eval "$(zoxide init bash)"

@@ -308,8 +308,10 @@ function +vi-git-st() {
 }
 
 # --- Execute shell commands ---
-# Fzf
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+# Set up fzf key bindings and fuzzy completion
+if command -v fzf &>/dev/null; then
+  source <(fzf --zsh)
+fi
 # Zoxide
 if command -v zoxide &>/dev/null; then
   # Set zoxide
