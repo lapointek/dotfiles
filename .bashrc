@@ -118,6 +118,9 @@ export FZF_ALT_C_OPTS="
     --walker-skip .git,node_modules,target
     --preview 'tree {}'"
 
+# Zoxide fzf - command 'zi'
+export _ZO_FZF_OPTS="$FZF_DEFAULT_OPTS"
+
 # Search man pages database
 man_s() {
   local man_page
@@ -191,7 +194,7 @@ apt_r() {
 }
 
 # --- Defualt bash prompt ---
-export PS1="\n\t \[\033[32m\]\w\[\033[36m\]\$(GIT_PS1_SHOWUNTRACKEDFILES=1 \
+export PS1="\t \[\033[32m\]\w\[\033[36m\]\$(GIT_PS1_SHOWUNTRACKEDFILES=1 \
   GIT_PS1_SHOWDIRTYSTATE=1 __git_ps1)\[\033[00m\]\n$ "
 
 # --- Git integration ---
@@ -210,7 +213,7 @@ fi
 # --- Execute shell commands ---
 # Set up fzf key bindings and fuzzy completion
 if command -v fzf &>/dev/null; then
-  source <(fzf --zsh)
+  eval "$(fzf --bash)"
 fi
 # Zoxide
 if command -v zoxide &>/dev/null; then
