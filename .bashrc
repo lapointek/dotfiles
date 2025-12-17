@@ -165,6 +165,31 @@ paru_i() {
   fi
 }
 
+# Query database and install packages
+apt_i() {
+  local selected
+  mapfile -t selected < <(apt-cache pkgnames |
+    fzf -m --preview='apt show {}' \
+      --preview-window=down:60%:wrap)
+  # remove empty/null values
+  if ((${#selected[@]} > 0)); then
+    sudo apt install "${selected[@]}"
+  fi
+}
+
+# Remove installed packages
+apt_r() {
+  local selected
+  mapfile -t selected < <(apt list --installed |
+    awk -F/ '{print $1}' |
+    fzf -m --preview='apt show {}' \
+      --preview-window=down:60%:wrap)
+  # remove empty/null values
+  if ((${#selected[@]} > 0)); then
+    sudo apt purge "${selected[@]}"
+  fi
+}
+
 # --- Defualt bash prompt ---
 export PS1="\n\t \[\033[32m\]\w\[\033[36m\]\$(GIT_PS1_SHOWUNTRACKEDFILES=1 \
   GIT_PS1_SHOWDIRTYSTATE=1 __git_ps1)\[\033[00m\]\n$ "
@@ -184,9 +209,7 @@ fi
 
 # --- Execute shell commands ---
 # Fzf
-if command -v fzf &>/dev/null; then
-  eval "$(fzf --bash)"
-fi
+[ -f ~/.fzf.bash ] && source ~/.fzf.bash
 # Zoxide
 if command -v zoxide &>/dev/null; then
   eval "$(zoxide init bash)"

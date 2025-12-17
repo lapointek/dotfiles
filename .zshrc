@@ -52,12 +52,20 @@ bindkey '^k' up-line-or-search
 bindkey '^j' down-line-or-search
 bindkey '^/' undo
 
-# --- Zsh plugins ---
+# --- Zsh plugins Archlinux ---
 if [[ -f /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh ]]; then
   source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
 fi
 if [[ -f /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ]]; then
   source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+fi
+
+# --- Zsh plugins Debian ---
+if [[ -f /usr/share/zsh-autosuggestions/zsh-autosuggestions.zsh ]]; then
+  source /usr/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+fi
+if [[ -f /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ]]; then
+  source /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 fi
 
 # --- Source nvm ---
@@ -223,6 +231,33 @@ paru_i() {
   fi
 }
 
+# Query database and install packages
+apt_i() {
+  local selected
+  selected=("${(@f)$(apt-cache pkgnames | \
+  fzf -m --preview='apt show {}' \
+  --preview-window=down:60%:wrap)}")
+  # remove empty/null values
+  selected=("${selected[@]:#}")
+  if (( ${#selected[@]} > 0 )); then
+    sudo apt install "${selected[@]}"
+  fi
+}
+
+# Remove installed packages
+apt_r() {
+  local selected
+  selected=("${(@f)$(apt list --installed | \
+  awk -F/ '{print $1}' | \
+  fzf -m --preview='apt show {}' \
+  --preview-window=down:60%:wrap)}")
+  # remove empty/null values
+  selected=("${selected[@]:#}")
+  if (( ${#selected[@]} > 0 )); then
+    sudo apt purge "${selected[@]}"
+  fi
+}
+
 # --- Zsh prompt ---
 autoload -Uz vcs_info
 # Enable vcs_info
@@ -274,13 +309,9 @@ function +vi-git-st() {
 
 # --- Execute shell commands ---
 # Fzf
-if command -v fzf &>/dev/null; then
-  # Set fzf key-bindings and completion
-  source <(fzf --zsh)
-fi
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 # Zoxide
 if command -v zoxide &>/dev/null; then
   # Set zoxide
   eval "$(zoxide init zsh)"
 fi
-
