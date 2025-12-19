@@ -176,9 +176,13 @@ apt_r() {
   fi
 }
 
-# --- Defualt bash prompt ---
-export PS1="[\s] \t \[\033[35m\]\w\[\033[36m\]\$(GIT_PS1_SHOWUNTRACKEDFILES=1 \
+if [[ -n "${CONTAINER_ID:-}" && (-e /run/.containerenv || -e /.dockerenv) ]]; then
+  PS1="\t [\s] (${CONTAINER_ID}) \[\033[35m\]\w\[\033[36m\]\$(GIT_PS1_SHOWUNTRACKEDFILES=1 \
   GIT_PS1_SHOWDIRTYSTATE=1 __git_ps1)\[\033[00m\]\n$ "
+else
+  PS1="\t [\s] \[\033[35m\]\w\[\033[36m\]\$(GIT_PS1_SHOWUNTRACKEDFILES=1 \
+  GIT_PS1_SHOWDIRTYSTATE=1 __git_ps1)\[\033[00m\]\n$ "
+fi
 
 # --- Git integration ---
 if [[ -f /usr/share/git/completion/git-completion.bash ]]; then

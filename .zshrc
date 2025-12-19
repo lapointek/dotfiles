@@ -257,12 +257,12 @@ zstyle ':vcs_info:git*+set-message:*' hooks git-untracked git-st
 # Enable prompt substitution
 setopt prompt_subst
 
-if [[ -n "${CONTAINER_ID:-}" ]]; then
-  PROMPT_PREFIX="(${CONTAINER_ID})"
-fi
-
 # Prompt
-PROMPT=$'%D{%H:%M:%S} $PROMPT_PREFIX %F{magenta}${PWD/#$HOME/~}%f ${vcs_info_msg_0_}\n$ '
+if [[ -n "${CONTAINER_ID:-}" ]]; then
+  PROMPT=$'%D{%H:%M:%S} (${CONTAINER_ID}) %F{magenta}${PWD/#$HOME/~}%f ${vcs_info_msg_0_}\n$ '
+else
+  PROMPT=$'%D{%H:%M:%S} %F{magenta}${PWD/#$HOME/~}%f ${vcs_info_msg_0_}\n$ '
+fi
 
 # Show untracked
 +vi-git-untracked(){
