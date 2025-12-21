@@ -217,6 +217,19 @@ paru_i() {
   fi
 }
 
+yay_i() {
+  local selected
+  selected=("${(@f)$(yay -Slq | \
+  fzf -m --preview='yay -Si {}' \
+  --preview-window=down:60%:wrap)}")
+  # remove empty/null values
+  selected=("${selected[@]:#}")
+  if (( "${#selected[@]}" > 0 )); then
+    paru -S "${selected[@]}"
+  fi
+}
+
+
 # Query database and install packages
 apt_i() {
   local selected
