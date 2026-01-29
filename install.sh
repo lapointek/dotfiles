@@ -38,12 +38,36 @@ else
   echo "yay is already installed"
 fi
 
+# Install Nvidia package and enable service
+is_true=0
+while [ $is_true -eq 0 ]; do
+  echo "Using an Nvidia GPU? Y/y or N/n"
+  read choice
+  if [ "$choice" = "y" -o "$choice" = "Y" ]; then
+    echo "Installing Nvidia packages..."
+    install_packages "${NVIDIA[@]}"
+
+    echo "Configuring service..."
+    for service in "${NVIDIA_SERVICES[@]}"; do
+      if ! systemctl is-enabled "$service" &>/dev/null; then
+        echo "Enabling $service..."
+        sudo systemctl enable --now "$service"
+      else
+        echo "$service is already enabled"
+      fi
+    done
+    is_true=1
+  elif [ "$choice" = "n" -o "$choice" = "N" ]; then
+    echo "Skipping the installation of Nvidia packages"
+    is_true=1
+  else
+    echo "Not a choice."
+  fi
+done
+
 # Install system packages
 echo "Installing system utilities..."
 install_packages "${SYSTEM_UTILS[@]}"
-
-echo "Installing Nvidia packages..."
-install_packages "${NVIDIA[@]}"
 
 echo "Installing dev tools..."
 install_packages "${DEV_TOOLS[@]}"
@@ -71,8 +95,8 @@ for service in "${SERVICES[@]}"; do
   fi
 done
 
-echo "Rebuilding man pages database..."
-sudo mandb --create --quiet
+# echo "Rebuilding man pages database..."
+# sudo mandb --create --quiet
 
-echo "Enabling ufw on startup..."
-sudo ufw enable
+# echo "Enabling ufw on startup..."
+# sudo ufw enable
