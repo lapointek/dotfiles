@@ -30,6 +30,7 @@ stow .
 ### Requirements
 
     - Arch Linux installation
+    - KDE Plasma installation with archinstall
 
 1. Run the install script.
 
