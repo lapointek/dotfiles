@@ -42,6 +42,9 @@ fi
 echo "Installing system utilities..."
 install_packages "${SYSTEM_UTILS[@]}"
 
+echo "Installing Nvidia packages..."
+install_packages "${NVIDIA[@]}"
+
 echo "Installing dev tools..."
 install_packages "${DEV_TOOLS[@]}"
 
