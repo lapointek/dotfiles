@@ -151,6 +151,18 @@ paru_i() {
   fi
 }
 
+# Install packages from the Archlinux user repository
+paru_i() {
+  local selected
+  mapfile -t selected < <(yay -Slq |
+    fzf -m --preview='yay -Si {}' \
+      --preview-window=down:60%:wrap)
+  # remove empty/null values
+  if (("${#selected[@]}" > 0)); then
+    yay -S "${selected[@]}"
+  fi
+}
+
 # Query database and install packages
 apt_i() {
   local selected

@@ -225,7 +225,7 @@ yay_i() {
   # remove empty/null values
   selected=("${selected[@]:#}")
   if (( "${#selected[@]}" > 0 )); then
-    paru -S "${selected[@]}"
+    yay -S "${selected[@]}"
   fi
 }
 

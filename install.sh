@@ -45,9 +45,6 @@ install_packages "${SYSTEM_UTILS[@]}"
 echo "Installing dev tools..."
 install_packages "${DEV_TOOLS[@]}"
 
-echo "Installing programming languages..."
-install_packages "${PROG_LANG[@]}"
-
 echo "Installing system maintenance tools..."
 install_packages "${MAINTENANCE[@]}"
 
@@ -76,7 +73,3 @@ sudo mandb --create --quiet
 
 echo "Enabling ufw on startup..."
 sudo ufw enable
-
-# Retrieve latest mirror list
-echo "Retrieving latest mirror list..."
-sudo reflector --country "Canada,United States" --protocol https --score 50 --fastest 10 --sort rate --save /etc/pacman.d/mirrorlist
