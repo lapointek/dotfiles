@@ -95,8 +95,8 @@ for service in "${SERVICES[@]}"; do
   fi
 done
 
-# echo "Rebuilding man pages database..."
-# sudo mandb --create --quiet
+echo "Rebuilding man pages database..."
+sudo mandb --create --quiet
 
-# echo "Enabling ufw on startup..."
-# sudo ufw enable
+echo "Enabling ufw on startup..."
+sudo ufw enable
