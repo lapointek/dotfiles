@@ -32,9 +32,9 @@ zstyle ':completion:*' menu select
 
 # --- User environment variables ---
 # Editors
-export EDITOR=nvim
-export SUDO_EDITOR=nvim
-export VISUAL=nvim
+export EDITOR=vim
+export SUDO_EDITOR=vim
+export VISUAL=vim
 # Pager
 export LESS="-RFMX --mouse --wheel-lines=3"
 # Bat theme
