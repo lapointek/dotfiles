@@ -40,6 +40,7 @@ export LESS="-RFMX --mouse --wheel-lines=3"
 # Bat theme
 export BAT_THEME=ansi
 
+# source the .env file for environment variables
 if [[ -f ~/.env ]] &>/dev/null; then
   set -a
   source ~/.env
@@ -110,9 +111,6 @@ alias ll='ls -AlF'
 alias la='ls -A'
 alias l='ls -CF'
 alias grep='grep --color=auto'
-alias llama3='ollama run llama3.1'
-alias gemma3='ollama run gemma3:12b'
-alias omnipotent='ollama run omnipotent'
 
 # Move up one parent folder
 alias ..='cd ..;pwd'

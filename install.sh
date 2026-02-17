@@ -100,3 +100,10 @@ sudo mandb --create --quiet
 
 echo "Enabling ufw on startup..."
 sudo ufw enable
+
+sudo reflector \
+  --country "United States,Canada" \
+  --protocol https \
+  --latest 10 \
+  --sort rate \
+  --save /etc/pacman.d/mirrorlist

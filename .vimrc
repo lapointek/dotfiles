@@ -1,3 +1,6 @@
+" colorscheme
+colorscheme catppuccin
+
 " Show line numbers
 set number
 
@@ -14,7 +17,7 @@ syntax on
 set laststatus=2
 
 " Scroll window
-set mouse=nicr
+set mouse=a
 
 " Set shift width to 4 spaces.
 set shiftwidth=4
@@ -27,6 +30,15 @@ set expandtab
 
 " Do not save backup files.
 set nobackup
+
+" Use system clipboard
+set clipboard=unnamedplus
+
+" Enable full backspacing
+set backspace=indent,eol,start
+
+" Enable file type detection and indentation
+filetype plugin indent on
 
 " Do not let cursor scroll below or above N number of lines when scrolling.
 set scrolloff=10
