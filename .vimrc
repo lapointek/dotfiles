@@ -7,6 +7,12 @@ set number
 " Relative line numbers
 set relativenumber
 
+" Remove trailing white space on save
+autocmd BufWritePre * :%s/\s\+$//e
+
+" Align similar lines in diff view
+set diffopt+=linematch:100
+
 " Compatibility mode
 set nocompatible
 
@@ -39,6 +45,12 @@ set backspace=indent,eol,start
 
 " Enable file type detection and indentation
 filetype plugin indent on
+
+" Provides the completion candidates
+set omnifunc=syntaxcomplete#Complete
+
+" Controls how the menu behaves
+set completeopt=menuone,noselect
 
 " Do not let cursor scroll below or above N number of lines when scrolling.
 set scrolloff=10
