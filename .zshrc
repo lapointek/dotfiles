@@ -111,6 +111,8 @@ alias ll='ls -AlF'
 alias la='ls -A'
 alias l='ls -CF'
 alias grep='grep --color=auto'
+alias archlinux='distrobox enter archlinux'
+alias ubuntu='distrobox enter ubuntu'
 
 # Move up one parent folder
 alias ..='cd ..;pwd'
