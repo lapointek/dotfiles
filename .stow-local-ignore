@@ -2,4 +2,8 @@
 ^/install.*
 ^/README.*
 \.git
-\.config
+\.config/environment.*
+\.config/tmux
+\.config/yazi
+^/container-install.*
+^/a.out

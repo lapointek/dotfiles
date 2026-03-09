@@ -28,6 +28,8 @@ vim.opt.linebreak = true
 vim.opt.breakindent = true
 -- Show marker at start of wrapped line
 vim.opt.showbreak = "↪ "
+-- Disable heavy features in large files
+vim.g.bigfile_size = 1024 * 100 -- 100 KB
 
 -- Create undo directory if it doesn't exist
 local undodir = vim.fn.expand("~/.vim/nvim-undo")
