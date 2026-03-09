@@ -127,15 +127,15 @@ pac_i() {
   fi
 }
 
-# Install packages from the Archlinux user repository
-yay_i() {
+# Remove packages from the system
+pac_r() {
   local selected
-  mapfile -t selected < <(yay -Slq |
-    fzf -m --preview='yay -Si {}' \
+  mapfile -t selected < <(pacman -Slq |
+    fzf -m --preview='pacman -Qi {}' \
       --preview-window=down:60%:wrap)
   # remove empty/null values
-  if (("${#selected[@]}" > 0)); then
-    yay -S "${selected[@]}"
+  if ((${#selected[@]} > 0)); then
+    sudo pacman -Rns "${selected[@]}"
   fi
 }
 
@@ -152,7 +152,7 @@ paru_i() {
 }
 
 # Install packages from the Archlinux user repository
-paru_i() {
+yay_i() {
   local selected
   mapfile -t selected < <(yay -Slq |
     fzf -m --preview='yay -Si {}' \
