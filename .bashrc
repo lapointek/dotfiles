@@ -127,15 +127,15 @@ pac_i() {
   fi
 }
 
-# Remove packages from the system
-pac_r() {
+# Install packages from the Archlinux user repository
+yay_i() {
   local selected
-  mapfile -t selected < <(pacman -Qq |
-    fzf -m --preview='pacman -Qi {}' \
+  mapfile -t selected < <(yay -Slq |
+    fzf -m --preview='yay -Si {}' \
       --preview-window=down:60%:wrap)
   # remove empty/null values
-  if ((${#selected[@]} > 0)); then
-    sudo pacman -Rns "${selected[@]}"
+  if (("${#selected[@]}" > 0)); then
+    yay -S "${selected[@]}"
   fi
 }
 
@@ -189,10 +189,10 @@ apt_r() {
 }
 
 if [[ -n "${CONTAINER_ID:-}" && (-e /run/.containerenv || -e /.dockerenv) ]]; then
-  PS1="\t [\s] (${CONTAINER_ID}) \[\033[35m\]\w\[\033[36m\]\$(GIT_PS1_SHOWUNTRACKEDFILES=1 \
+  PS1="\t (${CONTAINER_ID}) \[\033[35m\]\w\[\033[36m\]\$(GIT_PS1_SHOWUNTRACKEDFILES=1 \
   GIT_PS1_SHOWDIRTYSTATE=1 __git_ps1)\[\033[00m\]\n$ "
 else
-  PS1="\t [\s] \[\033[35m\]\w\[\033[36m\]\$(GIT_PS1_SHOWUNTRACKEDFILES=1 \
+  PS1="\t \[\033[35m\]\w\[\033[36m\]\$(GIT_PS1_SHOWUNTRACKEDFILES=1 \
   GIT_PS1_SHOWDIRTYSTATE=1 __git_ps1)\[\033[00m\]\n$ "
 fi
 

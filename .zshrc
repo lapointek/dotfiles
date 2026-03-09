@@ -229,7 +229,6 @@ yay_i() {
   fi
 }
 
-
 # Query database and install packages
 apt_i() {
   local selected
