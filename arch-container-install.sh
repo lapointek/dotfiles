@@ -48,6 +48,9 @@ install_packages "${DEV_TOOLS[@]}"
 echo "Installing system maintenance tools..."
 install_packages "${MAINTENANCE[@]}"
 
+echo "Installing programming languages..."
+install_packages "${PROG_LANG[@]}"
+
 echo "Installing fonts..."
 install_packages "${FONTS[@]}"
 
