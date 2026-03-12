@@ -188,14 +188,6 @@ apt_r() {
   fi
 }
 
-if [[ -n "${CONTAINER_ID:-}" && (-e /run/.containerenv || -e /.dockerenv) ]]; then
-  PS1="\t (${CONTAINER_ID}) \[\033[35m\]\w\[\033[36m\]\$(GIT_PS1_SHOWUNTRACKEDFILES=1 \
-  GIT_PS1_SHOWDIRTYSTATE=1 __git_ps1)\[\033[00m\]\n$ "
-else
-  PS1="\t \[\033[35m\]\w\[\033[36m\]\$(GIT_PS1_SHOWUNTRACKEDFILES=1 \
-  GIT_PS1_SHOWDIRTYSTATE=1 __git_ps1)\[\033[00m\]\n$ "
-fi
-
 # --- Git integration ---
 if [[ -f /usr/share/git/completion/git-completion.bash ]]; then
   source /usr/share/git/completion/git-completion.bash
@@ -203,10 +195,24 @@ fi
 if [[ -f /usr/share/git/completion/git-prompt.sh ]]; then
   source /usr/share/git/completion/git-prompt.sh
 fi
+if [[ -f /usr/lib/git-core/git-sh-prompt ]]; then
+  source /usr/lib/git-core/git-sh-prompt
+fi
 
 # --- Bash completion ---
 if [[ -f /usr/share/bash-completion/bash_completion ]]; then
   source /usr/share/bash-completion/bash_completion
+fi
+if [[ -f /usr/share/bash-completion/completions/git ]]; then
+  source /usr/share/bash-completion/completions/git
+fi
+
+if [[ -n "${CONTAINER_ID:-}" && (-e /run/.containerenv || -e /.dockerenv) ]]; then
+  PS1="\t (${CONTAINER_ID}) \[\033[35m\]\w\[\033[36m\]\$(GIT_PS1_SHOWUNTRACKEDFILES=1 \
+  GIT_PS1_SHOWDIRTYSTATE=1 __git_ps1)\[\033[00m\]\n$ "
+else
+  PS1="\t \[\033[35m\]\w\[\033[36m\]\$(GIT_PS1_SHOWUNTRACKEDFILES=1 \
+  GIT_PS1_SHOWDIRTYSTATE=1 __git_ps1)\[\033[00m\]\n$ "
 fi
 
 # --- Execute shell commands ---
