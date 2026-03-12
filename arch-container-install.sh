@@ -7,12 +7,12 @@ source ./scripts/utils.sh
 
 echo "Starting full system setup..."
 
-# Check if container-packages.conf exist
-if [ ! -f "./scripts/container-packages.conf" ]; then
-  echo "Error: container-packages.conf not found!"
+# Check if arch-container-pkgs.conf exist
+if [ ! -f "./scripts/arch-container-pkgs.conf" ]; then
+  echo "Error: arch-container-pkgs.conf not found!"
   exit 1
 fi
-source ./scripts/container-packages.conf
+source ./scripts/arch-container-pkgs.conf
 
 # Update system
 echo "Updating System..."
@@ -47,3 +47,13 @@ install_packages "${DEV_TOOLS[@]}"
 
 echo "Installing system maintenance tools..."
 install_packages "${MAINTENANCE[@]}"
+
+echo "Installing fonts..."
+install_packages "${FONTS[@]}"
+
+sudo reflector \
+  --country "United States,Canada" \
+  --protocol https \
+  --latest 10 \
+  --sort rate \
+  --save /etc/pacman.d/mirrorlist
