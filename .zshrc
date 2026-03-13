@@ -138,41 +138,41 @@ function y() {
 # --- Fzf commands ---
 # Default options
 export FZF_DEFAULT_OPTS="
-  --height 100% \
+--height 100% \
   --layout=reverse \
   --border \
   --color=fg:#908caa,bg:#191724,hl:#ebbcba
-  --color=fg+:#e0def4,bg+:#26233a,hl+:#ebbcba
-  --color=border:#403d52,header:#31748f,gutter:#191724
-  --color=spinner:#f6c177,info:#9ccfd8
-  --color=pointer:#c4a7e7,marker:#eb6f92,prompt:#908caa
-  "
+--color=fg+:#e0def4,bg+:#26233a,hl+:#ebbcba
+--color=border:#403d52,header:#31748f,gutter:#191724
+--color=spinner:#f6c177,info:#9ccfd8
+--color=pointer:#c4a7e7,marker:#eb6f92,prompt:#908caa
+"
 
 # CTRL-Y to copy the command into clipboard using wl-copy
 export FZF_CTRL_R_OPTS="
-  --bind 'ctrl-y:execute-silent(echo -n {2..} | wl-copy)+abort'
-  --color header:italic
-  --header 'Press CTRL-Y to copy command into clipboard'"
+--bind 'ctrl-y:execute-silent(echo -n {2..} | wl-copy)+abort'
+--color header:italic
+--header 'Press CTRL-Y to copy command into clipboard'"
 
 # Preview file content using bat
 export FZF_CTRL_T_OPTS="
-  --walker-skip .git,node_modules,target
-  --preview 'bat -n --color=always {}'
-  --bind 'ctrl-/:change-preview-window(down|hidden|)'"
+--walker-skip .git,node_modules,target
+--preview 'bat -n --color=always {}'
+--bind 'ctrl-/:change-preview-window(down|hidden|)'"
 
 # Print tree structure in the preview window
 export FZF_ALT_C_OPTS="
-  --walker-skip .git,node_modules,target
-  --preview 'tree {}'"
+--walker-skip .git,node_modules,target
+--preview 'tree {}'"
 
 # Zoxide fzf - command 'zi'
- export _ZO_FZF_OPTS="$FZF_DEFAULT_OPTS"
+export _ZO_FZF_OPTS="$FZF_DEFAULT_OPTS"
 
 # Search man pages database
 man_s() {
   local man_page
   man_page=$(apropos . | sed -n 's/^\(.*)\).*/\1/p' | \
-  sort -u | fzf | awk "{print \$1}")
+    sort -u | fzf | awk "{print \$1}")
 
   if [ -n "$man_page" ]; then
     man "$man_page"
@@ -183,8 +183,8 @@ man_s() {
 pac_i() {
   local selected
   selected=("${(@f)$(pacman -Slq | \
-  fzf -m --preview='pacman -Si {}' \
-  --preview-window=down:60%:wrap)}")
+    fzf -m --preview='pacman -Si {}' \
+    --preview-window=down:60%:wrap)}")
   # remove empty/null values
   selected=("${selected[@]:#}")
   if (( ${#selected[@]} > 0 )); then
@@ -196,8 +196,8 @@ pac_i() {
 pac_r() {
   local selected
   selected=("${(@f)$(pacman -Qq | \
-  fzf -m --preview='pacman -Qi {}' \
-  --preview-window=down:60%:wrap)}")
+    fzf -m --preview='pacman -Qi {}' \
+    --preview-window=down:60%:wrap)}")
   # remove empty/null values
   selected=("${selected[@]:#}")
   if (( ${#selected[@]} > 0 )); then
@@ -209,8 +209,8 @@ pac_r() {
 paru_i() {
   local selected
   selected=("${(@f)$(paru -Slq | \
-  fzf -m --preview='paru -Si {}' \
-  --preview-window=down:60%:wrap)}")
+    fzf -m --preview='paru -Si {}' \
+    --preview-window=down:60%:wrap)}")
   # remove empty/null values
   selected=("${selected[@]:#}")
   if (( "${#selected[@]}" > 0 )); then
@@ -221,8 +221,8 @@ paru_i() {
 yay_i() {
   local selected
   selected=("${(@f)$(yay -Slq | \
-  fzf -m --preview='yay -Si {}' \
-  --preview-window=down:60%:wrap)}")
+    fzf -m --preview='yay -Si {}' \
+    --preview-window=down:60%:wrap)}")
   # remove empty/null values
   selected=("${selected[@]:#}")
   if (( "${#selected[@]}" > 0 )); then
@@ -234,8 +234,8 @@ yay_i() {
 apt_i() {
   local selected
   selected=("${(@f)$(apt-cache pkgnames | \
-  fzf -m --preview='apt show {}' \
-  --preview-window=down:60%:wrap)}")
+    fzf -m --preview='apt show {}' \
+    --preview-window=down:60%:wrap)}")
   # remove empty/null values
   selected=("${selected[@]:#}")
   if (( ${#selected[@]} > 0 )); then
@@ -247,9 +247,9 @@ apt_i() {
 apt_r() {
   local selected
   selected=("${(@f)$(apt list --installed | \
-  awk -F/ '{print $1}' | \
-  fzf -m --preview='apt show {}' \
-  --preview-window=down:60%:wrap)}")
+    awk -F/ '{print $1}' | \
+    fzf -m --preview='apt show {}' \
+    --preview-window=down:60%:wrap)}")
   # remove empty/null values
   selected=("${selected[@]:#}")
   if (( ${#selected[@]} > 0 )); then
@@ -279,31 +279,31 @@ fi
 
 # Show untracked
 +vi-git-untracked(){
-    if [[ $(git rev-parse --is-inside-work-tree 2> /dev/null) == 'true' ]] && \
-        git status --porcelain | grep -q '^?? ' 2> /dev/null ; then
-        hook_com[unstaged]+='?'
-    fi
+  if [[ $(git rev-parse --is-inside-work-tree 2> /dev/null) == 'true' ]] && \
+    git status --porcelain | grep -q '^?? ' 2> /dev/null ; then
+  hook_com[unstaged]+='?'
+  fi
 }
 
 # Show ahead and behind
 function +vi-git-st() {
-    local ahead behind
-    local -a gitstatus
+  local ahead behind
+  local -a gitstatus
 
-    # Exit early in case the worktree is on a detached HEAD
-    git rev-parse ${hook_com[branch]}@{upstream} >/dev/null 2>&1 || return 0
+  # Exit early in case the worktree is on a detached HEAD
+  git rev-parse ${hook_com[branch]}@{upstream} >/dev/null 2>&1 || return 0
 
-    local -a ahead_and_behind=(
-        $(git rev-list --left-right --count HEAD...${hook_com[branch]}@{upstream} 2>/dev/null)
-    )
+  local -a ahead_and_behind=(
+    $(git rev-list --left-right --count HEAD...${hook_com[branch]}@{upstream} 2>/dev/null)
+  )
 
-    ahead=${ahead_and_behind[1]}
-    behind=${ahead_and_behind[2]}
+  ahead=${ahead_and_behind[1]}
+  behind=${ahead_and_behind[2]}
 
-    (( $ahead )) && gitstatus+=( "↑${ahead}" )
-    (( $behind )) && gitstatus+=( "↓${behind}" )
+  (( $ahead )) && gitstatus+=( "↑${ahead}" )
+  (( $behind )) && gitstatus+=( "↓${behind}" )
 
-    hook_com[misc]+=${(j:/:)gitstatus}
+  hook_com[misc]+=${(j:/:)gitstatus}
 }
 
 # --- Execute shell commands ---

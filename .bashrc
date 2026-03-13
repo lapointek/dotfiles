@@ -74,32 +74,32 @@ function y() {
 # --- Fzf commands ---
 # Default options
 export FZF_DEFAULT_OPTS="
-  --height 100% \
+--height 100% \
   --layout=reverse \
   --border \
   --color=fg:#908caa,bg:#191724,hl:#ebbcba
-  --color=fg+:#e0def4,bg+:#26233a,hl+:#ebbcba
-  --color=border:#403d52,header:#31748f,gutter:#191724
-  --color=spinner:#f6c177,info:#9ccfd8
-  --color=pointer:#c4a7e7,marker:#eb6f92,prompt:#908caa
-  "
+--color=fg+:#e0def4,bg+:#26233a,hl+:#ebbcba
+--color=border:#403d52,header:#31748f,gutter:#191724
+--color=spinner:#f6c177,info:#9ccfd8
+--color=pointer:#c4a7e7,marker:#eb6f92,prompt:#908caa
+"
 
 # CTRL-Y to copy the command into clipboard using wl-copy
 export FZF_CTRL_R_OPTS="
-    --bind 'ctrl-y:execute-silent(echo -n {2..} | wl-copy)+abort'
-    --color header:italic
-    --header 'Press CTRL-Y to copy command into clipboard'"
+--bind 'ctrl-y:execute-silent(echo -n {2..} | wl-copy)+abort'
+--color header:italic
+--header 'Press CTRL-Y to copy command into clipboard'"
 
 # Preview file content using bat (https://github.com/sharkdp/bat)
 export FZF_CTRL_T_OPTS="
-    --walker-skip .git,node_modules,target
-    --preview 'bat -n --color=always {}'
-    --bind 'ctrl-/:change-preview-window(down|hidden|)'"
+--walker-skip .git,node_modules,target
+--preview 'bat -n --color=always {}'
+--bind 'ctrl-/:change-preview-window(down|hidden|)'"
 
 # Print tree structure in the preview window
 export FZF_ALT_C_OPTS="
-    --walker-skip .git,node_modules,target
-    --preview 'tree {}'"
+--walker-skip .git,node_modules,target
+--preview 'tree {}'"
 
 # Zoxide fzf - command 'zi'
 export _ZO_FZF_OPTS="$FZF_DEFAULT_OPTS"
@@ -120,7 +120,7 @@ pac_i() {
   local selected
   mapfile -t selected < <(pacman -Slq |
     fzf -m --preview='pacman -Si {}' \
-      --preview-window=down:60%:wrap)
+    --preview-window=down:60%:wrap)
   # remove empty/null values
   if ((${#selected[@]} > 0)); then
     sudo pacman -Syu "${selected[@]}"
@@ -132,7 +132,7 @@ pac_r() {
   local selected
   mapfile -t selected < <(pacman -Slq |
     fzf -m --preview='pacman -Qi {}' \
-      --preview-window=down:60%:wrap)
+    --preview-window=down:60%:wrap)
   # remove empty/null values
   if ((${#selected[@]} > 0)); then
     sudo pacman -Rns "${selected[@]}"
@@ -144,7 +144,7 @@ paru_i() {
   local selected
   mapfile -t selected < <(paru -Slq |
     fzf -m --preview='paru -Si {}' \
-      --preview-window=down:60%:wrap)
+    --preview-window=down:60%:wrap)
   # remove empty/null values
   if (("${#selected[@]}" > 0)); then
     paru -S "${selected[@]}"
@@ -156,7 +156,7 @@ yay_i() {
   local selected
   mapfile -t selected < <(yay -Slq |
     fzf -m --preview='yay -Si {}' \
-      --preview-window=down:60%:wrap)
+    --preview-window=down:60%:wrap)
   # remove empty/null values
   if (("${#selected[@]}" > 0)); then
     yay -S "${selected[@]}"
@@ -168,7 +168,7 @@ apt_i() {
   local selected
   mapfile -t selected < <(apt-cache pkgnames |
     fzf -m --preview='apt show {}' \
-      --preview-window=down:60%:wrap)
+    --preview-window=down:60%:wrap)
   # remove empty/null values
   if ((${#selected[@]} > 0)); then
     sudo apt install "${selected[@]}"
@@ -181,7 +181,7 @@ apt_r() {
   mapfile -t selected < <(apt list --installed |
     awk -F/ '{print $1}' |
     fzf -m --preview='apt show {}' \
-      --preview-window=down:60%:wrap)
+    --preview-window=down:60%:wrap)
   # remove empty/null values
   if ((${#selected[@]} > 0)); then
     sudo apt purge "${selected[@]}"
@@ -209,10 +209,10 @@ fi
 
 if [[ -n "${CONTAINER_ID:-}" && (-e /run/.containerenv || -e /.dockerenv) ]]; then
   PS1="\t (${CONTAINER_ID}) \[\033[35m\]\w\[\033[36m\]\$(GIT_PS1_SHOWUNTRACKEDFILES=1 \
-  GIT_PS1_SHOWDIRTYSTATE=1 __git_ps1)\[\033[00m\]\n$ "
+    GIT_PS1_SHOWDIRTYSTATE=1 __git_ps1)\[\033[00m\]\n$ "
 else
   PS1="\t \[\033[35m\]\w\[\033[36m\]\$(GIT_PS1_SHOWUNTRACKEDFILES=1 \
-  GIT_PS1_SHOWDIRTYSTATE=1 __git_ps1)\[\033[00m\]\n$ "
+    GIT_PS1_SHOWDIRTYSTATE=1 __git_ps1)\[\033[00m\]\n$ "
 fi
 
 # --- Execute shell commands ---

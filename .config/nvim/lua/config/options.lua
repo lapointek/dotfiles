@@ -20,9 +20,9 @@ vim.opt.diffopt:append("linematch:60")                  -- Diff behavior
 
 -- Editing
 vim.opt.wrap = false		                            -- Wrap long lines
-vim.opt.tabstop = 4                                     -- Tab width
-vim.opt.shiftwidth = 4                                  -- Indent width
-vim.opt.softtabstop = 4                                 -- Soft tab stop
+vim.opt.tabstop = 2                                     -- Tab width
+vim.opt.shiftwidth = 2                                  -- Indent width
+vim.opt.softtabstop = 2                                 -- Soft tab stop
 vim.opt.expandtab = true                                -- Use spaces instead of tabs
 vim.opt.smartindent = true                              -- Smart auto-indenting
 vim.opt.autoindent = true                               -- Copy indentation of the previous line
