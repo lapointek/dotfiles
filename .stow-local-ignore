@@ -6,4 +6,4 @@
 \.config/tmux
 \.config/yazi
 ^/container-install.*
-^/a.out
+^/a.*
