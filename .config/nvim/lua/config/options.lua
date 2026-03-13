@@ -1,38 +1,64 @@
--- Options are automatically loaded before lazy.nvim startup
--- Default options that are always set: https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/config/options.lua
--- Add any additional options here
+-- User Interface
+vim.opt.number = true			                        -- Line Numbers
+vim.opt.relativenumber = true	                        -- Relative line numbers
+vim.opt.cursorline = true		                        -- Highlight current line
+vim.opt.scrolloff = 10			                        -- Keep 10 lines above/below cursor
+vim.opt.sidescrolloff = 8		                        -- Keep 8 columns left/right of cursor
+vim.opt.laststatus = 2                                  -- Visibility of statusline
+vim.opt.splitright = true
+vim.opt.splitbelow = true
+vim.opt.showtabline = 1
 
--- Write the contents before a command
-vim.opt.autowrite = true
--- Write the contents, if it has been modified
-vim.opt.autoread = true
--- Make a backup before overwriting a file
-vim.opt.backup = false
--- Make a backup before overwriting a file
-vim.opt.writebackup = true
--- Whether to use swap files
-vim.opt.swapfile = true
--- Enable persistent undo
-vim.opt.undofile = true
--- Directory to store undo file
-vim.opt.undodir = vim.fn.expand("~/.vim/nvim-undo")
--- Number of undo levels (default is 1000)
+-- Visual Settings
+vim.opt.termguicolors = true                            -- 24-bit RGB in the TUI
+vim.opt.colorcolumn = "100"                             -- Show column
+vim.opt.signcolumn = "yes"                              -- Show sign column
+vim.opt.showmatch = true                                -- Highlight matching bracket
+vim.opt.matchtime = 2                                   -- How long to show matching bracket
+vim.opt.synmaxcol = 300                                 -- Syntax highlighting limit
+vim.opt.diffopt:append("linematch:60")                  -- Diff behavior
+
+-- Editing
+vim.opt.wrap = false		                            -- Wrap long lines
+vim.opt.tabstop = 4                                     -- Tab width
+vim.opt.shiftwidth = 4                                  -- Indent width
+vim.opt.softtabstop = 4                                 -- Soft tab stop
+vim.opt.expandtab = true                                -- Use spaces instead of tabs
+vim.opt.smartindent = true                              -- Smart auto-indenting
+vim.opt.autoindent = true                               -- Copy indentation of the previous line
+vim.opt.smarttab = true                                 -- Smart tab
+vim.opt.backspace = { "start", "eol", "indent" }
+              
+-- Search
+vim.opt.ignorecase = true 		                        -- Ignore case in search patterns
+vim.opt.smartcase = true		                        -- Override ignorecase if search has uppercase
+vim.opt.hlsearch = true			                        -- Highlight search matches
+vim.opt.wrapscan = true			                        -- Wrap around end of file in searches
+vim.opt.incsearch = true                                -- Incremental highlighting
+vim.opt.inccommand = "split"                            -- Interactive live preview
+             
+-- Input and Completion
+vim.opt.mouse = "a"                                     -- Mouse support
+vim.opt.wildmenu = true                                 -- Command-line completion
+vim.opt.wildmode = "longest:full,full"                  -- How completion behaves
+vim.opt.showmode = false                                -- Don't show mode in command line
+vim.opt.completeopt = "menu,noselect"                   -- Options for insert-mode completion
+vim.opt.clipboard:append("unnamedplus")                 -- Use system clipboard
+vim.opt.selection = "inclusive"                         -- Selection behavior
+vim.opt.timeout = true
+vim.opt.timeoutlen = 1000
+
+-- File Handling Options
+vim.opt.autoread = true                                 -- Write the contents, if it has been modified
+vim.opt.autowrite = true                                -- Write the contents before a command
+vim.opt.backup = false                                  -- Make a backup before overwriting a file
+vim.opt.writebackup = false                             -- Make a backup before overwriting a file
+vim.opt.swapfile = false                                -- Whether to use swap files
+vim.opt.undofile = true                                 -- Enable persistent undo
+vim.opt.undodir = vim.fn.expand("~/.vim/nvim-undo")     -- Directory to store undo file
 vim.opt.undolevels = 10000
--- Max lines to save for undos when reloading a buffer
 vim.opt.undoreload = 10000
--- Enable soft wrapping
-vim.opt.wrap = true
--- Wrap at word boundary
-vim.opt.linebreak = true
--- Indents the continuation lines visually
-vim.opt.breakindent = true
--- Show marker at start of wrapped line
-vim.opt.showbreak = "↪ "
--- Disable heavy features in large files
-vim.g.bigfile_size = 1024 * 100 -- 100 KB
 
--- Create undo directory if it doesn't exist
-local undodir = vim.fn.expand("~/.vim/nvim-undo")
-if vim.fn.isdirectory(undodir) == 0 then
-  vim.fn.mkdir(undodir, "p")
-end
+-- Performance
+vim.opt.redrawtime = 10000                              -- Time spent on redrawing the screen
+
