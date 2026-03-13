@@ -20,7 +20,7 @@ echo "Updating System..."
 sudo pacman -Syu
 
 
-# Install paru AUR helper
+# Install yay AUR helper
 if ! command -V yay &>/dev/null; then
   echo "Installing yay AUR helper..."
   sudo pacman -S --needed git base-devel --noconfirm
@@ -40,24 +40,6 @@ else
   echo "yay is already installed"
 fi
 
-# Install Ollama and llm
-is_true=0
-while [ $is_true -eq 0 ]; do
-  echo "Install ollama? Y/y or N/n"
-  read choice
-  if [ "$choice" = "y" -o "$choice" = "Y" ]; then
-    echo "Installing ollama..."
-    curl -fsSL https://ollama.com/install.sh | sh
-    echo "Installing qwen2.5-coder:latest model"
-    ollama run qwen2.5-coder:latest
-    is_true=1
-  elif [ "$choice" = "n" -o "$choice" = "N" ]; then
-    echo "Skipping installation"
-    is_true=1
-  else
-    echo "Not a choice."
-  fi
-done
 
 # Install Nvidia package and enable service
 is_true=0
@@ -86,12 +68,16 @@ while [ $is_true -eq 0 ]; do
   fi
 done
 
+
 # Install system packages
 echo "Installing system utilities..."
 install_packages "${SYSTEM_UTILS[@]}"
 
 echo "Installing dev tools..."
 install_packages "${DEV_TOOLS[@]}"
+
+echo "Installing programming languages..."
+install_packages "${PROG_LANGS[@]}"
 
 echo "Installing system maintenance tools..."
 install_packages "${MAINTENANCE[@]}"
