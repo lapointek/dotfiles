@@ -43,6 +43,9 @@ vim.keymap.set("n", "<leader>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><
 -- Make file executable inside Nvim
 vim.keymap.set("n", "<leader>x", "<cmd>!chmod +x %<CR>", { silent = true, desc = "Make file executable" })
 
+-- Map Ctrl+S to save in normal mode
+vim.api.nvim_set_keymap('n', '<C-S>', ':w<CR>', { noremap = true, silent = true })
+
 -- Tabs
 vim.keymap.set("n", "<leader>to", "<cmd>tabnew<CR>")   -- Open new tab
 vim.keymap.set("n", "<leader>tx", "<cmd>tabclose<CR>") -- Close current tab
