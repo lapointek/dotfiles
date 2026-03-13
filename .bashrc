@@ -109,7 +109,6 @@ man_s() {
   local man_page
   man_page=$(apropos . | sed -n 's/^\(.*)\).*/\1/p' |
     sort -u | fzf | awk "{print \$1}")
-
   if [ -n "$man_page" ]; then
     man "$man_page" 2>/dev/null
   fi
