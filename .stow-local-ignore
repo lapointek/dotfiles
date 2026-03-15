@@ -7,3 +7,4 @@
 \.config/yazi
 ^/container-install.*
 ^/a.*
+^/Default.code-profile
