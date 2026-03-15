@@ -49,7 +49,6 @@ while [ $is_true -eq 0 ]; do
   if [ "$choice" = "y" -o "$choice" = "Y" ]; then
     echo "Installing Nvidia packages..."
     install_packages "${NVIDIA[@]}"
-
     echo "Configuring service..."
     for service in "${NVIDIA_SERVICES[@]}"; do
       if ! systemctl is-enabled "$service" &>/dev/null; then
@@ -76,9 +75,6 @@ install_packages "${SYSTEM_UTILS[@]}"
 echo "Installing dev tools..."
 install_packages "${DEV_TOOLS[@]}"
 
-echo "Installing programming languages..."
-install_packages "${PROG_LANGS[@]}"
-
 echo "Installing system maintenance tools..."
 install_packages "${MAINTENANCE[@]}"
 
@@ -102,12 +98,17 @@ for service in "${SERVICES[@]}"; do
   fi
 done
 
-echo "Rebuilding man pages database..."
-sudo mandb --create --quiet
+echo "Adding user to docker group"
+sudo groupadd docker
+sudo usermod -aG docker $USER
 
 echo "Enabling ufw on startup..."
 sudo ufw enable
 
+echo "Rebuilding man pages database..."
+sudo mandb --create --quiet
+
+echo "Using reflector to get the latest Archlinux repositories"
 sudo reflector \
   --country "United States,Canada" \
   --protocol https \

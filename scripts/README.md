@@ -20,7 +20,3 @@ The script automates the setup of my personal development environment on Arch Li
 
     - Arch Linux installation
     - KDE Plasma installation with archinstall
-
-## Acknowledgments
-
-Thanks to https://github.com/typecraft-dev/crucible, which helped me in creating this automated script.
