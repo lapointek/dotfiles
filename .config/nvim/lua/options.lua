@@ -1,3 +1,5 @@
+require "nvchad.options"
+
 -- User Interface
 vim.opt.number = true			                        -- Line Numbers
 vim.opt.relativenumber = true	                        -- Relative line numbers
