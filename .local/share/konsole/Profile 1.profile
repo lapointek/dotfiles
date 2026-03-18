@@ -6,3 +6,6 @@ Font=JetBrainsMono Nerd Font,11,-1,5,400,0,0,0,0,0,0,0,0,0,0,1
 Command=/usr/bin/zsh
 Name=Profile 1
 Parent=FALLBACK/
+
+[Terminal Features]
+BlinkingCursorEnabled=false
