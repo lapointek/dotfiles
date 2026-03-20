@@ -75,6 +75,10 @@ while [[ true ]]; do
   read -p "Install QEMU virtual machine? Y/y or N/n: " choice
   case "$choice" in
     [yY])
+      if pacman -Qi iptables &>/dev/null; then
+        echo "Removing iptables (conflicts with iptables-nft)..."
+        sudo pacman -Rddns iptables
+      fi
       echo "Installing virtual machine packages..."
       install_packages "${VIRT_MAN[@]}"
       echo "Adding user to libvirt and kvm groups..."
