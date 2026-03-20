@@ -146,8 +146,6 @@ echo "Adding user to docker group..."
 sudo groupadd docker
 sudo usermod -aG docker $USER
 
-
-
 echo "Enabling ufw on startup..."
 sudo ufw enable
 
