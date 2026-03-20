@@ -14,6 +14,16 @@ vim.api.nvim_create_autocmd("TextYankPost", {
         vim.fn.mkdir(undodir, "p")
 end
 
+-- Remove trailing whitespace on save
+vim.api.nvim_create_autocmd("BufWritePre", {
+    group = augroup,
+    callback = function()
+        local pos = vim.fn.getcurpos()
+        vim.cmd [[%s/\s\+$//e]]
+        vim.fn.setpos(".", pos)
+    end,
+})
+
 -- Return to last edit position when opening files
 vim.api.nvim_create_autocmd("BufReadPost", {
     group = augroup,

@@ -45,7 +45,7 @@ fi
 while [[ true ]]; do
   read -p "Using an Nvidia GPU Y/y or N/n: " choice
   case "$choice" in
-    [yY]) 
+    [yY])
       echo "Installing Nvidia packages..."
       install_packages "${NVIDIA[@]}"
       echo "Configuring services..."
@@ -59,12 +59,50 @@ while [[ true ]]; do
       done
       break
       ;;
-    [Nn]) 
+    [nN])
       echo "Skipping the installation of Nvidia packages"
       break
       ;;
-    *) 
-      echo "Not a choice. Please enter Y/y or N/n" 
+    *)
+      echo "Not a choice. Please enter Y/y or N/n"
+      ;;
+  esac
+done
+
+
+# Install QEMU virtual machine
+while [[ true ]]; do
+  read -p "Install QEMU virtual machine? Y/y or N/n: " choice
+  case "$choice" in
+    [yY])
+      echo "Installing virtual machine packages..."
+      install_packages "${VIRT_MAN[@]}"
+      echo "Adding user to libvirt and kvm groups..."
+      sudo usermod -aG libvirt,kvm $USER
+      # flush nftwables ruleset
+      echo "Removing existing ruleset for nftables..."
+      sudo nft flush ruleset
+      # Enable NAT
+      echo "Enabling NAT for libvirt..."
+      sudo virsh net-start default
+      sudo virsh net-autostart default
+      echo "Configuring services..."
+      for service in "${VIRT_SERVICES[@]}"; do
+        if ! systemctl is-enabled "$service" &>/dev/null; then
+          echo "Enabling $service..."
+          sudo systemctl enable --now "$service"
+        else
+          echo "$service is already enabled"
+        fi
+      done
+      break
+      ;;
+    [nN])
+      echo "Skipping the installation of virtual machine packages"
+      break
+      ;;
+    *)
+      echo "Not a choice. Please enter Y/y or N/n"
       ;;
   esac
 done
@@ -104,13 +142,17 @@ echo "Adding user to docker group..."
 sudo groupadd docker
 sudo usermod -aG docker $USER
 
+
+
 echo "Enabling ufw on startup..."
 sudo ufw enable
 
-echo "Using reflector to get the latest Archlinux repositories"
+echo "Using reflector to get the latest Archlinux repositories..."
 sudo reflector \
   --country "United States,Canada" \
   --protocol https \
   --latest 10 \
   --sort rate \
   --save /etc/pacman.d/mirrorlist
+
+echo "PLEASE REBOOT YOUR SYSTEM!"
