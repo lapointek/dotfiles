@@ -77,7 +77,7 @@ while [[ true ]]; do
     [yY])
       if pacman -Qi iptables &>/dev/null; then
         echo "Removing iptables (conflicts with iptables-nft)..."
-        sudo pacman -Rddns iptables
+        sudo pacman -Rddn iptables
       fi
       echo "Installing virtual machine packages..."
       install_packages "${VIRT_MAN[@]}"
