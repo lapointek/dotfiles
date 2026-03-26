@@ -19,27 +19,40 @@ source ./scripts/packages.conf
 echo "Updating System..."
 sudo pacman -Syu
 
-
-# Install yay AUR helper
-if ! command -V yay &>/dev/null; then
-  echo "Installing yay AUR helper..."
-  sudo pacman -S --needed git base-devel --noconfirm
-  if [[ ! -d "yay" ]]; then
-    echo "Cloning yay repo..."
-  else
-    echo "yay directory already exists, removing it..."
-    rm -rf yay
-  fi
-  git clone https://aur.archlinux.org/yay.git
-  cd yay
-  echo "building yay..."
-  makepkg -si
-  cd ..
-  rm -rf yay
-else
-  echo "yay is already installed"
-fi
-
+while [[ true ]]; do
+  # Install yay AUR helper
+  read -p "Install yay AUR helper?" choice
+  case "$choice" in
+    [yY])
+      if ! command -V yay &>/dev/null; then
+        echo "Installing yay AUR helper..."
+        sudo pacman -S --needed git base-devel --noconfirm
+        if [[ ! -d "yay" ]]; then
+          echo "Cloning yay repo..."
+        else
+          echo "yay directory already exists, removing it..."
+          rm -rf yay
+        fi
+        git clone https://aur.archlinux.org/yay.git
+        cd yay
+        echo "building yay..."
+        makepkg -si
+        cd ..
+        rm -rf yay
+      else
+        echo "yay is already installed"
+      fi
+      break
+      ;;
+    [nN])
+      echo "Skipping installation of yay AUR helper"
+      break
+      ;;
+    *)
+      echo "Not a choice. Please enter Y/y or N/n"
+      ;;
+  esac
+done
 
 # Install Nvidia packages and enable services
 while [[ true ]]; do
@@ -86,19 +99,6 @@ while [[ true ]]; do
       # flush nftwables ruleset
       echo "Removing existing ruleset for nftables..."
       sudo nft flush ruleset
-      # Enable NAT
-      echo "Enabling NAT for libvirt..."
-      sudo virsh net-start default
-      sudo virsh net-autostart default
-      echo "Configuring services..."
-      for service in "${VIRT_SERVICES[@]}"; do
-        if ! systemctl is-enabled "$service" &>/dev/null; then
-          echo "Enabling $service..."
-          sudo systemctl enable --now "$service"
-        else
-          echo "$service is already enabled"
-        fi
-      done
       break
       ;;
     [nN])
@@ -142,9 +142,20 @@ for service in "${SERVICES[@]}"; do
   fi
 done
 
-echo "Adding user to docker group..."
-sudo groupadd docker
-sudo usermod -aG docker $USER
+# Check if docker group exists
+if getent group docker > /dev/null 2>&1; then
+  echo "Docker group already exists"
+else
+  echo "Creating docker group..."
+  sudo groupadd docker
+fi
+# Check if current user is in docker group
+if id -nG "$USER" | grep -qw "docker"; then
+  echo "User $USER is already in docker group"
+else
+  echo "Adding user $USER to docker group..."
+  sudo usermod -aG docker "$USER"
+fi
 
 echo "Enabling ufw on startup..."
 sudo ufw enable
@@ -157,4 +168,4 @@ sudo reflector \
   --sort rate \
   --save /etc/pacman.d/mirrorlist
 
-echo "PLEASE REBOOT YOUR SYSTEM!"
+echo "*** Please Reboot Your System ***"
