@@ -58,7 +58,7 @@ done
 
 # Install Nvidia packages and enable services
 while [[ true ]]; do
-  read -p "Using an Nvidia GPU Y/y or N/n: " choice
+  read -p "Using a hybrid laptop with an Nvidia GPU Y/y or N/n: " choice
   case "$choice" in
     [yY])
       echo "Installing Nvidia packages..."

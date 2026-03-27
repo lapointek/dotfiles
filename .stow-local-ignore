@@ -8,3 +8,4 @@
 ^/container-install.*
 ^/a.*
 ^/Default.code-profile
+\.zshrc
