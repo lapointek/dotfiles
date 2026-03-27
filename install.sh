@@ -19,6 +19,7 @@ source ./scripts/packages.conf
 echo "Updating System..."
 sudo pacman -Syu
 
+
 while [[ true ]]; do
   # Install yay AUR helper
   read -p "Install yay AUR helper?" choice
@@ -53,6 +54,7 @@ while [[ true ]]; do
       ;;
   esac
 done
+
 
 # Install Nvidia packages and enable services
 while [[ true ]]; do
@@ -92,13 +94,16 @@ while [[ true ]]; do
         echo "Removing iptables (conflicts with iptables-nft)..."
         sudo pacman -Rddn iptables
       fi
-      echo "Installing virtual machine packages..."
-      install_packages "${VIRT_MAN[@]}"
-      echo "Adding user to libvirt and kvm groups..."
-      sudo usermod -aG libvirt,kvm $USER
-      # flush nftwables ruleset
       echo "Removing existing ruleset for nftables..."
       sudo nft flush ruleset
+      echo "Installing virtual machine packages..."
+      install_packages "${VIRT_MAN[@]}"
+      echo "Starting libvirtd..."
+      sudo systemctl start libvirtd
+      echo "Adding user to libvirt group..."
+      sudo usermod -aG libvirt $USER
+      echo "Enabling default NAT..."
+      sudo virsh net-autostart default
       break
       ;;
     [nN])
@@ -130,6 +135,7 @@ install_packages "${MEDIA[@]}"
 
 echo "Installing fonts..."
 install_packages "${FONTS[@]}"
+
 
 # Start and enable system services
 echo "Configuring services..."
