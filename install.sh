@@ -102,7 +102,8 @@ while [[ true ]]; do
       sudo systemctl start libvirtd
       echo "Adding user to libvirt group..."
       sudo usermod -aG libvirt $USER
-      echo "Enabling default NAT..."
+      echo "Starting and enabling default NAT..."
+      sudo virsh net-start default
       sudo virsh net-autostart default
       break
       ;;
