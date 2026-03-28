@@ -2,9 +2,6 @@
 ^/install.*
 ^/README.*
 \.git
-\.config/environment.*
-\.config/tmux
-^/container-install.*
 ^/a.*
 ^/Default.code-profile
 ^/.zshrc
