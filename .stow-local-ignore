@@ -4,8 +4,7 @@
 \.git
 \.config/environment.*
 \.config/tmux
-\.config/yazi
 ^/container-install.*
 ^/a.*
 ^/Default.code-profile
-\.zshrc
+^/.zshrc

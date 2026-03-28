@@ -50,6 +50,7 @@ alias ll="ls -AlF"
 alias la="ls -A"
 alias l="ls -CF"
 alias grep="grep --color=auto"
+alias ubuntu="distrobox enter ubuntu"
 
 # Move up one parent folder
 alias ..="cd ..;pwd"
@@ -75,9 +76,8 @@ function y() {
 # Default options
 export FZF_DEFAULT_OPTS="
 --height 100% \
-  --layout=reverse \
-  --border
-"
+--layout=reverse \
+--border"
 
 # CTRL-Y to copy the command into clipboard using wl-copy
 export FZF_CTRL_R_OPTS="
