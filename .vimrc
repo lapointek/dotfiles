@@ -1,6 +1,3 @@
-" colorscheme
-colorscheme catppuccin
-
 " Show line numbers
 set number
 
