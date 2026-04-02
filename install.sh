@@ -14,11 +14,9 @@ if [ ! -f "./scripts/packages.conf" ]; then
 fi
 source ./scripts/packages.conf
 
-
 # Update system
 echo "Updating System..."
 sudo pacman -Syu
-
 
 while [[ true ]]; do
   # Install yay AUR helper
@@ -55,7 +53,6 @@ while [[ true ]]; do
   esac
 done
 
-
 # Install Nvidia packages and enable services
 while [[ true ]]; do
   read -p "Using a hybrid laptop with an Nvidia GPU Y/y or N/n: " choice
@@ -83,7 +80,6 @@ while [[ true ]]; do
       ;;
   esac
 done
-
 
 # Install QEMU virtual machine
 while [[ true ]]; do
@@ -117,7 +113,6 @@ while [[ true ]]; do
   esac
 done
 
-
 # Install system packages
 echo "Installing system utilities..."
 install_packages "${SYSTEM_UTILS[@]}"
@@ -136,7 +131,6 @@ install_packages "${MEDIA[@]}"
 
 echo "Installing fonts..."
 install_packages "${FONTS[@]}"
-
 
 # Start and enable system services
 echo "Configuring services..."
@@ -163,9 +157,6 @@ else
   echo "Adding user $USER to docker group..."
   sudo usermod -aG docker "$USER"
 fi
-
-echo "Enabling ufw on startup..."
-sudo ufw enable
 
 echo "Using reflector to get the latest Archlinux repositories..."
 sudo reflector \
