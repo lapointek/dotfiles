@@ -86,16 +86,16 @@ while [[ true ]]; do
   read -p "Install QEMU virtual machine? Y/y or N/n: " choice
   case "$choice" in
     [yY])
-      if pacman -Qi iptables &>/dev/null; then
-        echo "Removing iptables (conflicts with iptables-nft)..."
-        sudo pacman -Rddn iptables
-      fi
-      echo "Removing existing ruleset for nftables..."
-      sudo nft flush ruleset
       echo "Installing virtual machine packages..."
       install_packages "${VIRT_MAN[@]}"
-      echo "Starting libvirtd..."
-      sudo systemctl start libvirtd
+      for service in "${VIRT_SERVICE[@]}"; do
+        if ! systemctl is-enabled "$service" &>/dev/null; then
+          echo "Enabling $service..."
+          sudo systemctl enable --now "$service"
+        else
+          echo "$service is already enabled"
+        fi
+      done
       echo "Adding user to libvirt group..."
       sudo usermod -aG libvirt $USER
       echo "Starting and enabling default NAT..."
