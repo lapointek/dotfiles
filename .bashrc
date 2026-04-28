@@ -50,7 +50,8 @@ alias ll="ls -AlF"
 alias la="ls -A"
 alias l="ls -CF"
 alias grep="grep --color=auto"
-alias ubuntu="distrobox enter ubuntu"
+alias enter="toolbox enter"
+alias r="ranger"
 
 # Move up one parent folder
 alias ..="cd ..;pwd"
@@ -63,14 +64,14 @@ alias h="history"
 # Clear terminal
 alias c="clear"
 
-# --- Yazi setup ---
-function y() {
-  local tmp="$(mktemp -t "yazi-cwd.XXXXXX")" cwd
-  yazi "$@" --cwd-file="$tmp"
-  IFS= read -r -d '' cwd <"$tmp"
-  [ -n "$cwd" ] && [ "$cwd" != "$PWD" ] && builtin cd -- "$cwd"
-  rm -f -- "$tmp"
+# -- Shell integration ---
+osc7_cwd() {
+    [[ -t 1 ]] || return
+    printf '\e]7;file://%s%s\e\\' "${HOSTNAME:-localhost}" "$(pwd -P)"
 }
+
+PROMPT_COMMAND="history -a; history -n"
+PROMPT_COMMAND="$PROMPT_COMMAND; osc7_cwd"
 
 # --- Fzf commands ---
 # Default options
@@ -109,6 +110,30 @@ man_s() {
   fi
 }
 
+# Install packages from the Fedora repository
+dnf_i() {
+  local selected
+  mapfile -t selected < <(dnf repoquery --available -qq |
+    fzf -m --preview='dnf info {}' \
+    --preview-window=down:60%:wrap)
+  # remove empty/null values
+  if ((${#selected[@]} > 0)); then
+    sudo dnf install "${selected[@]}"
+  fi
+}
+
+# Remove packages from the system
+dnf_r() {
+  local selected
+  mapfile -t selected < <(dnf list --installed |
+    fzf -m --preview='dnf info {}' \
+    --preview-window=down:60%:wrap)
+  # remove empty/null values
+  if ((${#selected[@]} > 0)); then
+    sudo dnf remove "${selected[@]}"
+  fi
+}
+
 # Install packages from the Archlinux official repository
 pac_i() {
   local selected
@@ -130,18 +155,6 @@ pac_r() {
   # remove empty/null values
   if ((${#selected[@]} > 0)); then
     sudo pacman -Rns "${selected[@]}"
-  fi
-}
-
-# Install packages from the Archlinux user repository
-paru_i() {
-  local selected
-  mapfile -t selected < <(paru -Slq |
-    fzf -m --preview='paru -Si {}' \
-    --preview-window=down:60%:wrap)
-  # remove empty/null values
-  if (("${#selected[@]}" > 0)); then
-    paru -S "${selected[@]}"
   fi
 }
 
@@ -192,6 +205,9 @@ fi
 if [[ -f /usr/lib/git-core/git-sh-prompt ]]; then
   source /usr/lib/git-core/git-sh-prompt
 fi
+if [[ -f /usr/share/git-core/contrib/completion/git-prompt.sh ]]; then
+  source /usr/share/git-core/contrib/completion/git-prompt.sh
+fi
 
 # --- Bash completion ---
 if [[ -f /usr/share/bash-completion/bash_completion ]]; then
@@ -218,3 +234,6 @@ fi
 if command -v zoxide &>/dev/null; then
   eval "$(zoxide init bash)"
 fi
+
+# opencode
+export PATH=/home/kevin/.opencode/bin:$PATH
