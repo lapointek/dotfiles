@@ -3,3 +3,4 @@
 ^/a.*
 ^/Default.*
 ^/plasma-shortcuts.*
+^.config

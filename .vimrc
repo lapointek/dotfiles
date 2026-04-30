@@ -13,8 +13,14 @@ set diffopt+=linematch:100
 " Compatibility mode
 set nocompatible
 
+" Smart indentation
+set autoindent smartindent
+
 " Syntax highlighting
 syntax on
+
+" Allow switching buffers without saving
+set hidden
 
 " Show statusline
 set laststatus=2
@@ -91,3 +97,13 @@ if undodir == 0
     call mkdir($HOME . undodir, "p")
 endif
 
+" Map jj to <Esc> in insert mode
+inoremap jj <Esc>
+
+" Map Ctrl+S to save in normal, insert, and visual modes
+noremap <C-s> :update<CR>
+inoremap <C-s> <Esc>:update<CR>
+vnoremap <C-s> <Esc>:update<CR>
+
+" Clear highlighting with <Space>
+nnoremap <silent> <Space> :nohlsearch<CR>
