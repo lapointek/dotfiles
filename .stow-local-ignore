@@ -1,4 +1,5 @@
 ^/README.*
 \.git
 ^/a.*
-^/Default.code-profile
+^/Default.*
+^/plasma-shortcuts.*
