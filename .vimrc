@@ -1,3 +1,9 @@
+" Set colorscheme
+:colorscheme lunaperche
+
+" Set true color
+set termguicolors
+
 " Show line numbers
 set number
 
@@ -86,10 +92,14 @@ set hlsearch
 " Set the commands to save in history default number is 20.
 set history=1000
 
+" Enable spell checking
+:set spell
+
+" Set language
+:set spelllang=en_us
+
 set undofile
 set undodir=$HOME/.vim/vim-undo
-
-:highlight LineNr ctermfg=DarkGrey
 
 " Create undo directory if it doesn't exist
 let undodir = "/.vim/vim-undo"
