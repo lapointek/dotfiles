@@ -34,14 +34,18 @@ shopt -s histappend
 shopt -s checkwinsize
 # cd into directory automatically
 shopt -s autocd
-# Auto-correct typos in directory names
-shopt -s cdspell
 # Save multi-line commands
 shopt -s lithist
 # Store multi-line commands as a single history entry
 shopt -s cmdhist
 # Warn before exiting if background jobs are running
 shopt -s checkjobs
+# Auto-correct typos in directory names
+shopt -s cdspell
+# Detect and fix typo during completion
+shopt -s dirspell
+# Replace your input with the corrected full path
+shopt -s direxpand
 
 # Case insensitive tab completion
 bind 'set completion-ignore-case on'
@@ -113,91 +117,6 @@ man_s() {
     sort -u | fzf | awk "{print \$1}")
   if [ -n "$man_page" ]; then
     man "$man_page" 2>/dev/null
-  fi
-}
-
-# Install packages from the Fedora repository
-dnf_i() {
-  local selected
-  mapfile -t selected < <(dnf repoquery --available -qq |
-    fzf -m --preview='dnf info {}' \
-    --preview-window=down:60%:wrap)
-  # remove empty/null values
-  if ((${#selected[@]} > 0)); then
-    sudo dnf install "${selected[@]}"
-  fi
-}
-
-# Remove packages from the system
-dnf_r() {
-  local selected
-  mapfile -t selected < <(dnf list --installed |
-    fzf -m --preview='dnf info {}' \
-    --preview-window=down:60%:wrap)
-  # remove empty/null values
-  if ((${#selected[@]} > 0)); then
-    sudo dnf remove "${selected[@]}"
-  fi
-}
-
-# Install packages from the Archlinux official repository
-pac_i() {
-  local selected
-  mapfile -t selected < <(pacman -Slq |
-    fzf -m --preview='pacman -Si {}' \
-    --preview-window=down:60%:wrap)
-  # remove empty/null values
-  if ((${#selected[@]} > 0)); then
-    sudo pacman -Syu "${selected[@]}"
-  fi
-}
-
-# Remove packages from the system
-pac_r() {
-  local selected
-  mapfile -t selected < <(pacman -Slq |
-    fzf -m --preview='pacman -Qi {}' \
-    --preview-window=down:60%:wrap)
-  # remove empty/null values
-  if ((${#selected[@]} > 0)); then
-    sudo pacman -Rns "${selected[@]}"
-  fi
-}
-
-# Install packages from the Archlinux user repository
-yay_i() {
-  local selected
-  mapfile -t selected < <(yay -Slq |
-    fzf -m --preview='yay -Si {}' \
-    --preview-window=down:60%:wrap)
-  # remove empty/null values
-  if (("${#selected[@]}" > 0)); then
-    yay -S "${selected[@]}"
-  fi
-}
-
-# Query database and install packages
-apt_i() {
-  local selected
-  mapfile -t selected < <(apt-cache pkgnames |
-    fzf -m --preview='apt show {}' \
-    --preview-window=down:60%:wrap)
-  # remove empty/null values
-  if ((${#selected[@]} > 0)); then
-    sudo apt install "${selected[@]}"
-  fi
-}
-
-# Remove installed packages
-apt_r() {
-  local selected
-  mapfile -t selected < <(apt list --installed |
-    awk -F/ '{print $1}' |
-    fzf -m --preview='apt show {}' \
-    --preview-window=down:60%:wrap)
-  # remove empty/null values
-  if ((${#selected[@]} > 0)); then
-    sudo apt purge "${selected[@]}"
   fi
 }
 
