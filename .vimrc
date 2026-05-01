@@ -101,6 +101,9 @@ if undodir == 0
     call mkdir($HOME . undodir, "p")
 endif
 
+" Delete without copying Shift+D
+nnoremap D "_D
+
 " Map jj to <Esc> in insert mode
 inoremap jj <Esc>
 
@@ -111,3 +114,13 @@ vnoremap <C-s> <Esc>:update<CR>
 
 " Clear search highlighting with <Space>
 nnoremap <silent> <Space> :nohlsearch<CR>
+
+" Copy visual selection to system clipboard
+vnoremap <C-c> y:call system('wl-copy', getreg('"'))<CR>
+
+" Paste in normal mode
+nnoremap <C-v> :r !wl-paste<CR>
+
+" Paste in insert mode
+inoremap <C-v> <C-r>=system('wl-paste')<CR>
+
