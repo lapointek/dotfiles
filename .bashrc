@@ -27,10 +27,9 @@ export BAT_THEME=ansi
 # Ensure command history is updated and synchronized across multiple sessions
 PROMPT_COMMAND="history -a; history -n; $PROMPT_COMMAND"
 
+# --- Optional shell features ---
 # Do not overwrite the history file
 shopt -s histappend
-
-# --- Optional shell features ---
 # Updates terminal LINES and COLUMNS after each command
 shopt -s checkwinsize
 # cd into directory automatically
@@ -44,13 +43,20 @@ shopt -s cmdhist
 # Warn before exiting if background jobs are running
 shopt -s checkjobs
 
+# Case insensitive tab completion
+bind 'set completion-ignore-case on'
+# Show matches immediately
+bind 'set show-all-if-ambiguous on'
+# Cycle through completions
+bind 'TAB:menu-complete'
+
 # --- Aliases ---
 alias ls="ls -X --group-directories-first --color=auto"
 alias ll="ls -AlF"
 alias la="ls -A"
 alias l="ls -CF"
 alias grep="grep --color=auto"
-alias enter="toolbox enter"
+alias tbx="toolbox enter"
 alias r="ranger"
 
 # Move up one parent folder
