@@ -92,12 +92,6 @@ set hlsearch
 " Set the commands to save in history default number is 20.
 set history=1000
 
-" Enable spell checking
-:set spell
-
-" Set language
-:set spelllang=en_us
-
 set undofile
 set undodir=$HOME/.vim/vim-undo
 
@@ -115,5 +109,5 @@ noremap <C-s> :update<CR>
 inoremap <C-s> <Esc>:update<CR>
 vnoremap <C-s> <Esc>:update<CR>
 
-" Clear highlighting with <Space>
+" Clear search highlighting with <Space>
 nnoremap <silent> <Space> :nohlsearch<CR>
