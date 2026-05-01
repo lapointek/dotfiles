@@ -1,5 +1,5 @@
 " Set colorscheme
-:colorscheme lunaperche
+colorscheme wildcharm
 
 " Set true color
 set termguicolors
@@ -21,6 +21,15 @@ set nocompatible
 
 " Smart indentation
 set autoindent smartindent
+
+" Enable wildmenu for command-line completion
+set wildmenu
+
+" Use popup menu instead of inline wildmenu
+set wildoptions=pum
+
+" noselect: no pre-select; lastused: recent buffers; full: cycle matches
+set wildmode=noselect:lastused,full
 
 " Syntax highlighting
 syntax on
@@ -123,4 +132,3 @@ nnoremap <C-v> :r !wl-paste<CR>
 
 " Paste in insert mode
 inoremap <C-v> <C-r>=system('wl-paste')<CR>
-
