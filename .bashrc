@@ -110,16 +110,6 @@ export FZF_ALT_C_OPTS="
 # Zoxide fzf - command 'zi'
 export _ZO_FZF_OPTS="$FZF_DEFAULT_OPTS"
 
-# Search man pages database
-man_s() {
-  local man_page
-  man_page=$(apropos . | sed -n 's/^\(.*)\).*/\1/p' |
-    sort -u | fzf | awk "{print \$1}")
-  if [ -n "$man_page" ]; then
-    man "$man_page" 2>/dev/null
-  fi
-}
-
 # --- Git integration ---
 if [[ -f /usr/share/git/completion/git-completion.bash ]]; then
   source /usr/share/git/completion/git-completion.bash
