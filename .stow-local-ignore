@@ -3,3 +3,5 @@
 ^/a.*
 ^/Default.*
 ^/plasma-shortcuts.*
+^/scripts
+\install.*
