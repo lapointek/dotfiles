@@ -29,7 +29,7 @@ stow .
 
 ## System Setup
 
-Automates package installation and setup for a development environment.
+Automates package installation and setup for my development environment.
 
 ## Features
 
