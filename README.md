@@ -25,9 +25,11 @@ cd dotfiles
 stow .
 ```
 
-## Fedora only
+# Fedora Only
 
-The script automates the package installation for my Fedora Linux system. It installs development tools.
+## System Setup
+
+The script automates the package installation for my system. It installs development tools.
 
 ## Features
 
