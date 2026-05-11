@@ -25,9 +25,9 @@ cd dotfiles
 stow .
 ```
 
-## Development Environment Setup
+## Fedora only
 
-The script automates the setup of my personal development environment on Fedora Linux. It installs development tools and desktop applications.
+The script automates the package installation for my Fedora Linux system. It installs development tools.
 
 ## Features
 
