@@ -29,12 +29,12 @@ stow .
 
 ## System Setup
 
-The script automates the package installation for my system. It installs development tools.
+Automates package installation and setup for a development environment.
 
 ## Features
 
 -   Automated system update
--   Auto detect and skip preinstalled packages
+-   Skip preinstalled packages
 -   Package installation:
     -   Development tools
 
