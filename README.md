@@ -1,6 +1,6 @@
-# Fedora Dotfiles
+# Dotfiles
 
-Personal dotfiles for my Fedora KDE Plasma setup.
+Personal dotfiles for my development environment.
 
 ## Installation
 
@@ -24,3 +24,28 @@ cd dotfiles
 ```
 stow .
 ```
+
+## Development Environment Setup
+
+The script automates the setup of my personal development environment on Fedora Linux. It installs development tools and desktop applications.
+
+## Features
+
+-   Automated system update
+-   Auto detect and skip preinstalled packages
+-   Package installation:
+    -   Development tools
+
+### Requirements
+
+    - Fedora Linux KDE Plasma installation
+
+1. Run the install script.
+
+```
+./install.sh
+```
+
+2. Follow the script prompts.
+
+3. Reboot system.
