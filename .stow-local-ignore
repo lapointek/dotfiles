@@ -4,4 +4,4 @@
 ^/Default.*
 ^/plasma-shortcuts.*
 ^/scripts
-\install.*
+^\install.*
