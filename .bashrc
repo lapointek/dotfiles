@@ -4,30 +4,27 @@
 # If not running interactively, don't do anything
 [[ $- != *i* ]] && return
 
-# --- Source .inputrc ---
+#--- Source .inputrc ---
 # Apply .inputrc changes on sourcing .bashrc
 bind -f ~/.inputrc
 
-# --- History options ---
+#--- History options ---
 HISTTIMEFORMAT="%y-%m-%d %H:%M "
 HISTCONTROL=ignoredups:erasedups:ignorespace
 HISTSIZE=10000
 HISTFILESIZE=10000
 
-# --- User environment variables ---
-# Editors
+#--- User environment variables ---
 export EDITOR=nvim
 export SUDO_EDITOR=nvim
 export VISUAL=nvim
-# Pager
 export LESS="-RFMX --mouse --wheel-lines=3"
-# Bat theme
 export BAT_THEME=ansi
 
 # Ensure command history is updated and synchronized across multiple sessions
 PROMPT_COMMAND="history -a; history -n; $PROMPT_COMMAND"
 
-# --- Optional shell features ---
+#--- Optional shell features ---
 # Do not overwrite the history file
 shopt -s histappend
 # Updates terminal LINES and COLUMNS after each command
@@ -54,36 +51,29 @@ bind 'set show-all-if-ambiguous on'
 # Cycle through completions
 bind 'TAB:menu-complete'
 
-# --- Aliases ---
+#--- Aliases ---
 alias ls="ls -X --group-directories-first --color=auto"
 alias ll="ls -AlF"
 alias la="ls -A"
 alias l="ls -CF"
 alias grep="grep --color=auto"
 alias tbx="toolbox enter"
-alias r="ranger"
-
-# Move up one parent folder
 alias ..="cd ..;pwd"
-# Move up two parent folders
 alias ...="cd ../..;pwd"
-# Move up three parent folders
 alias ....="cd ../../..;pwd"
-# View bash history
 alias h="history"
-# Clear terminal
 alias c="clear"
+alias r='ranger --choosedir=$HOME/.rangerdir; LASTDIR=`cat $HOME/.rangerdir`; cd "$LASTDIR"'
 
-# -- Shell integration ---
+#--- Shell integration ---
 osc7_cwd() {
     [[ -t 1 ]] || return
     printf '\e]7;file://%s%s\e\\' "${HOSTNAME:-localhost}" "$(pwd -P)"
 }
-
 PROMPT_COMMAND="history -a; history -n"
 PROMPT_COMMAND="$PROMPT_COMMAND; osc7_cwd"
 
-# --- Fzf commands ---
+#--- Fzf commands ---
 # Default options
 export FZF_DEFAULT_OPTS="
 --height 100% \
@@ -110,7 +100,7 @@ export FZF_ALT_C_OPTS="
 # Zoxide fzf - command 'zi'
 export _ZO_FZF_OPTS="$FZF_DEFAULT_OPTS"
 
-# --- Git integration ---
+#--- Git integration ---
 if [[ -f /usr/share/git/completion/git-completion.bash ]]; then
   source /usr/share/git/completion/git-completion.bash
 fi
@@ -124,7 +114,7 @@ if [[ -f /usr/share/git-core/contrib/completion/git-prompt.sh ]]; then
   source /usr/share/git-core/contrib/completion/git-prompt.sh
 fi
 
-# --- Bash completion ---
+#--- Bash completion ---
 if [[ -f /usr/share/bash-completion/bash_completion ]]; then
   source /usr/share/bash-completion/bash_completion
 fi
@@ -140,7 +130,7 @@ else
     GIT_PS1_SHOWDIRTYSTATE=1 __git_ps1)\[\033[00m\]\n$ "
 fi
 
-# --- Execute shell commands ---
+#--- Execute shell commands ---
 # Set up fzf key bindings and fuzzy completion
 if command -v fzf &>/dev/null; then
   eval "$(fzf --bash)"
@@ -149,6 +139,3 @@ fi
 if command -v zoxide &>/dev/null; then
   eval "$(zoxide init bash)"
 fi
-
-# opencode
-export PATH=/home/kevin/.opencode/bin:$PATH
