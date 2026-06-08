@@ -110,6 +110,9 @@ do
   -- Write the contents, if it has been modified
   vim.opt.autoread = true
 
+  -- True color support
+  vim.opt.termguicolors = true
+
   -- Write the contents before a command
   vim.opt.autowrite = true
 
@@ -441,6 +444,21 @@ do
       { 'gr', group = 'LSP Actions', mode = { 'n' } },
     },
   }
+
+  -- Colorizer for CSS
+  -- Install and load the plugin
+  vim.pack.add({ "https://github.com/catgoose/nvim-colorizer.lua" })
+
+  -- Initialize the plugin
+  require("colorizer").setup({
+    filetypes = { "*" }, -- Highlight all filetypes
+    user_default_options = {
+      RGB = true,
+      RRGGBB = true,
+      names = true,
+      mode = "background",
+    },
+  })
 
   -- [[ Colorscheme ]]
   -- You can easily change to a different colorscheme.
@@ -1049,14 +1067,14 @@ do
   -- require 'kickstart.plugins.debug'
   -- require 'kickstart.plugins.indent_line'
   -- require 'kickstart.plugins.lint'
-  -- require 'kickstart.plugins.autopairs'
-  -- require 'kickstart.plugins.neo-tree'
+  require 'kickstart.plugins.autopairs'
+  require 'kickstart.plugins.neo-tree'
   -- require 'kickstart.plugins.gitsigns' -- adds gitsigns recommended keymaps
 
   -- NOTE: You can add your own plugins, configuration, etc from `lua/custom/plugins/*.lua`
   --
   --  Uncomment the following line and add your plugins to `lua/custom/plugins/*.lua` to get going.
-  require 'custom.plugins'
+  -- require 'custom.plugins'
 end
 
 -- The line beneath this is called `modeline`. See `:help modeline`
