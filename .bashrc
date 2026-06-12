@@ -38,7 +38,6 @@ alias ....="cd ../../..;pwd"
 alias h="history"
 alias c="clear"
 alias r='ranger --choosedir=$HOME/.rangerdir; LASTDIR=`cat $HOME/.rangerdir`; cd "$LASTDIR"'
-alias opencode="firejail --profile=opencode opencode"
 alias kali="distrobox enter kali"
 
 #--- History options ---
@@ -90,6 +89,3 @@ export EDITOR=nvim
 export SUDO_EDITOR=nvim
 export VISUAL=nvim
 export LESS="-RFMX --mouse --wheel-lines=3"
-
-# opencode
-export PATH=/home/kevin/.opencode/bin:$PATH
