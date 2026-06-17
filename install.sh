@@ -21,8 +21,3 @@ sudo dnf update
 # Install system packages
 echo "Installing dev tools..."
 install_packages "${DEV_TOOLS[@]}"
-
-echo "Installing desktop applications..."
-install_packages "${DESKTOP[@]}"
-
-echo "*** Please Reboot Your System ***"

@@ -40,7 +40,7 @@ Automates package installation and setup for my development environment.
 
 ### Requirements
 
-    - Fedora Linux KDE Plasma installation
+    - Fedora KDE Plasma installation
 
 1. Run the install script.
 
