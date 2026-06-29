@@ -20,7 +20,7 @@ set diffopt+=linematch:100
 set nocompatible
 
 " Smart indentation
-set autoindent smartindent
+set smartindent
 
 " Enable wildmenu for command-line completion
 set wildmenu
@@ -101,13 +101,14 @@ set hlsearch
 " Set the commands to save in history default number is 20.
 set history=1000
 
+" Enable persistent undo
 set undofile
-set undodir=$HOME/.vim/vim-undo
+set undodir=~/.vim/vim-undo
 
-" Create undo directory if it doesn't exist
-let undodir = "/.vim/vim-undo"
-if undodir == 0
-    call mkdir($HOME . undodir, "p")
+" Create the undo directory if it doesn't exist
+let undodir = $HOME . '/.vim/vim-undo'
+if !isdirectory(undodir)
+    call mkdir(undodir, 'p')
 endif
 
 " Delete without copying Shift+D
@@ -115,11 +116,6 @@ nnoremap D "_D
 
 " Map jj to <Esc> in insert mode
 inoremap jj <Esc>
-
-" Map Ctrl+S to save in normal, insert, and visual modes
-noremap <C-s> :update<CR>
-inoremap <C-s> <Esc>:update<CR>
-vnoremap <C-s> <Esc>:update<CR>
 
 " Clear search highlighting with <Space>
 nnoremap <silent> <Space> :nohlsearch<CR>

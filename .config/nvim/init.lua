@@ -267,13 +267,6 @@ do
   -- vim.keymap.set("n", "<C-S-j>", "<C-w>J", { desc = "Move window to the lower" })
   -- vim.keymap.set("n", "<C-S-k>", "<C-w>K", { desc = "Move window to the upper" })
 
-  -- Normal mode
-  vim.keymap.set('n', '<C-S>', ':update<CR>')
-  -- Visual mode
-  vim.keymap.set('v', '<C-S>', ':update<CR>gv')
-  -- Insert mode
-  vim.keymap.set('i', '<C-S>', '<C-O>:update<CR>')
-
   -- [[ Basic Autocommands ]]
   --  See `:help lua-guide-autocommands`
 
