@@ -31,4 +31,5 @@ set skip-completed-text on
 # Keep original commands in history
 set revert-all-at-newline on
 # Custom keybindings
-"\C-j": history-search-backward
+"\ej": history-search-backward
+"\ek": history-search-forward
