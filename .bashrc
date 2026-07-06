@@ -40,6 +40,7 @@ alias c="clear"
 alias r='ranger --choosedir=$HOME/.rangerdir; LASTDIR=`cat $HOME/.rangerdir`; cd "$LASTDIR"'
 alias kali="distrobox enter kali"
 alias qwen="ollama run qwen3.5:9b"
+alias opencode="sbx run opencode ."
 
 #--- History options ---
 HISTTIMEFORMAT="%y-%m-%d %H:%M "
