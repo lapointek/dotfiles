@@ -38,9 +38,10 @@ alias ....="cd ../../..;pwd"
 alias h="history"
 alias c="clear"
 alias r='ranger --choosedir=$HOME/.rangerdir; LASTDIR=`cat $HOME/.rangerdir`; cd "$LASTDIR"'
-alias kali="distrobox enter kali"
-alias qwen="ollama run qwen3.5:9b"
-alias opencode="sbx run opencode ."
+alias parrot="distrobox enter parrot"
+alias gem4="ollama run gemma4:12b"
+alias qc2="ollama run qwen2.5-coder:7b"
+alias q2="ollama run qwen2.5:7b"
 
 #--- History options ---
 HISTTIMEFORMAT="%y-%m-%d %H:%M "
@@ -84,3 +85,7 @@ export EDITOR=nvim
 export SUDO_EDITOR=nvim
 export VISUAL=nvim
 export LESS="-RFMX --mouse --wheel-lines=3"
+export PATH=$HOME/.local/bin:$PATH
+
+# Pi
+export PATH="/home/kevin/.npm-global/bin:$PATH"
