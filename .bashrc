@@ -49,10 +49,17 @@ HISTCONTROL=ignoredups:erasedups:ignorespace
 HISTSIZE=10000
 HISTFILESIZE=10000
 
+#--- Shell integration ---
+osc7_cwd() {
+    [[ -t 1 ]] || return
+    printf '\e]7;file://%s%s\e\\' "${HOSTNAME:-localhost}" "$(pwd -P)"
+}
+
 #--- Append command history across sessions ---
 PROMPT_COMMAND=(
     'history -a'
     'history -n'
+    'osc7_cwd'
 )
 
 #--- Git prompt (__git_ps1) ---

@@ -1,0 +1,29 @@
+[idle]
+# Canonical evaluation order for named behaviors. Names not listed are appended.
+behavior_order = ["lock", "screen-off", "suspend"]
+# Seconds to fade a fullscreen surface-tint overlay, then run the idle command.
+# 0 disables the overlay (the command runs as soon as the compositor reports idle).
+# Parsed between 0 and 120; the in-app Settings stepper uses whole seconds 0–30.
+pre_action_fade_seconds = 2.0
+
+[idle.behavior.lock]
+timeout = 600
+action = "lock"
+enabled = true		    # explicitly disabled in the default config
+
+[idle.behavior.screen-off]
+timeout = 660
+action = "screen_off"       # turns monitors off, and back on when you return
+enabled = true		    # explicitly disabled in the default config
+
+[idle.behavior.suspend]
+timeout = 900
+action = "lock_and_suspend" # or action = "suspend" with lock_before_suspend = false
+enabled = true
+
+[idle.behavior.custom]
+timeout = 48
+action = "command"
+command = "notify-send 'Idle' 'Going idle'"
+resume_command = "notify-send 'Idle' 'Back from idle'"
+enabled = false

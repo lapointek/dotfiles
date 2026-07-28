@@ -18,6 +18,11 @@ source ./scripts/packages.conf
 echo "Updating System..."
 sudo dnf update
 
+rm -ri xwaylandvideobridge
+
 # Install system packages
 echo "Installing dev tools..."
 install_packages "${DEV_TOOLS[@]}"
+
+echo "Installing desktop applications..."
+install_packages "${DESKTOP[@]}"
