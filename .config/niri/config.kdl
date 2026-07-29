@@ -274,7 +274,6 @@ layout {
 // spawn-at-startup "waybar"
 
 spawn-at-startup "noctalia"
-spawn-at-startup "xdg-desktop-portal-kde"
 
 environment {
     QT_QPA_PLATFORMTHEME "qt6ct"
