@@ -19,6 +19,7 @@ echo "Updating System..."
 sudo dnf update
 
 rm -ri xwaylandvideobridge
+rm -ri gnome-keyring
 
 # Install system packages
 echo "Installing dev tools..."

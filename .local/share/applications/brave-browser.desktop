@@ -167,7 +167,7 @@ Name[uk]=Нове вікно
 Name[vi]=Cửa sổ Mới
 Name[zh_CN]=新建窗口
 Name[zh_TW]=開新視窗
-Exec=/usr/bin/brave-browser-stable
+Exec=/usr/bin/brave-browser-stable --disable-features=WaylandWpColorManagerV1 --force-color-profile=sRGB %U
 
 [Desktop Action new-private-window]
 Name=New Incognito Window
@@ -219,4 +219,4 @@ Name[uk]=Нове вікно в режимі анонімного перегля
 Name[vi]=Cửa sổ ẩn danh mới
 Name[zh_CN]=新建隐身窗口
 Name[zh_TW]=新增無痕式視窗
-Exec=/usr/bin/brave-browser-stable --incognito
+Exec=/usr/bin/brave-browser-stable --disable-features=WaylandWpColorManagerV1 --force-color-profile=sRGB %U
