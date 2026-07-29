@@ -36,7 +36,10 @@ Automates package installation and setup for my development environment.
 -   Automated system update
 -   Skip preinstalled packages
 -   Package installation:
-    -   Development tools
+    -   Niri session with Noctalia
+    -   Development Tools
+    -   Desktop Applications
+    -   Desktop Themeing
 
 ### Requirements
 
