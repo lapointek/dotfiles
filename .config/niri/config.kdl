@@ -385,6 +385,12 @@ window-rule {
     open-maximized true
 }
 
+window-rule {
+    match app-id="alacritty"
+    match title="btop"
+    open-maximized true
+}
+
 overview {
   // Choose your favorite color.
   backdrop-color "#26233a"
@@ -392,6 +398,13 @@ overview {
 
 switch-events {
     lid-close { spawn "noctalia" "msg" "session" "lock-and-suspend"; }
+}
+
+// Disable the hot corners.
+gestures {
+    hot-corners {
+        off
+    }
 }
 
 binds {
@@ -420,7 +433,7 @@ binds {
     Mod+Return hotkey-overlay-title="Open a Terminal: alacritty" { spawn "alacritty"; }
     Mod+E hotkey-overlay-title="Open Dolphin: dolphin" { spawn "dolphin"; }
     Mod+B hotkey-overlay-title="Open Browser: brave-browser" { spawn "brave-browser"; }
-    Mod+N hotkey-overlay-title="Open btop: btop" { spawn "alacritty" "-e" "btop"; }
+    Mod+N hotkey-overlay-title="Open btop: btop" { spawn "alacritty" "--title" "btop" "-e" "btop"; }
     // Super+Alt+L hotkey-overlay-title="Lock the Screen: swaylock" { spawn "swaylock"; }
 
     // Use spawn-sh to run a shell command. Do this if you need pipes, multiple commands, etc.
@@ -594,7 +607,7 @@ binds {
     // Mod+Ctrl+1 { move-window-to-workspace 1; }
 
     // Switches focus between the current and the previous workspace.
-    // Mod+Tab { focus-workspace-previous; }
+    Mod+Tab { focus-workspace-previous; }
 
     // The following binds move the focused window in and out of a column.
     // If the window is alone, they will consume it into the nearby column to the side.
