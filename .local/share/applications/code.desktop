@@ -24,6 +24,5 @@ Name[ko]=새 빈 창
 Name[ru]=Новое пустое окно
 Name[zh_CN]=新建空窗口
 Name[zh_TW]=開新空視窗
-Exec=/usr/share/code/code --new-window %F
 Exec=/usr/share/code/code --password-store=kwallet6 --disable-features=WaylandWpColorManagerV1 --force-color-profile=sRGB --new-window %F
 Icon=vscode

@@ -24,7 +24,7 @@ style = "Bold Italic"
 
 [keyboard]
 bindings = [
-  { key = "Return", mods = "super|Shift", action = "SpawnNewInstance" },
+  { key = "Return", mods = "Super|Shift", action = "SpawnNewInstance" },
 ]
 
 [window]
