@@ -2,7 +2,7 @@
 Name=Visual Studio Code
 Comment=Code Editing. Redefined.
 GenericName=Text Editor
-Exec=/usr/bin/code --disable-features=WaylandWpColorManagerV1 --force-color-profile=sRGB %F
+Exec=/usr/share/code/code --password-store=kwallet6 --disable-features=WaylandWpColorManagerV1 --force-color-profile=sRGB %F
 Icon=vscode
 Type=Application
 StartupNotify=false
@@ -25,4 +25,5 @@ Name[ru]=Новое пустое окно
 Name[zh_CN]=新建空窗口
 Name[zh_TW]=開新空視窗
 Exec=/usr/share/code/code --new-window %F
+Exec=/usr/share/code/code --password-store=kwallet6 --disable-features=WaylandWpColorManagerV1 --force-color-profile=sRGB --new-window %F
 Icon=vscode
