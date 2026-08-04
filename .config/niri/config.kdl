@@ -38,8 +38,8 @@ input {
         // drag false
         // drag-lock
         // natural-scroll
-        // accel-speed 0.2
-        // accel-profile "flat"
+        accel-speed 0.5
+        accel-profile "flat"
         // scroll-method "two-finger"
         // disabled-on-external-mouse
     }
@@ -47,16 +47,16 @@ input {
     mouse {
         // off
         // natural-scroll
-        // accel-speed 0.2
-        // accel-profile "flat"
+        accel-speed 0.2
+        accel-profile "flat"
         // scroll-method "no-scroll"
     }
 
     trackpoint {
         // off
         // natural-scroll
-        // accel-speed 0.2
-        // accel-profile "flat"
+        accel-speed 0.2
+        accel-profile "flat"
         // scroll-method "on-button-down"
         // scroll-button 273
         // scroll-button-lock
@@ -108,6 +108,11 @@ output "eDP-1" {
     // If the position is unset or results in an overlap, the output is instead placed
     // automatically.
     position x=0 y=0
+}
+
+cursor {
+    hide-when-typing
+    hide-after-inactive-ms 8000
 }
 
 // Settings that influence how windows are positioned and sized.
@@ -303,8 +308,6 @@ debug {
   honor-xdg-activation-with-invalid-serial
 }
 
-
-
 // To run a shell command (with variables, pipes, etc.), use spawn-sh-at-startup:
 // spawn-sh-at-startup "qs -c ~/source/qs/MyAwesomeShell"
 
@@ -396,7 +399,6 @@ window-rule {
     match app-id="code"
     open-maximized true
 }
-
 
 overview {
   // Choose your favorite color.
