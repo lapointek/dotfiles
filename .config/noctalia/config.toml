@@ -1,5 +1,6 @@
 [shell]
 niri_overview_type_to_launch_enabled = true
+polkit_agent = true
 
 [theme.templates]
 enable_builtin_templates = true
