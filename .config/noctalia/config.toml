@@ -3,7 +3,7 @@ niri_overview_type_to_launch_enabled = true
 
 [theme.templates]
 enable_builtin_templates = true
-builtin_ids              = ["alacritty", "gtk4", "qt"]        # opt-in; run: noctalia theme --list-templates
+builtin_ids              = ["alacritty", "gtk3", "gtk4", "qt"]        # opt-in; run: noctalia theme --list-templates
 
 [idle]
 # Canonical evaluation order for named behaviors. Names not listed are appended.
@@ -77,6 +77,12 @@ palette_source = "wallpaper"
 path = "/home/kevin/.local/share/wallpapers/others/purple-death.png"
 theme_mode = "dark"
 wallpaper_scheme = "soft"
+
+[[wallpaper.favorite]]
+palette_source = "wallpaper"
+path = "/home/kevin/.local/share/wallpapers/art/wallhaven-7286p3.png"
+theme_mode = "dark"
+wallpaper_scheme = "m3-fruit-salad"
 
 [backdrop]
 enabled        = false
