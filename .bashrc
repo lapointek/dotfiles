@@ -38,6 +38,7 @@ alias ....="cd ../../..;pwd"
 alias h="history"
 alias c="clear"
 alias r='ranger --choosedir=$HOME/.rangerdir; LASTDIR=`cat $HOME/.rangerdir`; cd "$LASTDIR"'
+alias sd="cd ~ && cd \$(find * -type d | fzf)"
 
 #--- History options ---
 HISTTIMEFORMAT="%y-%m-%d %H:%M "
