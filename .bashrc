@@ -71,9 +71,9 @@ export GIT_PS1_SHOWUPSTREAM=auto
 #--- Prompt ---
 if [[ -n "${CONTAINER_ID:-}" ]] &&
    [[ -e /run/.containerenv || -e /.dockerenv ]]; then
-    PS1='(${CONTAINER_ID}) \[\033[35m\]\w\[\033[31m\]\$(__git_ps1)\[\033[0m\]\n\[\033[33m\]❯\[\033[34m\] '
+    PS1='(${CONTAINER_ID}) \[\033[35m\]\w\[\033[36m\]\$(__git_ps1)\[\033[0m\]\n\[\033[0m\]❯\[\033[92m\] '
 else
-    PS1='\[\033[35m\]\w\[\033[31m\]$(__git_ps1)\[\033[0m\]\n\[\033[33m\]❯\[\033[34m\] '
+    PS1='\[\033[35m\]\w\[\033[36m\]$(__git_ps1)\[\033[0m\]\n\[\033[33m\]❯\[\033[0m\] '
 fi
 
 #--- User environment variables ---
