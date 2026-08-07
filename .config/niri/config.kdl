@@ -689,9 +689,9 @@ binds {
     // Mod+Space       { switch-layout "next"; }
     // Mod+Shift+Space { switch-layout "prev"; }
 
-    Insert { screenshot; }
-    Ctrl+Insert { screenshot-screen; }
-    Alt+Insert { screenshot-window; }
+    Insert hotkey-overlay-title="Region Screenshot" { screenshot; }
+    Ctrl+Insert hotkey-overlay-title="Full-screen Screenshot" { screenshot-screen; }
+    Alt+Insert hotkey-overlay-title="Window Screenshot" { screenshot-window; }
 
     // Applications such as remote-desktop clients and software KVM switches may
     // request that niri stops processing the keyboard shortcuts defined here

@@ -4,7 +4,7 @@ polkit_agent = true
 
 [theme.templates]
 enable_builtin_templates = true
-builtin_ids              = ["alacritty", "gtk3", "gtk4", "qt"]        # opt-in; run: noctalia theme --list-templates
+builtin_ids              = ["alacritty", "gtk3", "gtk4", "kcolorscheme"]        # opt-in; run: noctalia theme --list-templates
 
 [idle]
 # Canonical evaluation order for named behaviors. Names not listed are appended.
