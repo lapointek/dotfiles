@@ -39,6 +39,7 @@ alias h="history"
 alias c="clear"
 alias r='ranger --choosedir=$HOME/.rangerdir; LASTDIR=`cat $HOME/.rangerdir`; cd "$LASTDIR"'
 alias sd="cd ~ && cd \$(find * -type d | fzf)"
+alias q7b="ollama run qwen2.5-coder:7b"
 
 #--- History options ---
 HISTTIMEFORMAT="%y-%m-%d %H:%M "
@@ -72,9 +73,9 @@ export GIT_PS1_SHOWUPSTREAM=auto
 #--- Prompt ---
 if [[ -n "${CONTAINER_ID:-}" ]] &&
    [[ -e /run/.containerenv || -e /.dockerenv ]]; then
-    PS1='\t (${CONTAINER_ID}) \[\033[35m\]\w\[\033[36m\]\$(__git_ps1)\[\033[0m\]\n\[\033[0m\]❯\[\033[92m\] '
+    PS1='\t (${CONTAINER_ID}) \[\033[35m\]\w\[\033[36m\]\$(__git_ps1)\[\033[0m\]\n\[\033[0m\]$\[\033[0m\] '
 else
-    PS1='\t \[\033[35m\]\w\[\033[36m\]$(__git_ps1)\[\033[0m\]\n\[\033[33m\]❯\[\033[0m\] '
+    PS1='\t \[\033[35m\]\w\[\033[36m\]$(__git_ps1)\[\033[0m\]\n\[\033[0m\]$\[\033[0m\] '
 fi
 
 #--- User environment variables ---
@@ -82,4 +83,3 @@ export EDITOR=nvim
 export SUDO_EDITOR=nvim
 export VISUAL=nvim
 export LESS="-RFMX --mouse --wheel-lines=3"
-export PI_CONTAINER_RUNTIME=podman
