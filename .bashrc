@@ -39,7 +39,9 @@ alias h="history"
 alias c="clear"
 alias r='ranger --choosedir=$HOME/.rangerdir; LASTDIR=`cat $HOME/.rangerdir`; cd "$LASTDIR"'
 alias sd="cd ~ && cd \$(find * -type d | fzf)"
-alias q7b="ollama run qwen2.5-coder:7b"
+alias q4b="ollama run qwen3.5:4b"
+alias qc="ollama run qwen2.5-coder:1.5b"
+alias parrot="distrobox enter parrot"
 
 #--- History options ---
 HISTTIMEFORMAT="%y-%m-%d %H:%M "

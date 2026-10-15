@@ -18,12 +18,6 @@ source ./scripts/packages.conf
 echo "Updating System..."
 sudo dnf update
 
-rm -ri xwaylandvideobridge
-rm -ri gnome-keyring
-
 # Install system packages
 echo "Installing dev tools..."
 install_packages "${DEV_TOOLS[@]}"
-
-echo "Installing desktop applications..."
-install_packages "${DESKTOP[@]}"
